@@ -9,4 +9,8 @@ class ManageView(ListView):
     model = Manage
     paginate_by=10
     template_name = 'app/base.html'
+
+class VideolistView(ListView):
+    model = Manage
+    template_name = 'app/video_list.html'
     

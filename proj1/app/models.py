@@ -16,7 +16,7 @@ class Manage(models.Model):
     # info_category = Choices(Video_category.category)
     # info_parson = Choices(Parson.parson)
 
-    manage_twitter_already = models.BooleanField()
+    manage_twitter_already = models.BooleanField(default=False)
 
     def __str__(self):
         return self.youtube_video_title

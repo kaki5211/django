@@ -32,6 +32,12 @@
           font-size: 3.5rem;
         }
       }
+
+      .container-fluid {
+      margin-right: auto;
+      margin-left: auto;
+      max-width: 1700px;
+      }
     </style>
 
     
@@ -42,7 +48,7 @@
   </head>
   <body>
     
-<div class="container">
+<div class="container-fluid">
   <header class="blog-header py-3">
     <div class="row flex-nowrap justify-content-between align-items-center">
       <div class="col-4 pt-1">
@@ -78,7 +84,7 @@
   </div>
 </div>
 
-<main class="container">
+<main class="container-fluid">
   {% comment %} <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
     <div class="col-md-6 px-0">
       <h1 class="display-4 font-italic">Title of a longer featured blog post</h1>
@@ -92,6 +98,7 @@
     <img src={% static "images/arikuichart.png" %} class="img-fluid" alt="">
   </div> {% endcomment %}
     <img src={% static "images/arikuichart.png" %} class="img-fluid" alt="">
+    
 
   <div class="row mb-2">
     <div class="col-md-6">
@@ -104,7 +111,8 @@
           <a href="#" class="stretched-link">詳細...............</a>
         </div>
         <div class="col-auto d-none d-lg-block">
-          <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+          <img src="https://img.youtube.com/vi/tjCGN1IsVjw/hqdefault.jpg" />
+          {% comment %} <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> {% endcomment %}
 
         </div>
       </div>
