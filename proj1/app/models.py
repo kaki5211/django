@@ -10,7 +10,7 @@ from django.db.models.fields import SmallIntegerField, TimeField
 class Manage(models.Model):
     youtube_video_id = models.CharField(max_length=10, null=True)
     youtube_video_title = models.CharField(max_length=100, null=True)
-    youtube_video_day = models.TimeField(null=True)
+    youtube_video_day = models.DateTimeField(null=True)
     youtube_video_episode = models.SmallIntegerField(null=True)
 
     # info_category = Choices(Video_category.category)
