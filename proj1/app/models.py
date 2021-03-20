@@ -12,6 +12,7 @@ class Manage(models.Model):
     youtube_video_title = models.CharField(max_length=100, null=True)
     youtube_video_day = models.DateTimeField(null=True)
     youtube_video_episode = models.SmallIntegerField(null=True)
+    contents = models.CharField(max_length=500, null=True)
 
     # info_category = Choices(Video_category.category)
     # info_parson = Choices(Parson.parson)

@@ -7,7 +7,7 @@ from .models import Manage
 
 class ManageView(ListView):
     model = Manage
-    paginate_by=10
+    paginate_by=3
     template_name = 'app/base.html'
 
 class VideolistView(ListView):
