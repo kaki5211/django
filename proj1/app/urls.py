@@ -10,6 +10,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('base/', views.ManageView.as_view(), name="manage"),
     path('videos/', views.VideolistView.as_view(), name="videolist"),
+    path('detail/<int:pk>', views.DetailView.as_view(), name="detail"),
 ]
 
 #  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

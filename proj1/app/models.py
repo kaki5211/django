@@ -23,6 +23,8 @@ class Manage(models.Model):
         return self.youtube_video_title
     
 
+
+
 class Video_category():
     category = models.CharField()
     def __str__(self):

@@ -8,9 +8,17 @@ from .models import Manage
 class ManageView(ListView):
     model = Manage
     paginate_by=3
-    template_name = 'app/base.html'
+    template_name = 'app/top.html'
 
 class VideolistView(ListView):
     model = Manage
     template_name = 'app/video_list.html'
+
+class DetailView(DetailView):
+    model = Manage
+    template_name = 'app/detail.html'
+
+    # def get_queryset(self):
+    #     return super().get_queryset()
+    
     
