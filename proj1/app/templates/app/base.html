@@ -52,7 +52,7 @@
   <header class="blog-header py-3">
     <div class="row flex-nowrap justify-content-between align-items-center">
       <div class="col-4 pt-1">
-        <a class="link-secondary" href="#">TOP</a>
+        <a class="link-secondary" href="{% url "top" %}">TOP</a>
       </div>
       <div class="col-4 text-center">
       </div>
@@ -60,7 +60,7 @@
         <a class="link-secondary" href="#" aria-label="Search">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="mx-3" role="img" viewBox="0 0 24 24"><title>Search</title><circle cx="10.5" cy="10.5" r="7.5"/><path d="M21 21l-5.2-5.2"/></svg>
         </a>
-        <a class="btn btn-sm btn-outline-secondary" href="#">Sign up(いらん？)</a>
+        {% comment %} <a class="btn btn-sm btn-outline-secondary" href="#">Sign up(いらん？)</a> {% endcomment %}
       </div>
     </div>
   </header>
@@ -68,10 +68,11 @@
   <div class="nav-scroller py-1 mb-2">
     <nav class="nav d-flex justify-content-between">
       {% comment %} <a class="p-2 link-secondary" href="#">World</a> {% endcomment %}
-      <a class="p-2 link-secondary" href="#">動画ランキング</a>
-      <a class="p-2 link-secondary" href="#">動画検索</a>
-      <a class="p-2 link-secondary" href="#">投稿者紹介</a>
-      <a class="p-2 link-secondary" href="#">Youtube</a>
+      {% comment %} <a class="p-2 link-secondary" href="#">動画ランキング</a> {% endcomment %}
+      <a class="p-2 link-secondary" href="{% url "video_search" %}">動画検索</a>
+      <a class="p-2 link-secondary" href="{% url "members" %}">メンバー紹介</a>
+      <a class="p-2 link-secondary" href="{% url "categorys" %}">カテゴリー紹介</a>
+      <a class="p-2 link-secondary" href="https://www.youtube.com/channel/UCe14cApK5chdxcWewhMZR7g">Youtube</a>
       <a class="p-2 link-secondary" href="#">Twitter</a>
     </nav>
   </div>
@@ -89,7 +90,7 @@
   <div class="row text-center">
     <div class="col-sm-12">
       <h1 class="display-3 border-secondary text-decoration-underline">アリクイちゃんねる</h1>
-      <h4 class="my-md-3">このブログは、20代5人が各々コンテンツを作り、それをまとめて紹介しているブログです！</h4>
+      <h4 class="my-md-3">このブログは、20代3人が各々コンテンツを作り、それをまとめて紹介しているブログです！</h4>
       <h4 syyle="font-size: calc(2em + 2vw);">主にYoutubeでのコンテンツ配信となっていますので、どうぞ見ていってください！</h4>
     </div>
   </div>
@@ -146,28 +147,18 @@
       <div class="p-4">
         <h4 class="font-italic">カテゴリ</h4>
         <ol class="list-unstyled mb-0">
-          <li><a href="#">ピクミン3</a></li>
-          {% comment %} <li><a href="#">March 2014</a></li>
-          <li><a href="#">February 2014</a></li>
-          <li><a href="#">January 2014</a></li>
-          <li><a href="#">December 2013</a></li>
-          <li><a href="#">November 2013</a></li>
-          <li><a href="#">October 2013</a></li>
-          <li><a href="#">September 2013</a></li>
-          <li><a href="#">August 2013</a></li>
-          <li><a href="#">July 2013</a></li>
-          <li><a href="#">June 2013</a></li>
-          <li><a href="#">May 2013</a></li>
-          <li><a href="#">April 2013</a></li> {% endcomment %}
+        {% for item in category %}
+          <li><a href="{% url "ctegory_info" category_eng=item.category_eng %}">{{ item }}</a></li>
+        {% endfor %}
         </ol>
       </div>
 
       <div class="p-4">
         <h4 class="font-italic">投稿者</h4>
         <ol class="list-unstyled">
-          <li><a href="#">太郎</a></li>
-          <li><a href="#">次郎</a></li>
-          <li><a href="#">三郎</a></li>
+        {% for item in member %}
+          <li><a href="{% url "member_info" member_eng=item.member_eng %}">{{ item }}</a></li>
+        {% endfor %}
         </ol>
       </div>
     </div>
@@ -179,7 +170,7 @@
 <footer class="blog-footer">
   {% comment %} <p>Blog template built for <a href="https://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p> {% endcomment %}
   <p>
-    <a href="#">Back to top</a>
+    <a href="{% url "top" %}">Back to top</a>
   </p>
 </footer>
 

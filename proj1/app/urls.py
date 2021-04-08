@@ -8,9 +8,19 @@ from django.conf.urls.static import static
 
 
 urlpatterns = [
-    path('base/', views.ManageView.as_view(), name="manage"),
+    path('top/', views.ManageView.as_view(), name="top"),
+    path('video/', views.VideosView.as_view(), name="videos"),
+    path('videoserch/', views.VideosearchView.as_view(), name="video_search"),
+
+    path('video/member/', views.MembersView.as_view(), name="members"),
+    path('video/category/', views.CategorysView.as_view(), name="categorys"),
+    path('video/<slug:category_eng>', views.CategoryinfoView.as_view(), name="ctegory_info"),
+
+    path('video/member/<slug:member_eng>', views.MemberinfoView.as_view(), name="member_info"),
+    path('video/uncategorize/<int:pk>/', views.VideoView.as_view(), name="video_info_un"),
+    path('video/<slug:category_eng>/<int:youtube_video_episode>/', views.VideoView.as_view(), name="video_info"),
+
     path('videos/', views.VideolistView.as_view(), name="videolist"),
-    path('detail/<int:pk>', views.DetailView.as_view(), name="detail"),
 ]
 
 #  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

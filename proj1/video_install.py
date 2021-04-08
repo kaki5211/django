@@ -12,6 +12,8 @@ from app.models import Manage
 # データベースを操作可能になる
 Manage.objects.all()
 
+from django.utils.timezone import make_aware
+
 # -*- coding:utf-8 -*-
 # from selenium import webdriver
 # from selenium.webdriver.common.by import By
@@ -23,7 +25,7 @@ from googleapiclient.discovery import build
 import datetime
 
 dt_now = datetime.datetime.now()
-API_KEY = 'AIzaSyA3TijmbZm5Q3ItC9i6sNNOLq77xQTz4b0'
+API_KEY = 'AIzaSyBW_xwprJfz-yO-dmv4wX7CTqJ48CiY8cw'
 YOUTUBE_API_SERVICE_NAME = 'youtube'
 YOUTUBE_API_VERSION = 'v3'
 CHANNEL_ID = 'UCe14cApK5chdxcWewhMZR7g'
@@ -101,18 +103,27 @@ for result in searches:
             videos.append([result, video_result["snippet"]["title"],video_result["statistics"]["viewCount"],video_result["statistics"]["commentCount"],video_result["snippet"]["publishedAt"]])
 
 for video in videos:
-    print(video[0])
-    print(video[1])
-    print(video[4])
+
     video_time = video[4]
 
     video_time = datetime.datetime.strptime(video_time, '%Y-%m-%dT%H:%M:%SZ')
+    td = datetime.timedelta(hours=9)
+    video_time = video_time + td
+    video_time = make_aware(video_time)
+    print(video[0])
+    print(video[1])
+    print(video[4])
+
+
+    if Manage.objects.filter(youtube_video_title=video[1]):
+        continue
+
+    print(video[0])
+    print(video[1])
+    print(video[4])
 
     try:
-        dammy = Manage.objects.filter(body_text__contain=video[0])
-        continue
+        q = Manage(youtube_video_id=video[0], youtube_video_title=video[1], youtube_video_day=video_time)
+        q.save()
     except:
         pass
-        
-    q = Manage(youtube_video_id=video[0], youtube_video_title=video[1], youtube_video_day=video_time)
-    q.save()

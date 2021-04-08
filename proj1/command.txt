@@ -1,0 +1,26 @@
+python manage.py dbshell 
+
+mysql> | psql> ALTER TABLE <table_name> DROP column <COLUMN_NAME>;
+
+mysql> | psql> ALTER TABLE Manage DROP column youtube_video_category;
+
+ cursor.execute("ALTER TABLE Manage DROP column youtube_video_category");
+ 
+ 
+cursor.execute("ALTER TABLE Manage DROP column youtube_video_category");
+cursor.execute("""
+SELECT CASE WHEN price < 1000 THEN '1000円未満'
+            WHEN price >= 1000 AND price < 2000 THEN '1000円以上2000円未満' 
+            WHEN price >= 2000 AND price < 3000 THEN '2000円以上3000円未満'
+            WHEN price >= 3000 THEN '3000円以上'
+            ELSE NULL END AS price_class,
+            COUNT(*) AS cnt
+FROM books_book
+GROUP BY CASE WHEN price < 1000 THEN '1000円未満'
+            WHEN price >= 1000 AND price < 2000 THEN '1000円以上2000円未満' 
+            WHEN price >= 2000 AND price < 3000 THEN '2000円以上3000円未満'
+            WHEN price >= 3000 THEN '3000円以上'
+            ELSE NULL END;
+""")
+
+cursor.execute("ALTER TABLE employee DROP youtube_video_category");

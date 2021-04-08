@@ -1,3 +1,6 @@
+{% extends 'app/base.html' %}
+
+{% block contents %}
 
 <table border="1">
   <tr>
@@ -13,7 +16,11 @@
     <tr>
       <td>{{ video.pk }}</td>
       <td>{{ video.youtube_video_id }}</td>
-      <td>{{ video.youtube_video_title }}</td>
+      {% comment %} {% if video.category_id.category_eng %}
+        <td><a href="{% url "video_info" category_eng=video.category_id.category_eng youtube_video_episode=video.youtube_video_episode %}">{{ video.youtube_video_title }}</a></td>
+      {% elif %}
+        <td><a href="{% url "video_info_un" pk=video.pk %}">{{ video.youtube_video_title }}</a></td>
+      {% endif %} {% endcomment %}
       <td>{{ video.category_id.category_eng }}</td>
       <td>{{ video.youtube_video_episode }}</td>
       <td>{{ video.youtube_video_day }}</td>
@@ -21,3 +28,5 @@
     </tr>
   {% endfor %}
 </table>
+
+{% endblock %}

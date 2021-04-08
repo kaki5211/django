@@ -1,0 +1,55 @@
+{% extends 'app/base.html' %}
+
+{% block contents %}
+
+
+  <div class="row">
+    <div class="col-md-9">
+      <h3 class="text-white mb-5 bg-dark rounded px-4 py-2 mb-4 font-italic align-middle">
+        動画詳細
+      </h3>
+
+        <article style="text-overflow: ellipsis; " class="row border">
+          <p class="my-2 mb-0">{{ manage.youtube_video_day }}</p>
+
+            <div >
+            <h4 style="font-weight: bold;" class="display-5 mt-3 mb-2 textOverflow "><a>{{ manage.youtube_video_title }}</a></h4>
+            {% comment %} <p class="my-md-2 textOverflow ">{{ manage.youtube_video_contents }}<p> {% endcomment %}
+            </div>
+
+            <div class="col-12 col-sm-12 col-md-12 my-5"></div>
+
+            <div class="col-sm-1 col-md-2"></div>
+            <div style="min-width:100px;" class="col-12 col-sm-10 col-md-8">
+              <a href="https://www.youtube.com/watch?v={{ manage.youtube_video_id }}">
+                <img style="min-width:100px; text-align: center;" class="my-md-3" width="100%" hight="100%" src="https://img.youtube.com/vi/{{ manage.youtube_video_id }}/mqdefault.jpg" />
+              </a>
+            </div>
+            <div class="col-sm-1 col-md-2"></div>
+
+            <div class="col-12 col-sm-12 col-md-12 my-5"></div>
+
+            <div class="col-1 col-sm-1 col-md-1"></div>
+            <div class="col-sm-10 col-md-10">
+              <div class="row align-items-center" style="padding-top: 2%;"></div>
+              {% comment %} <div style="padding-top:3%;">
+                <h4 class="">カテゴリ： {{manage.youtube_video_day}}</h4>
+              </div>
+              <div style="padding-top:3%;">
+                <h4 class="">episode： {{manage.youtube_video_day}}</h4>
+              <div style="padding-top:3%;">
+              </div>
+                <h4 class="">メンバー： {{manage.youtube_video_day}}</h4>
+              </div> {% endcomment %}
+            </div>
+            <div class="col-1 col-sm-1 col-md-1"></div>
+
+            <div class="col-12 col-sm-12 col-md-12 my-5"></div>
+
+            <div class="col-1 col-sm-1 col-md-1 my-5"></div>
+
+        </article>
+        <!-- /.blog-post -->
+        <div style="padding-top: 1%;" class="mt-1 col-12 col-sm-12 col-md-12"></div>
+
+{% endblock %}
