@@ -6,7 +6,7 @@
   <div class="row">
     <div class="col-md-9">
       <h3 class="text-white mb-5 bg-dark rounded px-4 py-2 mb-4 font-italic align-middle">
-        動画詳細
+        カテゴリー詳細
       </h3>
 
         <article style="text-overflow: ellipsis; " class="row border">
@@ -23,6 +23,7 @@
             <div style="min-width:100px;" class="col-12 col-sm-10 col-md-8">
               <a href="https://www.youtube.com/watch?v={{ manage.youtube_video_id }}">
                 <img style="min-width:100px; text-align: center;" class="my-md-3" width="100%" hight="100%" src="https://img.youtube.com/vi/{{ manage.youtube_video_id }}/mqdefault.jpg" />
+                ↑アマゾン商品リンク用
               </a>
             </div>
             <div class="col-sm-1 col-md-2"></div>
@@ -33,20 +34,35 @@
             <div class="col-sm-10 col-md-10">
               <div class="row align-items-center" style="padding-top: 2%;"></div>
               <div style="padding-top:3%;">
-                <h4 class="">カテゴリ： {{manage.youtube_video_day}}</h4>
+                <h4 class="">カテゴリ： {{category_.category_jp}}</h4>
               </div>
               <div style="padding-top:3%;">
-                <h4 class="">episode： {{manage.youtube_video_day}}</h4>
+                <h4 class="">episode：全 {{episode_max}}話</h4>
+              </div>
               <div style="padding-top:3%;">
+                <h4>
+                  メンバー：
+                  {% for item in member %}
+                    {% if forloop.first == False %}、{% endif %}{{ item }}
+                  {% endfor %} 
+                </h4>
               </div>
-                <h4 class="">メンバー： {{manage.youtube_video_day}}</h4>
-              </div>
+              <div class="col-1 col-sm-1 col-md-1"></div>
             </div>
+            
+            <div class="col-12 col-sm-12 col-md-12 my-5"></div>
+              <div class="p-5m" style="padding-top:3%;">
+                <p>
+                  {{catgory.contents}}こんにちは、リクです！ピクミン、ピクミン２に続く作品でピクミン３DXの実況を始めました！
+                </p>
+              </div>
+
+
             <div class="col-1 col-sm-1 col-md-1"></div>
 
             <div class="col-12 col-sm-12 col-md-12 my-5"></div>
 
-            <div class="col-1 col-sm-1 col-md-1 my-5"></div>
+            {% comment %} <div class="col-1 col-sm-1 col-md-1 my-5"></div> {% endcomment %}
 
         </article>
         <!-- /.blog-post -->

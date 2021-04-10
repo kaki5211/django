@@ -61,6 +61,7 @@ class CategorysView(ListView):
 class CategoryinfoView(DetailView):
     model = Category
     template_name = 'app/category_info.html' 
+    context_object_name = 'category_'
     def get_object(self, queryset=None):
         try:
             video_q = Category.objects.filter(category_eng=self.kwargs['category_eng']).first()
@@ -71,6 +72,7 @@ class CategoryinfoView(DetailView):
         context = super().get_context_data()
         context['category'] = Category.objects.all()
         context['member'] = Member.objects.all()
+        context['episode_max'] = Manage.objects.filter(category_id__category_eng=self.kwargs['category_eng']).count()
         return context
 
 class MembersView(ListView):

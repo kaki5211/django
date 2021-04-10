@@ -13,7 +13,7 @@ class Manage(models.Model):
     youtube_video_title = models.CharField(max_length=100, null=True)
     youtube_video_day = models.DateTimeField(null=True)
     youtube_video_episode = models.SmallIntegerField(null=True)
-    contents = models.CharField(max_length=500, null=True)
+    contents = models.CharField(max_length=1023, null=True)
 
     category_id = models.ForeignKey('Category', db_column='category_id', on_delete=models.CASCADE, default="1")
 
@@ -28,6 +28,9 @@ class Category(models.Model):
     category_id = models.AutoField('category_id', primary_key=True)
     category_jp = models.CharField('カテゴリーjp', max_length=50, null=True)
     category_eng = models.CharField('カテゴリーeng', max_length=50, null=True)
+    
+    members = models.ManyToManyField('Member', related_name="members_ct")
+    contents = models.CharField("コンテンツ", max_length=1024, null=True)
     def __str__(self):
         return self.category_jp
 

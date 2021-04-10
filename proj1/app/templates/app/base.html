@@ -11,12 +11,12 @@
     <meta name="generator" content="Hugo 0.79.0">
     <title>アリクイ ちゃんねる - ARIKUI CHANNEL</title>
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/blog/">
+    {% comment %} <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/blog/"> {% endcomment %}
 
     
 
     <!-- Bootstrap core CSS -->
-<link href={% static "css/bootstrap.min.css" %} rel="stylesheet">
+<link href={% static "css/bootstrap.css" %} rel="stylesheet">
 
     <style>
       .bd-placeholder-img {
@@ -42,13 +42,16 @@
 
     
     <!-- Custom styles for this template -->
-    <link href="https://fonts.googleapis.com/css?family=Playfair&#43;Display:700,900&amp;display=swap" rel="stylesheet">
+    {% comment %} <link href="https://fonts.googleapis.com/css?family=Playfair&#43;Display:700,900&amp;display=swap" rel="stylesheet"> {% endcomment %}
     <!-- Custom styles for this template -->
     <link href={% static "css/blog.css" %} rel="stylesheet">
-  </head>
+    {% comment %} <link href={% static "css/one-page-wonder.min.css" %} rel="stylesheet"> {% endcomment %}
+    <link href={% static "css/navber.css" %} rel="stylesheet">
+    {% comment %} <link href={% static "js/scripts.js" %} rel="stylesheet"> {% endcomment %}
+    {% comment %} <script type="text/javascript" src={% static "js/scripts.js" %}></script>  </head> {% endcomment %}
   <body>
     
-<div class="container-fluid">
+{% comment %} <div class="container-fluid">
   <header class="blog-header py-3">
     <div class="row flex-nowrap justify-content-between align-items-center">
       <div class="col-4 pt-1">
@@ -60,25 +63,85 @@
         <a class="link-secondary" href="#" aria-label="Search">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="mx-3" role="img" viewBox="0 0 24 24"><title>Search</title><circle cx="10.5" cy="10.5" r="7.5"/><path d="M21 21l-5.2-5.2"/></svg>
         </a>
-        {% comment %} <a class="btn btn-sm btn-outline-secondary" href="#">Sign up(いらん？)</a> {% endcomment %}
+        <a class="btn btn-sm btn-outline-secondary" href="#">Sign up(いらん？)</a>
       </div>
     </div>
-  </header>
+  </header> {% endcomment %}
 
-  <div class="nav-scroller py-1 mb-2">
+  {% comment %} <div class="nav-scroller py-1 mb-2">
     <nav class="nav d-flex justify-content-between">
-      {% comment %} <a class="p-2 link-secondary" href="#">World</a> {% endcomment %}
-      {% comment %} <a class="p-2 link-secondary" href="#">動画ランキング</a> {% endcomment %}
       <a class="p-2 link-secondary" href="{% url "video_search" %}">動画検索</a>
       <a class="p-2 link-secondary" href="{% url "members" %}">メンバー紹介</a>
       <a class="p-2 link-secondary" href="{% url "categorys" %}">カテゴリー紹介</a>
       <a class="p-2 link-secondary" href="https://www.youtube.com/channel/UCe14cApK5chdxcWewhMZR7g">Youtube</a>
       <a class="p-2 link-secondary" href="#">Twitter</a>
     </nav>
-  </div>
+  </div> {% endcomment %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-custom fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href={% url "top" %}>アリクイ ちゃんねる</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto right">
+          <li class="nav-item">
+            <a class="nav-link text-white" href="{% url "video_search" %}">動画検索</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="{% url "members" %}">メンバー紹介</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="{% url "categorys" %}">カテゴリー紹介</a>
+          </li>
+          <li class="nav-item">
+            <svg class="p-1 mx-1" style="max-width:100%; max-height:100%;" xmlns="http://www.w3.org/2000/svg" width="35" height="35" class="bi bi-twitter" viewBox="0 0 16 16">
+              <a href="https://www.youtube.com/channel/UCe14cApK5chdxcWewhMZR7g">
+                <path style="fill:#ff0000;" d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.122C.002 7.343.01 6.6.064 5.78l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"/>
+              </a>
+            </svg>
+          </li>
+          <li class="nav-item">
+            <svg class="p-1 mx-1" style="max-width:100%; max-height:100%;" xmlns="http://www.w3.org/2000/svg" width="35" height="35" class="bi bi-twitter" viewBox="0 0 16 16">
+              <a href="https://www.youtube.com/channel/UCe14cApK5chdxcWewhMZR7g">
+                <path style="fill:#1d9bf0;" d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"/>
+              </a>
+            </svg>
+          </li> 
+        </ul>
+      </div>
+    </div>
+  </nav>
+
 </div>
+{% comment %} <nav class="row navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+    <div class="col-12 container">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">Start Bootstrap</a>
+        <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            Menu
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#portfolio">Portfolio</a></li>
+                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about">About</a></li>
+                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+</nav> {% endcomment %}
+
+
+
+
+
+
+
+
+
 
 <main class="container-fluid">
+  <div style="padding-top: 80px;" class="mt-1 col-12 col-sm-12 col-md-12"></div>
 
   <img src={% static "images/arikuichart.png" %} class="img-fluid" alt="">
     
@@ -100,7 +163,9 @@
       <div class="col-1 col-sm-1 col-md-1"></div>
       <div class="col-4 col-sm-4 col-md-4">
         <svg style="max-width:100%; max-height:100%; height: auto;" xmlns="http://www.w3.org/2000/svg" width="170" height="170" fill="currentColor" class="bi bi-youtube" viewBox="0 0 16 16">
-          <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.122C.002 7.343.01 6.6.064 5.78l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"/>
+          <a href="https://www.youtube.com/channel/UCe14cApK5chdxcWewhMZR7g">
+            <path style="fill:#ff0000;" d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.122C.002 7.343.01 6.6.064 5.78l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"/>
+          </a>
         </svg>
         <h3 class="mb-3">
           <a href="https://www.youtube.com/channel/UCe14cApK5chdxcWewhMZR7g">Youtube</a>
@@ -109,7 +174,9 @@
       <div class="col-2 col-sm-2 col-md-2"></div>
       <div class="col-4 col-sm-4 col-md-4">
         <svg style="max-width:100%; max-height:100%; height: auto;" xmlns="http://www.w3.org/2000/svg" width="170" height="170" fill="currentColor" class="bi bi-twitter" viewBox="0 0 16 16">
-          <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"/>
+          <a href="https://www.youtube.com/channel/UCe14cApK5chdxcWewhMZR7g">
+            <path style="fill:#1d9bf0;" d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"/>
+          </a>
         </svg>
         <h3 class="mb-3">
           <a href="https://www.youtube.com/channel/UCe14cApK5chdxcWewhMZR7g">Twitter</a>
@@ -144,20 +211,21 @@
         {% comment %} <p class="mb-0">Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p> {% endcomment %}
       </div>
 
-      <div class="p-4">
-        <h4 class="font-italic">カテゴリ</h4>
+      <div class="p-2">
+        <h4 class="font-italic">カテゴリー</h4>
         <ol class="list-unstyled mb-0">
         {% for item in category %}
-          <li><a href="{% url "ctegory_info" category_eng=item.category_eng %}">{{ item }}</a></li>
+          <li><a class="ps-2 text-truncate mw-100 text-break d-block" href="{% url "ctegory_info" category_eng=item.category_eng %}">{{ item }}</a></li>
         {% endfor %}
+
         </ol>
       </div>
 
-      <div class="p-4">
+      <div class="p-2 mt-4">
         <h4 class="font-italic">投稿者</h4>
         <ol class="list-unstyled">
         {% for item in member %}
-          <li><a href="{% url "member_info" member_eng=item.member_eng %}">{{ item }}</a></li>
+          <li><a class="ps-2 text-truncate mw-100 text-break d-block" href="{% url "member_info" member_eng=item.member_eng %}">{{ item }}</a></li>
         {% endfor %}
         </ol>
       </div>
@@ -167,13 +235,50 @@
 
 </main><!-- /.container -->
 
-<footer class="blog-footer">
-  {% comment %} <p>Blog template built for <a href="https://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p> {% endcomment %}
-  <p>
-    <a href="{% url "top" %}">Back to top</a>
-  </p>
-</footer>
+<footer class="py-5 bg-dark">
+  <div class="container">
+   <div class="row my-5">
+  <div class="col-sm-4 col-xs-6">
+    {% comment %} <p>Blog template built for <a href="https://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p> {% endcomment %}
 
+
+    <div class="">
+      <h4 class="font-italic text-white">カテゴリー</h4>
+      <ol class="list-unstyled mb-0">
+      {% for item in category %}
+        <li><a class="text-white ps-2 text-truncate mw-100 text-break d-block" href="{% url "ctegory_info" category_eng=item.category_eng %}">{{ item }}</a></li>
+      {% endfor %}
+
+      </ol>
+    </div>
+  </div>
+  <div class="col-sm-4 col-xs-6">
+    <div class="">
+      <h4 class="font-italic text-white">投稿者</h4>
+      <ol class="list-unstyled">
+      {% for item in member %}
+        <li><a class="text-white ps-2 text-truncate mw-100 text-break d-block" href="{% url "member_info" member_eng=item.member_eng %}">{{ item }}</a></li>
+      {% endfor %}
+      </ol>
+    </div>
+  </div>
+  <div class="col-sm-4 col-xs-6">
+    <div class="">
+      <h4 class="font-italic text-white">動画検索</h4>
+      <ol class="list-unstyled">
+        <li><a class="text-white ps-2 text-truncate mw-100 text-break d-block" href="{% url "video_search" %}">動画検索</a></li>
+      </ol>
+    </div>
+  </div>
+
+
+    <div>
+      <a class="border-bottom d-block pe-3 my-5 text-white ml-auto right" href="{% url "top" %}">Back to top</a>
+    </div>
+    </div>
+      <p class="mt-5 text-center text-white small">Copyright &copy; Your Website 2020</p>
+    </div>
+  </footer>
 
     
   </body>

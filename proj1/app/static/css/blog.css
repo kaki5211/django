@@ -1,0 +1,17 @@
+.display-3 {
+  font-size: 800;
+}
+
+.right {
+    margin: 0 0 0 auto;
+    text-align: right; 
+}
+
+.p-5m {
+  padding: 1rem !important;
+}
+
+@media screen and (min-width:576px) {
+    /*　画面サイズが480pxからはここを読み込む　*/
+.p-5m {padding: 3rem !important;}
+}
