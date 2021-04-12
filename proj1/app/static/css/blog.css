@@ -4,7 +4,7 @@
 
 .right {
     margin: 0 0 0 auto;
-    text-align: right; 
+    text-align: right;
 }
 
 .p-5m {
@@ -14,4 +14,11 @@
 @media screen and (min-width:576px) {
     /*　画面サイズが480pxからはここを読み込む　*/
 .p-5m {padding: 3rem !important;}
+}
+
+small-v, .small-v {
+  font-size: 0.6em;
+}
+.b-b-w3, .b-b-w3 {
+  border-bottom-width: 3px
 }

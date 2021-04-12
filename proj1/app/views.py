@@ -1,9 +1,10 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, FormView
+from django.views.generic.edit import ModelFormMixin
 from .models import Manage, Category, Member
 from django.http import Http404
 from django.db.models import Prefetch
-
+from . import forms
 
 # Create your views here.
 
@@ -12,6 +13,8 @@ class ManageView(ListView):
     model = Manage
     paginate_by=7
     template_name = 'app/top.html'
+    def get_queryset(self):
+        return Manage.objects.all().order_by('-youtube_video_day')
     # quaryset = Manage.objects.order_by('-youtube_video_day')
     ordering = '-youtube_video_day' # order_by('-title')
     def get_context_data(self, **kwargs):
@@ -99,15 +102,31 @@ class MemberinfoView(DetailView):
         context['member'] = Member.objects.all()
         return context
 
-class VideosearchView(ListView):
+class VideosearchView(ListView, ModelFormMixin):
     model = Manage
     template_name = 'app/video_search.html'
+    form_class=forms.VideosearchFrom
+    success_url = '/videoserch'
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
         context['category'] = Category.objects.all()
         context['member'] = Member.objects.all()
         return context
+    
+    def get(self, request, *args, **kwargs):
+        self.object = None
+        return super().get(request, *args, **kwargs)        
 
+    def post(self, request, *args, **kwargs):
+        self.object = None
+        self.object_list = self.get_queryset()
+        form = self.get_form()
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+        
 class VideosView(ListView):
     model = Manage
     template_name = 'app/videos.html'
