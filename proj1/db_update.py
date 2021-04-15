@@ -24,6 +24,13 @@ from googleapiclient.discovery import build
 # from googleapiclient.errors import HttpError
 import datetime
 
+import re
+import jaconv
+
+import tweepy
+
+
+
 dt_now = datetime.datetime.now()
 API_KEY = 'AIzaSyBW_xwprJfz-yO-dmv4wX7CTqJ48CiY8cw'
 YOUTUBE_API_SERVICE_NAME = 'youtube'
@@ -44,7 +51,40 @@ member = ["リク","ハルカ","リュージ","イナムー","ユウ","きよ"]
 mem_num = len(member)
 
 
+def twi(video,video_id):
+    # 取得した各種キーを格納-----------------------------------------------------
+    consumer_key ="CTZmmUUap52PyD9wxVGF1Uxte"
+    consumer_secret ="njMacFCMmXXPQQ7441aehWwqrlftzO9y5tIRuqexJQNOzGMuOh"
+    access_token="1230775413686718464-2ShCxUlLC1gpEjp31oZXUM0iQJ9Rdy"
+    access_token_secret ="ec9qAwHJXykfjJ72JMO6LX4yZA9llLDwviOPEprX8P2IN"
 
+    # Twitterオブジェクトの生成
+    auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+    auth.set_access_token(access_token, access_token_secret)
+    api = tweepy.API(auth)
+    #-------------------------------------------------------------------------
+    # ツイートを投稿
+    api.update_status("""こんばんは！アリクイチャンネルです！
+    本日の動画はこちら、
+    　「{}」
+
+    よかったら見ていってください！
+    https://www.youtube.com/watch?v={}
+    """.format(video, video_id))
+    return
+
+def epi(video):
+    try:
+        manageq_title_han = jaconv.z2h(video,digit=True, ascii=True)
+        ep = re.search('#[0-9]+', manageq_title_han)
+    except:
+        episode = None
+    try:
+        episode = ep.group().replace("#", "")
+        episode = int(episode)
+    except:
+        pass
+    return episode
 
 
 #YoutubeのAPIを登録
@@ -102,28 +142,22 @@ for result in searches:
             i = i + 1
             videos.append([result, video_result["snippet"]["title"],video_result["statistics"]["viewCount"],video_result["statistics"]["commentCount"],video_result["snippet"]["publishedAt"]])
 
+a = 0
 for video in videos:
 
     video_time = video[4]
-
     video_time = datetime.datetime.strptime(video_time, '%Y-%m-%dT%H:%M:%SZ')
     td = datetime.timedelta(hours=9)
     video_time = video_time + td
     video_time = make_aware(video_time)
-    print(video[0])
-    print(video[1])
-    print(video[4])
 
 
-    if Manage.objects.filter(youtube_video_title=video[1]):
-        continue
-
-    print(video[0])
-    print(video[1])
-    print(video[4])
-
-    try:
-        q = Manage(youtube_video_id=video[0], youtube_video_title=video[1], youtube_video_day=video_time)
-        # q.save()
-    except:
-        pass
+    # if Manage.objects.filter(youtube_video_title=video[1]):
+        # continue
+    q = Manage.objects.filter(youtube_video_id=video[0]).count()
+    if q == 0 and a <= 1:
+        twi(video[1], video[0])
+        episode = epi(video[1])
+        q = Manage(youtube_video_id=video[0], youtube_video_title=video[1], youtube_video_day=video_time, youtube_video_episode=episode)
+        q.save()
+        a += 1

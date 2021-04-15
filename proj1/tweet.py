@@ -41,7 +41,7 @@ nextPagetoken = None
 nextpagetoken = None
 d_today = datetime.date.today() #今日の日付を取得
 d_today_text = d_today.strftime('%Y-%m-%d') #今日の日付の表現変更
-period_day = datetime.timedelta(weeks=5) #さかのぼりたい日付を取得（デルタ関数）
+period_day = datetime.timedelta(weeks=1) #さかのぼりたい日付を取得（デルタ関数）
 d_period_day = (d_today - period_day).strftime('%Y-%m-%d') #さかのぼりたい日付を取得
 
 member = ["リク","ハルカ","リュージ","イナムー","ユウ","きよ"]
@@ -50,10 +50,10 @@ mem_num = len(member)
 
 def twi(video,video_id):
     # 取得した各種キーを格納-----------------------------------------------------
-    consumer_key ="取得したconsumer key"
-    consumer_secret ="取得したconsumer secret"
-    access_token="取得したaccess token"
-    access_token_secret ="取得したaccess token secret"
+    consumer_key ="CTZmmUUap52PyD9wxVGF1Uxte"
+    consumer_secret ="njMacFCMmXXPQQ7441aehWwqrlftzO9y5tIRuqexJQNOzGMuOh"
+    access_token="1230775413686718464-2ShCxUlLC1gpEjp31oZXUM0iQJ9Rdy"
+    access_token_secret ="ec9qAwHJXykfjJ72JMO6LX4yZA9llLDwviOPEprX8P2IN"
 
     # Twitterオブジェクトの生成
     auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
@@ -127,6 +127,7 @@ for result in searches:
             i = i + 1
             videos.append([result, video_result["snippet"]["title"],video_result["statistics"]["viewCount"],video_result["statistics"]["commentCount"],video_result["snippet"]["publishedAt"]])
 
+a = 0
 for video in videos:
 
     video_time = video[4]
@@ -139,5 +140,6 @@ for video in videos:
     # if Manage.objects.filter(youtube_video_title=video[1]):
         # continue
     q = Manage.objects.filter(youtube_video_id=video[0]).count()
-    if q == 0:
-        def twi(video[0])
+    if q == 0 and a == 0:
+        twi(video[1], video[0])
+        a = 1
