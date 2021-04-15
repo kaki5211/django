@@ -18,7 +18,7 @@ admin.site.register(Member)
 #     extra = 3
  
 class ManageAdmin(admin.ModelAdmin):
-    list_display = ('youtube_video_title', 'youtube_video_episode', 'youtube_video_day', 'category_id')
+    list_display = ('id' , 'youtube_video_title', 'youtube_video_episode', 'youtube_video_day', 'category_id')
     # fieldsets = [
     #     (None, {'fields': ['youtube_video_title']}),
     #     ('メンバー', {'fields': ['members'],}),

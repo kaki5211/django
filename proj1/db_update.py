@@ -66,11 +66,11 @@ def twi(video,video_id):
     # ツイートを投稿
     api.update_status("""こんばんは！アリクイチャンネルです！
     本日の動画はこちら、
-    　「{}」
+
+     「{}」
 
     よかったら見ていってください！
-    https://www.youtube.com/watch?v={}
-    """.format(video, video_id))
+    https://www.youtube.com/watch?v={}""".format(video, video_id))
     return
 
 def epi(video):
@@ -157,7 +157,11 @@ for video in videos:
     q = Manage.objects.filter(youtube_video_id=video[0]).count()
     if q == 0 and a <= 1:
         twi(video[1], video[0])
-        episode = epi(video[1])
-        q = Manage(youtube_video_id=video[0], youtube_video_title=video[1], youtube_video_day=video_time, youtube_video_episode=episode)
+        try:
+            episode = epi(video[1])
+            q = Manage(youtube_video_id=video[0], youtube_video_title=video[1], youtube_video_day=video_time, youtube_video_episode=episode)
+        except:
+            q = Manage(youtube_video_id=video[0], youtube_video_title=video[1], youtube_video_day=video_time)
         q.save()
         a += 1
+        break

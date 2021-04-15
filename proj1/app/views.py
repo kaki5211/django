@@ -21,6 +21,7 @@ class ManageView(ListView):
         context = super().get_context_data()
         context['category'] = Category.objects.all()
         context['member'] = Member.objects.all()
+        context['new_flag'] = Manage.objects.order_by('-youtube_video_day').first().youtube_video_id
         return context
 
 
