@@ -6869,6 +6869,10 @@ textarea.form-control-lg {
   padding: 0 !important;
 }
 
+.p-01 {
+  padding: 0.1 !important;
+}
+
 .p-1 {
   padding: 0.25rem !important;
 }
@@ -10625,7 +10629,9 @@ textarea.form-control-lg {
   .fs-4 {
     font-size: 1.5rem !important;
   }
+}
 
+@media (max-width: 576px) {
   .fs-sm-1 {
     font-size: 2.5rem !important;
   }
@@ -10642,6 +10648,20 @@ textarea.form-control-lg {
     font-size: 1.5rem !important;
   }
 
+  .fs-sm-5 {
+    font-size: 1.0rem !important;
+  }
+
+  .fs-sm-6 {
+    font-size: 0.875rem !important;
+  }
+
+  .fs-sm-7 {
+    font-size: 0.5rem !important;
+  }
+}
+
+@media (max-width: 768px) and (min-width: 576px) {
   .fs-md-1 {
     font-size: 2.5rem !important;
   }
@@ -10658,6 +10678,16 @@ textarea.form-control-lg {
     font-size: 1.5rem !important;
   }
 
+  .fs-md-5 {
+    font-size: 1.0rem !important;
+  }
+
+  .fs-md-6 {
+    font-size: 0.875rem !important;
+  }
+}
+
+@media (max-width: 1200px)  and (min-width: 768px) {
   .fs-lg-1 {
     font-size: 2.5rem !important;
   }
@@ -10673,7 +10703,13 @@ textarea.form-control-lg {
   .fs-lg-4 {
     font-size: 1.5rem !important;
   }
+
+  .fs-lg-5 {
+    font-size: 1.0rem !important;
+  }
 }
+
+
 @media print {
   .d-print-inline {
     display: inline !important;

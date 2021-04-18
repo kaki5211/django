@@ -51,7 +51,7 @@ small-v, .small-v {
 	}
 }
 
-table.c-table th{
+table.c-table:first-child th{
   width: 1px;
   white-space: nowrap;
   font-weight: 700;
@@ -59,18 +59,18 @@ table.c-table th{
 
 }
 
-table.c-table td > input ,select, ul{
+table.c-table:first-child td > input ,select, ul{
   word-break: break-all;
   width: 80%;
   max-width: 600px;
 }
 
-table.c-table li {
+table.c-table:first-child li {
   display: inline-block;
   padding-right: 3%;
 }
 
-table.c-table ul {
+table.c-table:first-child ul {
   list-style-type: none;
   padding-left: 0px;
 }
@@ -81,6 +81,27 @@ table.c-table ul {
     right: 50%;
     bottom: 50%;
 }
+
+@media (min-width: 576px) {
+.display-none-initial {
+  display: initial !important;
+  }
+}
+
+@media (max-width: 576px) {
+.display-none-initial-r {
+  display: initial !important;
+  }
+  .d-sm-none-r {
+    display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+    .d-md-none-r {
+      display: none !important;
+    }
+  }
 
 
 /* td > input, {
