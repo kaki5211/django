@@ -10,19 +10,19 @@ from django.db.models.fields.reverse_related import ManyToOneRel
 # Create your models here.
 class Manage(models.Model):
     youtube_video_id = models.CharField(max_length=12, null=True)
-    youtube_video_title = models.CharField(max_length=100, null=True)
-    youtube_video_day = models.DateTimeField(null=True)
-    youtube_video_episode = models.SmallIntegerField(null=True)
-    contents = models.CharField(max_length=1023, null=True)
+    youtube_video_title = models.CharField(max_length=100, null=True, blank=True)
+    youtube_video_day = models.DateTimeField(null=True, blank=True)
+    youtube_video_episode = models.SmallIntegerField(null=True, blank=True)
+    contents = models.CharField(max_length=1023, null=True, blank=True)
 
-    category_id = models.ForeignKey('Category', db_column='category_id', on_delete=models.CASCADE, default="1")
+    category_id = models.ForeignKey('Category', db_column='category_id', on_delete=models.CASCADE, default=None, null=True, blank=True)
 
-    members = models.ManyToManyField('Member', related_name="members")
+    members = models.ManyToManyField('Member', related_name="members", blank=True)
 
     manage_twitter_already = models.BooleanField(default=False, null=True)
 
-    def __str__(self):
-        return self.youtube_video_title
+    # def __str__(self):
+    #     return self.youtube_video_title
     
 class Category(models.Model):
     category_id = models.AutoField('category_id', primary_key=True)

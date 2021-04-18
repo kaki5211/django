@@ -22,3 +22,68 @@ small-v, .small-v {
 .b-b-w3, .b-b-w3 {
   border-bottom-width: 3px
 }
+
+.c-table-container {
+	width: 100%;
+	overflow: auto;
+  input, .input{
+		word-break: break-all;
+    width: 100%;
+	}
+}
+
+.c-table {
+	th,
+	td {
+		padding: 30px 20px;
+		border-bottom: 1px dashed $_col_light_black;
+		background-color: $_col_white;
+	}
+	th, .th{
+    width: 1px;
+		white-space: nowrap;
+		font-weight: 700;
+		color: $_col_black;
+
+	}
+	td, .td{
+		word-break: break-all;
+	}
+}
+
+table.c-table th{
+  width: 1px;
+  white-space: nowrap;
+  font-weight: 700;
+  color: $_col_black;
+
+}
+
+table.c-table td > input ,select, ul{
+  word-break: break-all;
+  width: 80%;
+  max-width: 600px;
+}
+
+table.c-table li {
+  display: inline-block;
+  padding-right: 3%;
+}
+
+table.c-table ul {
+  list-style-type: none;
+  padding-left: 0px;
+}
+
+
+.botton-i {
+    position: absolute;
+    right: 50%;
+    bottom: 50%;
+}
+
+
+/* td > input, {
+  word-break: break-all;
+  width: 100%;
+} */

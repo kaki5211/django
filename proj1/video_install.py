@@ -37,7 +37,7 @@ nextPagetoken = None
 nextpagetoken = None
 d_today = datetime.date.today() #今日の日付を取得
 d_today_text = d_today.strftime('%Y-%m-%d') #今日の日付の表現変更
-period_day = datetime.timedelta(weeks=10) #さかのぼりたい日付を取得（デルタ関数）
+period_day = datetime.timedelta(weeks=2) #さかのぼりたい日付を取得（デルタ関数）
 d_period_day = (d_today - period_day).strftime('%Y-%m-%d') #さかのぼりたい日付を取得
 
 member = ["リク","ハルカ","リュージ","イナムー","ユウ","きよ"]

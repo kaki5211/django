@@ -13,7 +13,7 @@
             <p class="my-2 mb-0 d-inline">{{video.youtube_video_day}}</p>
           </div>
           <div style="min-width:100px" class="col-12 col-sm-4 col-md-4 align-items-center">
-            <a href="{% if video.category_id.category_eng != None and video.youtube_video_episode != None %}{% url "video_info" category_eng=video.category_id.category_eng youtube_video_episode=video.youtube_video_episode %}{% else %}{% url "video_info_un" pk=video.pk %}{% endif %}">
+            <a href="{% if video.category_id.category_eng != None and video.youtube_video_episode != None and video.youtube_video_episode > 0 %}{% url "video_info" category_eng=video.category_id.category_eng youtube_video_episode=video.youtube_video_episode %}{% else %}{% url "video_info_un" pk=video.pk %}{% endif %}">
               <img style="min-width:100px" class="my-md-3" width="100%" hight="100%" src="https://img.youtube.com/vi/{{ video.youtube_video_id }}/mqdefault.jpg" />
             </a>
           </div>

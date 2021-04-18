@@ -5,6 +5,7 @@ from .models import Manage, Category, Member
 from django.http import Http404
 from django.db.models import Prefetch
 from . import forms
+from django.db.models import Q
 
 # Create your views here.
 
@@ -107,27 +108,80 @@ class VideosearchView(ListView, ModelFormMixin):
     model = Manage
     template_name = 'app/video_search.html'
     form_class=forms.VideosearchFrom
-    success_url = '/videoserch'
+    success_url = '/videoserch/'
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
         context['category'] = Category.objects.all()
         context['member'] = Member.objects.all()
         return context
     
+    def get_queryset(self):
+            # sessionに値がある場合、その値でクエリ発行する。
+            if 'form_value' in self.request.session and self.request.session['form_value'] != None:
+                form_value = self.request.session['form_value']
+                youtube_video_title = form_value['youtube_video_title']
+                youtube_video_day = form_value['youtube_video_day']
+                youtube_video_episode = form_value['youtube_video_episode']
+                category_id = form_value['category_id']
+                members = form_value['members']
+
+                # 検索条件
+                condition_youtube_video_title = Q()
+                condition_youtube_video_day = Q()
+                condition_youtube_video_episode = Q()
+                condition_category_id = Q()
+                condition_members = Q()
+                if len(youtube_video_title) != 0 and youtube_video_title[0]:
+                    condition_youtube_video_title = Q(youtube_video_title__icontains=youtube_video_title)
+                if len(youtube_video_day) != 0 and youtube_video_day[0]:
+                    condition_youtube_video_day = Q(youtube_video_day__contains=youtube_video_day)
+                if len(youtube_video_episode) != 0 and youtube_video_episode[0]:
+                    condition_youtube_video_episode = Q(youtube_video_episode=youtube_video_episode)
+                if category_id != None:
+                    if len(category_id) != 0 and category_id[0]:
+                        condition_category_id = Q(category_id=category_id)
+                if members != None:
+                    if len(members) != 0 and members[0]:
+                        condition_members = Q(members=members)
+                return Manage.objects.select_related().filter(condition_youtube_video_title & condition_youtube_video_day & condition_youtube_video_episode & condition_category_id & condition_members)
+
+            else:
+                return Manage.objects.all()        
+        
+
     def get(self, request, *args, **kwargs):
         self.object = None
         return super().get(request, *args, **kwargs)        
 
     def post(self, request, *args, **kwargs):
-        self.object = None
-        self.object_list = self.get_queryset()
-        form = self.get_form()
-        if form.is_valid():
-            return self.form_valid(form)
-        else:
-            return self.form_invalid(form)
-
+        self.object = Manage
+        form_value = {
+            'youtube_video_title':self.request.POST.get('youtube_video_title', None),
+            'youtube_video_day':self.request.POST.get('youtube_video_day', None),
+            'youtube_video_episode':self.request.POST.get('youtube_video_episode', None),
+            'category_id':self.request.POST.get('category_id', None),
+            'members':self.request.POST.get('members', None),
+        }
+        request.session['form_value'] = form_value
+        # 検索時にページネーションに関連したエラーを防ぐ
+        self.request.POST = self.request.POST.copy()
+        self.request.POST.clear()
+        return self.get(request, *args, **kwargs)        # youtube_video_title = None
         
+
+    # def get_form(self, form_class=None):
+    #     # user_data_input.hmltで、データを送信した場合はここ
+    #     if 'youtube_video_title' in self.request.POST:
+    #         form_data = self.request.POST
+
+    #     # 確認画面(user_data_confirm.html)から戻るリンクを押した場合や
+    #     # 初回の入力欄表示はここ。セッションにユーザーデータがあれば、それをフォームに束縛させる
+    #     else:
+    #         form_data = self.request.session.get('youtube_video_title', None)
+
+    #     return self.form_class(form_data)
+        
+
 class VideosView(ListView):
     model = Manage
     template_name = 'app/videos.html'
@@ -136,14 +190,5 @@ class VideosView(ListView):
         context['category'] = Category.objects.all()
         context['member'] = Member.objects.all()
         return context
-# class Video_info(DetailView):
-    
 
-# class Category_info(DetailView):
-
-
-
-
-# def get_queryset(self):
-#     return super().get_queryset()
 
