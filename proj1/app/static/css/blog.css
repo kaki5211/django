@@ -48,6 +48,7 @@ small-v, .small-v {
 	}
 	td, .td{
 		word-break: break-all;
+    min-width: 300px;
 	}
 }
 
@@ -75,6 +76,9 @@ table.c-table:first-child ul {
   padding-left: 0px;
 }
 
+table.c-table:first-child td{
+  min-width: 300px;
+}
 
 .botton-i {
     position: absolute;
@@ -102,6 +106,10 @@ table.c-table:first-child ul {
       display: none !important;
     }
   }
+
+.w-90 {
+  width: 90% !important;
+}
 
 
 /* td > input, {

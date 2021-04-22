@@ -30,7 +30,7 @@ class Category(models.Model):
     category_eng = models.CharField('カテゴリーeng', max_length=50, null=True)
     
     members = models.ManyToManyField('Member', related_name="members_ct")
-    contents = models.CharField("コンテンツ", max_length=1024, null=True)
+    contents = models.CharField("コンテンツ", max_length=5000, null=True)
     def __str__(self):
         return self.category_jp
 
@@ -41,6 +41,13 @@ class Member(models.Model):
     member_eng = models.CharField('メンバーeng', max_length=20)
     def __str__(self):
         return self.member_jp
+
+class Contents_demo(models.Model):
+    category_key = models.OneToOneField('Category', db_column='category_eng', on_delete=models.CASCADE, default=None, blank=True)
+    contents_demo = models.TextField("コンテンツ", null=True, blank=True)
+    def __str__(self):
+        return str(self.category_key.category_eng)
+    
 
 #     accounts_a = models.CharField("タイトル", max_length=100)
 

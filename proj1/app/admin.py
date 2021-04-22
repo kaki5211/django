@@ -2,21 +2,22 @@ from django.contrib import admin
 
 # Register your models here.
 
-from .models import Manage, Member, Category
+from .models import Manage, Member, Category, Contents_demo
 
 
 
 # admin.site.register(Manage)
 # admin.site.register(Category)
 admin.site.register(Member)
+admin.site.register(Contents_demo)
 
 
- 
- 
+
+
 # class MwmberInline(admin.TabularInline):
 #     model = Member
 #     extra = 3
- 
+
 class ManageAdmin(admin.ModelAdmin):
     list_display = ('id' , 'youtube_video_title', 'youtube_video_episode', 'youtube_video_day', 'category_id')
     # fieldsets = [
@@ -42,7 +43,4 @@ admin.site.register(Manage, ManageAdmin)
 admin.site.register(Category, CategoryAdmin)
 
 
-
-
 # class ManageAdmin(admin.ModelAdmin):
-

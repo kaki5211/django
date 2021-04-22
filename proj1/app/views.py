@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, FormView
-from django.views.generic.edit import ModelFormMixin
-from .models import Manage, Category, Member
+from django.views.generic.edit import ModelFormMixin, UpdateView
+from .models import Manage, Category, Member, Contents_demo
 from django.http import Http404
 from django.db.models import Prefetch
 from . import forms
@@ -63,10 +63,11 @@ class CategorysView(ListView):
         context['member'] = Member.objects.all()
         return context
         
-class CategoryinfoView(DetailView):
+class CategoryinfoView(DetailView, ModelFormMixin):
     model = Category
     template_name = 'app/category_info.html' 
     context_object_name = 'category_'
+    form_class=forms.CategoryForm
     def get_object(self, queryset=None):
         try:
             video_q = Category.objects.filter(category_eng=self.kwargs['category_eng']).first()
@@ -78,7 +79,23 @@ class CategoryinfoView(DetailView):
         context['category'] = Category.objects.all()
         context['member'] = Member.objects.all()
         context['episode_max'] = Manage.objects.filter(category_id__category_eng=self.kwargs['category_eng']).count()
+        context['contents_demo'] = Category.objects.filter(category_eng=self.kwargs['category_eng']).first().contents
         return context
+
+    def post(self, request, *args, **kwargs):
+        self.object = Category
+        form_value = {
+            'contents':self.request.POST.get('contents', None),
+        }
+        obj = Category.objects.get(category_eng=self.kwargs['category_eng'])
+        obj.contents = form_value['contents']
+        obj.save()
+        # 検索時にページネーションに関連したエラーを防ぐ
+        self.request.POST = self.request.POST.copy()
+        self.request.POST.clear()
+        return self.get(request, *args, **kwargs)
+        
+
 
 class MembersView(ListView):
     model = Member
@@ -190,5 +207,6 @@ class VideosView(ListView):
         context['category'] = Category.objects.all()
         context['member'] = Member.objects.all()
         return context
+
 
 

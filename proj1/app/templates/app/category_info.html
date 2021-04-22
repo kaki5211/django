@@ -47,12 +47,40 @@
               <div class="col-1 col-sm-1 col-md-1"></div>
             </div>
             
-            <div class="col-12 col-sm-12 col-md-12 my-5"></div>
-              <div class="p-5m" style="padding-top:3%;">
+            <div class=" col-12 col-sm-12 col-md-12 my-5"></div>
+            <h1>↓テキスト 表示</h1>
+              <div class="rounded-2 border-4 p-5m" style="padding-top:3%; border:solid 20px #000;">
                 <p　class="">
-                  {{catgory.contents}}こんにちは、リクです！ピクミン、ピクミン２に続く作品でピクミン３DXの実況を始めました！
+                  {{ contents_demo | safe }}
                 </p>
               </div>
+
+
+            
+            <div class="rounded-2 col-12 col-sm-12 col-md-12 my-5"></div>
+            <h1>↓HTML 表示</h1>
+              <div class="rounded-2 border-4  p-5m" style="padding-top:3%; border:solid 20px #000;">
+                <p　class="">
+                  {{ contents_demo }}
+                </p>
+              </div>」
+
+
+
+
+            <form class="mb-3" style="width: 75%; margin-left: auto; margin-right: auto;"  action="" method="POST">
+                <table class="c-table" style="margin: 10px auto; width: 100%; text-align: left;">
+                    {{ form.as_table }}
+                </table>
+                {% csrf_token %}
+                <div class="mt-5" style="position: relative;">
+                  <button class="botton-i" type="submit">送信</button>
+                </div>
+            </form>            
+
+
+              <u><h1>見出しにアンダーラインが引かれます。</h1></u>
+              <xmp><u><h1>見出しにアンダーラインが引かれます。</h1></u></xmp>
 
 
             <div class="col-1 col-sm-1 col-md-1"></div>

@@ -1,5 +1,23 @@
 {% extends 'app/base.html' %}
 
+
+
+  {% block center %}
+
+      <div class="row text-center">
+    <div class="col-sm-12">
+      <h1 class="display-3 fs-md-1 fs-sm-2 border-secondary text-decoration-underline">アリクイちゃんねる</h1>
+      <h4 class="fs-md-4 fs-sm-5 my-md-3">このブログは、20代3人が各々コンテンツを作り、それをまとめて紹介しているブログです！</h4>
+      <h4 class="fs-md-4 fs-sm-5" style="">主にYoutubeでのコンテンツ配信となっていますので、どうぞ見ていってください！</h4>
+    </div>
+  </div>
+      <div class="row align-items-center" style="padding-top: 12%;"></div>
+  {% endblock %}
+
+
+
+
+
   {% block contents %}
 
       <h3 class="text-white mb-sm-5 bg-dark rounded px-4 py-2 mb-4 font-italic align-middle">
@@ -9,10 +27,10 @@
       {% for video in manage_list %}
         <article style="text-overflow: ellipsis; " class="row blog-post border">
           <div>
-            {% if video.youtube_video_id == new_flag %}<h3 class="fs-sm-6 text-danger d-inline">New！！</h3>{% endif %}
+            {% if video.youtube_video_id == new_flag %}<h3 class="fs-sm-5 text-danger d-inline">New！！</h3>{% endif %}
             <p class="fs-sm-7 my-2 mb-0 d-inline">{{video.youtube_video_day}}</p>
           </div>
-          <div style="min-width:100px" class="col-4 col-sm-4 col-md-4 align-items-center">
+          <div style="min-width:100px" class="py-1 col-4 col-sm-4 col-md-4 align-items-center">
             <a href="{% if video.category_id.category_eng != None and video.youtube_video_episode != None and video.youtube_video_episode > 0 %}{% url "video_info" category_eng=video.category_id.category_eng youtube_video_episode=video.youtube_video_episode %}{% else %}{% url "video_info_un" pk=video.pk %}{% endif %}">
               <img style="min-width:100px" class="my-md-3" width="100%" hight="100%" src="https://img.youtube.com/vi/{{ video.youtube_video_id }}/mqdefault.jpg" />
             </a>
@@ -32,9 +50,9 @@
             </div>
             <div class="row align-items-center" style="padding-top: 2%;"></div>
             <div class="d-sm-none-r" style="padding-left:1%; padding-top:3%; align-items: flex-end;">
-              <p class="fs-lg-5 fs-md-6 fs-sm-6 mb-0" style="height:1.5rem;">カテゴリ： {% if video.category_id %}{{video.category_id}}{% else %}None{% endif %}</p>
-              <p class="fs-lg-5 fs-md-6 fs-sm-6 mb-0" style="height:1.5rem;">episode： {{video.youtube_video_episode}}</p>
-              <p class="fs-lg-5 fs-md-6 fs-sm-6 mb-0" style="height:1.5rem;">メンバー： {% for member_list in video.members.all %}{% if forloop.first == False %}、{% endif %}{{ member_list.member_jp }}{% endfor %}</p>
+              <p class="fs-lg-5 fs-md-6 fs-sm-5 mb-0" style="height:1.5rem;">カテゴリ： {% if video.category_id %}{{video.category_id}}{% else %}None{% endif %}</p>
+              <p class="fs-lg-5 fs-md-6 fs-sm-5 mb-0" style="height:1.5rem;">episode： {{video.youtube_video_episode}}</p>
+              <p class="fs-lg-5 fs-md-6 fs-sm-5 mb-0" style="height:1.5rem;">メンバー： {% for member_list in video.members.all %}{% if forloop.first == False %}、{% endif %}{{ member_list.member_jp }}{% endfor %}</p>
             </div>
           </div>
         </article>
@@ -84,7 +102,7 @@
       <!-- 前へ の部分 -->
       {% if page_obj.has_previous %}
         <li class="page-item">
-          <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
+          <a class="fs-sm-7 page-link" href="?page={{ page_obj.previous_page_number }}">
             <span aria-hidden="true">&laquo;</span>
           </a>
         </li>
@@ -95,9 +113,9 @@
         {% if num <= page_obj.number|add:5 and num >= page_obj.number|add:-5 %}
 
           {% if page_obj.number == num %}
-            <li class="page-item active"><a class="page-link" href="#">{{ num }}</a></li>
+            <li class="page-item active"><a class="fs-sm-7 page-link" href="#">{{ num }}</a></li>
           {% else %}
-            <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+            <li class="page-item"><a class="fs-sm-7 page-link" href="?page={{ num }}">{{ num }}</a></li>
           {% endif %}
         {% endif %}
       {% endfor %}
@@ -105,7 +123,7 @@
       <!-- 次へ の部分 -->
       {% if page_obj.has_next %}
         <li class="page-item">
-          <a class="page-link" href="?page={{ page_obj.next_page_number }}">
+          <a class="fs-sm-7 page-link" href="?page={{ page_obj.next_page_number }}">
             <span aria-hidden="true">&raquo;</span>
           </a>
         </li>
