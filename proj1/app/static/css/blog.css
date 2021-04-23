@@ -80,6 +80,28 @@ table.c-table:first-child td{
   min-width: 300px;
 }
 
+  @media (max-width: 576px) {
+    table.c-table tbody > tr > td > input , select {
+      height: 25px;
+      width: 150px;
+      }
+      table.c-table tbody > tr > td > ul > li > label {
+        height: 25px;
+        max-width: 150px;
+        }
+      table.c-table:first-child td{
+          min-width: 200px;
+        }
+      table.c-table tbody > tr > td > ul {
+        margin-bottom: 1px;
+      }
+      table.c-table tbody > tr > th > label {
+        font-size: 0.75rem !important;
+      }
+
+}
+
+
 .botton-i {
     position: absolute;
     right: 50%;
@@ -111,6 +133,28 @@ table.c-table:first-child td{
   width: 90% !important;
 }
 
+@media (min-width: 576px) {
+  .d-sm-form-r {
+    height: auto;
+    max-width: auto;
+}
+
+
+.d-form-r {
+  height: 25px;
+  max-width: 150px;
+}
+
+table.serch-video-t td {
+	background: #eee;
+  }
+table.serch-video-t tr:nth-child(odd) td {
+	background: #fff;
+}
+@media (min-width: 576px) {
+  .w-sm-75 {
+    width: 75% !important;
+  }
 
 /* td > input, {
   word-break: break-all;

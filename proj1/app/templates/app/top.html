@@ -28,7 +28,7 @@
         <article style="text-overflow: ellipsis; " class="row blog-post border">
           <div>
             {% if video.youtube_video_id == new_flag %}<h3 class="fs-sm-5 text-danger d-inline">New！！</h3>{% endif %}
-            <p class="fs-sm-7 my-2 mb-0 d-inline">{{video.youtube_video_day}}</p>
+            <p class="fs-sm-7 md-1 my-md-2 mb-0 d-inline">{{video.youtube_video_day}}</p>
           </div>
           <div style="min-width:100px" class="py-1 col-4 col-sm-4 col-md-4 align-items-center">
             <a href="{% if video.category_id.category_eng != None and video.youtube_video_episode != None and video.youtube_video_episode > 0 %}{% url "video_info" category_eng=video.category_id.category_eng youtube_video_episode=video.youtube_video_episode %}{% else %}{% url "video_info_un" pk=video.pk %}{% endif %}">
