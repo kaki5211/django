@@ -40,6 +40,8 @@ class VideoView(DetailView):
         except:
             video_q = Manage.objects.filter(pk=self.kwargs['pk']).first()
         return video_q
+        
+    
 
     # def get_queryset(self):
     #     try:
@@ -61,6 +63,10 @@ class CategorysView(ListView):
         context = super().get_context_data()
         context['category'] = Category.objects.all()
         context['member'] = Member.objects.all()
+        jisyo = []
+        for ct in Category.objects.all():
+            jisyo.append([ct.category_eng, list(range(1, Manage.objects.filter(category_id__category_eng=ct.category_eng).count() + 1))])
+        context['category_epnum'] = dict(jisyo)      
         return context
         
 class CategoryinfoView(DetailView, ModelFormMixin):
@@ -80,6 +86,7 @@ class CategoryinfoView(DetailView, ModelFormMixin):
         context['member'] = Member.objects.all()
         context['episode_max'] = Manage.objects.filter(category_id__category_eng=self.kwargs['category_eng']).count()
         context['contents_demo'] = Category.objects.filter(category_eng=self.kwargs['category_eng']).first().contents
+        context['episode_list'] = range(Manage.objects.filter(category_id__category_eng=self.kwargs['category_eng']).count())
         return context
 
     def post(self, request, *args, **kwargs):
@@ -137,8 +144,8 @@ class VideosearchView(ListView, ModelFormMixin):
             if 'form_value' in self.request.session and self.request.session['form_value'] != None:
                 form_value = self.request.session['form_value']
                 youtube_video_title = form_value['youtube_video_title']
-                youtube_video_day = form_value['youtube_video_day']
-                youtube_video_episode = form_value['youtube_video_episode']
+                # youtube_video_day = form_value['youtube_video_day']
+                # youtube_video_episode = form_value['youtube_video_episode']
                 category_id = form_value['category_id']
                 members = form_value['members']
 
@@ -150,10 +157,10 @@ class VideosearchView(ListView, ModelFormMixin):
                 condition_members = Q()
                 if len(youtube_video_title) != 0 and youtube_video_title[0]:
                     condition_youtube_video_title = Q(youtube_video_title__icontains=youtube_video_title)
-                if len(youtube_video_day) != 0 and youtube_video_day[0]:
-                    condition_youtube_video_day = Q(youtube_video_day__contains=youtube_video_day)
-                if len(youtube_video_episode) != 0 and youtube_video_episode[0]:
-                    condition_youtube_video_episode = Q(youtube_video_episode=youtube_video_episode)
+                # if len(youtube_video_day) != 0 and youtube_video_day[0]:
+                    # condition_youtube_video_day = Q(youtube_video_day__contains=youtube_video_day)
+                # if len(youtube_video_episode) != 0 and youtube_video_episode[0]:
+                    # condition_youtube_video_episode = Q(youtube_video_episode=youtube_video_episode)
                 if category_id != None:
                     if len(category_id) != 0 and category_id[0]:
                         condition_category_id = Q(category_id=category_id)

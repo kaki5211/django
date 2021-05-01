@@ -8,8 +8,8 @@ class VideosearchFrom(forms.ModelForm):
         super(VideosearchFrom, self).__init__(*args, **kwd)
         self.fields["youtube_video_title"].required = False
         self.fields["category_id"].required = False
-        self.fields["youtube_video_episode"].required = False
-        self.fields["youtube_video_day"].required = False
+        # self.fields["youtube_video_episode"].required = False
+        # self.fields["youtube_video_day"].required = False
         self.fields["members"].required = False
         self.fields['category_id'].empty_label = '未選択'
         self.fields['members'].widget = forms.CheckboxSelectMultiple()  # 引数にattrs={'class': 'form-control'}も勿論できる。
@@ -18,7 +18,8 @@ class VideosearchFrom(forms.ModelForm):
 
     class Meta:
         model = Manage
-        fields = ('youtube_video_title','category_id','youtube_video_episode','youtube_video_day','members') 
+        # fields = ('youtube_video_title','category_id','youtube_video_episode','youtube_video_day','members') 
+        fields = ('youtube_video_title','category_id','members') 
 
 class CategoryForm(forms.ModelForm):
 

@@ -29,6 +29,7 @@ small-v, .small-v {
   input, .input{
 		word-break: break-all;
     width: 100%;
+    font-size: 100%;
 	}
 }
 
@@ -64,6 +65,7 @@ table.c-table:first-child td > input ,select, ul{
   word-break: break-all;
   width: 80%;
   max-width: 600px;
+  /* font-size: 90%; */
 }
 
 table.c-table:first-child li {
@@ -84,6 +86,7 @@ table.c-table:first-child td{
     table.c-table tbody > tr > td > input , select {
       height: 25px;
       width: 150px;
+      font-size: 80%;
       }
       table.c-table tbody > tr > td > ul > li > label {
         height: 25px;

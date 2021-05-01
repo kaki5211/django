@@ -695,6 +695,11 @@ progress {
   width: auto;
 }
 
+.col-0_5 {
+  flex: 0 0 auto;
+  width: 4.166666666%;
+}
+
 .col-1 {
   flex: 0 0 auto;
   width: 8.3333333333%;
@@ -703,6 +708,11 @@ progress {
 .col-2 {
   flex: 0 0 auto;
   width: 16.6666666667%;
+}
+
+.col-2_5 {
+  flex: 0 0 auto;
+  width: 20.8333333334%;
 }
 
 .col-3 {
@@ -7071,6 +7081,10 @@ textarea.form-control-lg {
 
 .fs-6 {
   font-size: 1rem !important;
+}
+
+.fs-7 {
+  font-size: 0.875rem !important;
 }
 
 .fst-italic {

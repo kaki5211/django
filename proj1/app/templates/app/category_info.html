@@ -25,7 +25,7 @@
             </div>
             <div class="col-sm-1 col-md-2"></div>
 
-            <div class="col-12 col-sm-12 col-md-12 my-5"></div>
+            <div class="col-12 col-sm-12 col-md-12 my-3 my-md-5"></div>
 
             <div class="col-1 col-sm-1 col-md-1"></div>
             <div class="col-sm-10 col-md-10">
@@ -34,7 +34,12 @@
                 <h4 class="">カテゴリ： {{category_.category_jp}}</h4>
               </div>
               <div style="padding-top:3%;">
-                <h4 class="">episode：全 {{episode_max}}話</h4>
+                <h4 class="" >episode：全 {{episode_max}}話</h4>
+                <div class="ps-2 ps-md-4" style="margin:0; padding:-0.1em;">
+                  {% for count in episode_list %}
+                    <a class="fs-7" href="{% url "video_info" category_eng=category_.category_eng youtube_video_episode=count %}">#{{count}}</a>
+                  {% endfor %}
+                </div>
               </div>
               <div style="padding-top:3%;">
                 <h4>
@@ -47,9 +52,8 @@
               <div class="col-1 col-sm-1 col-md-1"></div>
             </div>
             
-            <div class=" col-12 col-sm-12 col-md-12 my-5"></div>
-            <h1>↓テキスト 表示</h1>
-              <div class="rounded-2 border-4 p-5m" style="padding-top:3%; border:solid 20px #000;">
+            <div class=" col-12 col-sm-12 col-md-12 my-3 my-md-5"></div>
+              <div class="rounded-2 p-5m" style="padding-top:3%;">
                 <p　class="">
                   {{ contents_demo | safe }}
                 </p>
@@ -57,19 +61,19 @@
 
 
             
-            <div class="rounded-2 col-12 col-sm-12 col-md-12 my-5"></div>
+            {% comment %} <div class="rounded-2 col-12 col-sm-12 col-md-12 my-5"></div>
             <h1>↓HTML 表示</h1>
               <div class="rounded-2 border-4  p-5m" style="padding-top:3%; border:solid 20px #000;">
                 <p　class="">
                   {{ contents_demo }}
                 </p>
-              </div>」
+              </div>」 {% endcomment %}
 
 
 
 
-            <form class="mb-3" style="width: 75%; margin-left: auto; margin-right: auto;"  action="" method="POST">
-                <table class="c-table" style="margin: 10px auto; width: 100%; text-align: left;">
+            <form class="mb-3" style="width: 75%; margin-left: 0px; margin-right: auto;"  action="" method="POST">
+                <table class="c-table" style="margin-top: 10px auto; width: 100%; text-align: left;">
                     {{ form.as_table }}
                 </table>
                 {% csrf_token %}
@@ -79,8 +83,6 @@
             </form>            
 
 
-              <u><h1>見出しにアンダーラインが引かれます。</h1></u>
-              <xmp><u><h1>見出しにアンダーラインが引かれます。</h1></u></xmp>
 
 
             <div class="col-1 col-sm-1 col-md-1"></div>

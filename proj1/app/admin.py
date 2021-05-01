@@ -31,12 +31,14 @@ class ManageAdmin(admin.ModelAdmin):
     # list_filter = ['members']
 
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ("category_id", "category_jp", "category_eng")
+    list_display = ("category_id", "category_jp", "get_members")
+    # fields = ['members']
     # fieldsets = [
     #     ("カテゴリーjp", {'fields':['category_jp']}),
     #     ("カテゴリーeng", {'fields':['category_eng']}),
-
     # ]
+    def get_members(self, obj):
+        return "\n".join([p.member_jp for p in obj.members.all()])
 
 admin.site.register(Manage, ManageAdmin)
 

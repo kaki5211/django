@@ -2,31 +2,52 @@
 
 {% block contents %}
 
-<table border="1">
-  <tr>
-    <th>pk</th>
-    <th>VideoID</th>
-    <th>Title</th>
-    <th>Category</th>
-    <th>Episode</th>
-    <th>Day</th>
-    <th>twitter_already</th>
-  </tr>
-  {% for video in manage_list %}
-    <tr>
-      <td>{{ video.pk }}</td>
-      <td>{{ video.youtube_video_id }}</td>
-      {% comment %} {% if video.category_id.category_eng %}
-        <td><a href="{% url "video_info" category_eng=video.category_id.category_eng youtube_video_episode=video.youtube_video_episode %}">{{ video.youtube_video_title }}</a></td>
-      {% elif %}
-        <td><a href="{% url "video_info_un" pk=video.pk %}">{{ video.youtube_video_title }}</a></td>
-      {% endif %} {% endcomment %}
-      <td>{{ video.category_id.category_eng }}</td>
-      <td>{{ video.youtube_video_episode }}</td>
-      <td>{{ video.youtube_video_day }}</td>
-      <td>{{ video.manage_twitter_already }}</td>
-    </tr>
-  {% endfor %}
-</table>
+
+      <h3 class="text-white mb-5 bg-dark rounded px-4 py-2 mb-4 font-italic align-middle">
+        カテゴリー一覧
+      </h3>
+        <article style="text-overflow: ellipsis; " class="row border">
+      
+
+
+            <div class="col-12 col-md-12 d-inline-block mb-2">
+              {% comment %} <div style="white-space: nowrap; width: 100%; line-height: 1em; overflow-x: hidden; overflow-x: scroll;" > {% endcomment %}
+                {% comment %} <table class="serch-video-t mt-4 w-100" border="1"> {% endcomment %}
+                  {% comment %} <tr class="b-b-w3"> {% endcomment %}
+                    {% comment %} <th class="fs-sm-6 text-center"><a href=>Category</a></th> {% endcomment %}
+                    {% comment %} <th class="fs-sm-6 text-center"><a>Episode</a></th> {% endcomment %}
+              
+                  {% comment %} </tr> {% endcomment %}
+                  {% for item in category %}
+                  {% comment %} <tr> {% endcomment %}
+                    {% comment %} <td class=""> {% endcomment %}
+                      <h1 class="fs-sm-3 fs-2 fs-md-4 mt-2 mt-md-5 mb-1 ps-2 ps-md-4"><span style="background: linear-gradient(transparent 70%, #6a544b 70%)"><a href="{% url "ctegory_info" category_eng=item.category_eng %}" >{{ item }}</a></span></h1>
+                    {% comment %} </td> {% endcomment %}
+                    {% comment %} <td class="text-center"> {% endcomment %}
+                      <div class="ps-lg-5 ps-2 ps-md-4 ps-sm-3">
+                        <div class="ps-lg-5 ps-1 ps-md-4 ps-sm-3">
+                          <div class="ps-lg-4 ps-1 ps-md-4 ps-sm-3">
+                            <div class="ps-lg-4 ps-1 ps-md-4 ps-sm-3">
+                              {% for ct, num in category_epnum.items %}{% if item.category_eng == ct %}{% for count in num %}<a href="{% url "video_info" category_eng=ct youtube_video_episode=count %}" class="line px-1 d-inline-block text-decoration-underline small-v my-0">#{{count}}{% endfor %}{% endif%}{% endfor %}</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    {% comment %} </td> {% endcomment %}
+                  {% comment %} </tr> {% endcomment %}
+                {% endfor %}
+              {% comment %} </table> {% endcomment %}
+            </div>
+
+            {% comment %} <div class="col-1 col-sm-1 col-md-1"></div> {% endcomment %}
+
+
+            <div class="col-12 col-sm-12 col-md-12 my-5"></div>
+
+            {% comment %} <div class="col-1 col-sm-1 col-md-1 my-5"></div> {% endcomment %}
+
+        </article>
+        <!-- /.blog-post -->
+        <div style="padding-top: 1%;" class="mt-1 col-12 col-sm-12 col-md-12"></div>
 
 {% endblock %}
