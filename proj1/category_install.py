@@ -21,34 +21,50 @@ members = Member.objects.all()
 
 
 # エピソードインストール------------------------------------------------
-# for i in range(260):
-#     manageq_title = manages[i].youtube_video_title
-#     flag = 0
-#     try:
-#         manageq_title_han = jaconv.z2h(manageq_title,digit=True, ascii=True)
-#         ep = re.search('#[0-9]+', manageq_title_han)
-#     except:
-#         continue
-#     if ep == None:
-#         continue
-#     episode = ep.group().replace("#", "")
-#     episode = int(episode)
-#     q = Manage.objects.filter(youtube_video_title=manageq_title)
-#     q.update(youtube_video_episode=episode)
+for i in range(len(manages)):
+    manageq_title = manages[i].youtube_video_title
+    flag = 0
+    try:
+        manageq_title_han = jaconv.z2h(manageq_title,digit=True, ascii=True)
+        ep = re.search('#[0-9]+', manageq_title_han)
+    except:
+        continue
+    if ep == None:
+        continue
+    episode = ep.group().replace("#", "")
+    episode = int(episode)
+    q = Manage.objects.filter(youtube_video_title=manageq_title)
+    q.update(youtube_video_episode=episode)
 # エピソードインストール------------------------------------------------
 
 
 
 # カテゴリーインストール------------------------------------------------
-# for manage in manages:
-#     ct = None
-#     ct_id = None
-#     for category in categorys:
-#         if None != re.search(jaconv.z2h(category.category_jp,digit=True, ascii=True), jaconv.z2h(manage.youtube_video_title,digit=True, ascii=True), flags=re.IGNORECASE):
-#             ct = re.search(category.category_jp, manage.youtube_video_title, flags=re.IGNORECASE)
-#             ct_id = category.category_id
-#     manage_q = Manage.objects.filter(youtube_video_title=manage.youtube_video_title)
-#     manage_q.update(category_id=ct_id)
+for manage in manages:
+    ct = None
+    ct_id = None
+    for category in categorys:
+        if None != re.search(jaconv.z2h(category.category_jp,digit=True, ascii=True), jaconv.z2h(manage.youtube_video_title,digit=True, ascii=True), flags=re.IGNORECASE):
+            ct = re.search(category.category_jp, manage.youtube_video_title, flags=re.IGNORECASE)
+            ct_id = category.category_id
+        if re.search("ブリトニー", manage.youtube_video_title, flags=re.IGNORECASE) or re.search("キャプテンが", manage.youtube_video_title, flags=re.IGNORECASE)\
+            or re.search("ピクミン3", manage.youtube_video_title, flags=re.IGNORECASE):
+            ct_id = 1
+            break
+        if re.search("あつまれ　どうぶつの森", manage.youtube_video_title, flags=re.IGNORECASE):
+            ct_id = 21
+            break
+        if re.search("ドラマ", manage.youtube_video_title, flags=re.IGNORECASE) and re.search("龍が如く", manage.youtube_video_title, flags=re.IGNORECASE):
+            ct_id = 12
+            break
+        if re.search("ビューティフル ジョー", manage.youtube_video_title, flags=re.IGNORECASE):
+            ct_id = 22
+        if re.search("バイオハザード　アンブレラクロニクルズ", manage.youtube_video_title, flags=re.IGNORECASE):
+            ct_id = 23
+        if ct_id == None:
+            ct_id = 25
+    manage_q = Manage.objects.filter(youtube_video_title=manage.youtube_video_title)
+    manage_q.update(category_id=ct_id)
 # カテゴリーインストール------------------------------------------------
 
 
@@ -81,9 +97,6 @@ for manage in manages:
         # category_q = Manage.objects.filter(category_jp=category.category_jp)
         # category_q.members.add(member_q)
     # ※※※※※※※※※※※※※※※※※※※※※※※※※※
-
-
-
 # メンバーインストール------------------------------------------------
 
 
