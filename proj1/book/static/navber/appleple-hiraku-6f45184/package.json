@@ -1,0 +1,25 @@
+{
+	"name": "hiraku",
+	"version": "1.0.10",
+	"description": "Drawer Menu jQuery Plugin",
+	"author": "appleple",
+	"url": "https://www.appleple.com",
+	"main": "src/hiraku.js",
+	"license": "MIT License",
+	"devDependencies": {
+		"es6-promise": "*",
+		"gulp": "*",
+		"gulp-autoprefixer": "*",
+		"gulp-clean-css": "*",
+		"gulp-csscomb": "*",
+		"gulp-merge-media-queries": "*",
+		"gulp-plumber": "*",
+		"gulp-rename": "*",
+		"gulp-sass": "*",
+		"gulp-uglify": "^2.0.0"
+	},
+	"scripts": {
+		"start": "gulp",
+		"gulp": "gulp"
+	}
+}

@@ -1,0 +1,938 @@
+{% load static %}<!doctype html>
+<html lang="ja">
+  <head>
+    <title>本ブログ - Book Blog</title>
+
+    <!-- jQuery tablesorter core LINK -->
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.0/js/jquery.tablesorter.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.0/css/theme.default.min.css">
+  {% comment %} <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> {% endcomment %}
+  {% comment %} <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script> {% endcomment %}
+
+
+  <link href="https://cdn.jsdelivr.net/npm/swiper/css/swiper.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/swiper/js/swiper.min.js"></script>
+
+
+  <!-- Vue library -->
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <!-- vue-awesome-swiper -->
+  <script src="https://cdn.jsdelivr.net/npm/vue-awesome-swiper"></script>
+
+
+  <!-- Font Awesome -->
+  {% comment %} <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous"> {% endcomment %}
+
+
+  <script type="module">
+    const VueAwesomeSwiper = window.VueAwesomeSwiper;
+  </script>
+
+
+  <style>
+  .container-fluid {
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 1800px;
+  }
+  </style>
+
+  <script>
+  $(document).ready(function() {
+      $('#table-sort').tablesorter();
+  });
+  </script>
+
+  {% comment %} <script type="module">
+    import { Toast } from 'bootstrap.esm.min.js'
+
+    Array.from(document.querySelectorAll('.toast'))
+      .forEach(toastNode => new Toast(toastNode))
+  </script> {% endcomment %}
+
+  <script>
+      const SVG_PATH  = "{% static 'svg/mokuji_child.svg' %}";
+      const TITLE_H1 = "{{title}}";
+  </script>
+
+    <!-- Bootstrap core CSS -->
+  <link href={% static "css/bootstrap_custom.css" %} rel="stylesheet">
+  <link href={% static "css/mycss.css" %} rel="stylesheet">
+  <script src={% static "js/bootstrap.js" %}></script>
+
+
+<style type="text/css">
+  .example-3d {
+    width: 100%;
+    height: 400px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+
+  .swiper {
+    height: 100%;
+    width: 100%;
+  }
+
+  .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 169px;
+    height: 240px;
+    text-align: center;
+    font-weight: bold;
+    font-size: $font-size-huge * 2;
+    {% comment %} background-color: #2C8DFB; {% endcomment %}
+    background-position: center;
+    background-size: cover;
+    color: var(--bs-teal);
+    transition-duration: 0ms;
+    
+  }
+    .swiper-pagination {
+  /deep/ 
+    }
+    .swiper-pagination-bullet {
+  }
+
+  .swiper-pagination-bullet-active {
+    background-color: var(--bs-teal);
+  }
+
+.swiper-button-prev {
+	{% comment %} background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M27%2C22L27%2C22L5%2C44l-2.1-2.1L22.8%2C22L2.9%2C2.1L5%2C0L27%2C22L27%2C22z'%20fill%3D'%231aa179'%2F%3E%3C%2Fsvg%3E"); {% endcomment %}
+	background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M0%2C22L22%2C0l2.1%2C2.1L4.2%2C22l19.9%2C19.9L22%2C44L0%2C22L0%2C22L0%2C22z'%20fill%3D'%231aa179'%2F%3E%3C%2Fsvg%3E");
+  
+}
+
+.swiper-button-next {
+	background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M27%2C22L27%2C22L5%2C44l-2.1-2.1L22.8%2C22L2.9%2C2.1L5%2C0L27%2C22L27%2C22z'%20fill%3D'%231aa179'%2F%3E%3C%2Fsvg%3E");
+}
+
+.swiper-button-next::after {
+	content: none;
+}
+
+.swiper-pagination-progressbar-fill {
+	background: none;
+}
+
+.swiper-pagination-progressbar-fill {
+	background: #ffb6c1; /* 塗りつぶし：ピンク */
+}
+
+.swiper-button-prev::after {
+	content: none;
+}
+
+
+{% comment %} .swiper-button-prev,
+.swiper-button-next {
+	background-image: none; /* デフォルトのボタン画像を消す */
+	width: 28px; /* ボタンの幅 */
+	height: 86px; /* ボタンの高さ */
+	margin-top: -43px; /* 縦中央配置用：ボタンの高さの半分のネガティブマージン（top:50%がすでに設定されている） */
+}
+/* 前ページボタンのスタイル */
+.swiper-button-prev:before {
+	font-family: "Font Awesome 5 Free";
+	content: "\f100"; /* angle-double-leftのUnicode */
+	font-size: 48px;
+	color: #1aa179;
+}
+/* 次ページボタンのスタイル */
+.swiper-button-next:before {
+	font-family: "Font Awesome 5 Free";
+	content: "\f101"; /* angle-double-rightのUnicode */
+	font-size: 48px;
+	color: #1aa179;
+} {% endcomment %}
+
+
+.swiper-container {
+  position: relative; /* ← swiper.cssに含まれています */
+}
+
+.swiper-container:before {
+  content: "";
+  display: block;
+  padding-top: calc(200/138*100%); /* 縦/横*100の値を書く */
+}
+
+.swiper-wrapper {
+  position: absolute; /* ← swiper.cssと優先順位が干渉するときは工夫してください */
+  top: 0;
+  left: 0;
+}
+
+.swiper-wrapper img {
+    {% comment %} width: 100%; {% endcomment %}
+    height: auto;
+    
+}
+
+{% comment %} .slide-1 {
+      background-image:url('https://hbb.afl.rakuten.co.jp/hgb/1c8df943.b0cc10a1.1c8df944.22ca7156/?me_id=1213310&item_id=19573739&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F0368%2F9784041080368.jpg%3F_ex%3D240x240&s=240x240&t=pict');
+}
+.slide-2 {     
+      background-image:url('https://hbb.afl.rakuten.co.jp/hgb/1c8df943.b0cc10a1.1c8df944.22ca7156/?me_id=1213310&item_id=19573739&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F0368%2F9784041080368.jpg%3F_ex%3D240x240&s=240x240&t=pict');
+}
+.slide-3 {     
+      background-image:url('https://hbb.afl.rakuten.co.jp/hgb/1c8df943.b0cc10a1.1c8df944.22ca7156/?me_id=1213310&item_id=19573739&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F0368%2F9784041080368.jpg%3F_ex%3D240x240&s=240x240&t=pict');
+}
+.slide-4 {     
+      background-image:url('https://hbb.afl.rakuten.co.jp/hgb/1c8df943.b0cc10a1.1c8df944.22ca7156/?me_id=1213310&item_id=19573739&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F0368%2F9784041080368.jpg%3F_ex%3D240x240&s=240x240&t=pict');
+}
+.slide-5 {     
+      background-image:url('https://hbb.afl.rakuten.co.jp/hgb/1c8df943.b0cc10a1.1c8df944.22ca7156/?me_id=1213310&item_id=19573739&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F0368%2F9784041080368.jpg%3F_ex%3D240x240&s=240x240&t=pict');
+} {% endcomment %}
+
+.swiper-button-next:after, .swiper-container-rtl .swiper-button-prev:after {
+background-color: $white;
+}
+
+  .swiper-slide-shadow-left {
+    widht: 169px;
+    height: 200px;
+  }
+
+  .swiper-slide-shadow-right {
+    widht: 169px;
+    height: 200px;
+  }
+
+
+</style>
+
+
+
+  {% comment %} <script src={% static "js/myjavascript.js" %}></script> {% endcomment %}
+
+<!--.row { 639 -bs-gutter-x: 0;-->
+  </head>
+
+
+
+  <body class="">
+<!--▼▼▼▼▼▼▼▼▼▼ navbar ▼▼▼▼▼▼▼▼▼▼-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-teal">
+      <div class="container-fluid">
+        <a class="navbar-brand h-100" href="{% url 'book:top'%}">
+          <svg class="h-100 mx-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-book" viewBox="0 0 16 16">
+            <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
+          </svg>
+          Book DB
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              {% comment %} <a class="nav-link active" aria-current="page" href="#">ホーム</a> {% endcomment %}
+              {%if nav_active == None %}<a class="nav-link active" aria-current="page" href="#">{%else%}<a class="nav-link" href="{% url 'book:top' %}">{%endif%}ホーム</a>
+            </li>
+            <li class="nav-item">
+              {%if nav_active == 1%}<a class="nav-link active" aria-current="page" href="#">{%else%}<a class="nav-link" href="{% url 'book:book' %}">{%endif%}書籍一覧</a>
+            </li>            
+            <li class="nav-item">
+              {%if nav_active == 2%}<a class="nav-link active" aria-current="page" href="#">{%else%}<a class="nav-link" href="{% url 'book:category' %}">{%endif%}カテゴリー</a>
+            </li>
+            <li class="nav-item">
+              {%if nav_active == 3%}<a class="nav-link active" aria-current="page" href="#">{%else%}<a class="nav-link" href="{% url 'book:author' %}">{%endif%}著者</a>
+            </li>
+            <li class="nav-item">
+              {%if nav_active == 4%}<a class="nav-link active" aria-current="page" href="#">{%else%}<a class="nav-link" href="{% url 'book:publisher' %}">{%endif%}出版社</a>
+            </li>
+
+
+            {% comment %} <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Dropdown
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </li> {% endcomment %}
+
+
+            {% comment %} <li class="nav-item"> {% endcomment %}
+              {% comment %} <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a> {% endcomment %}
+            {% comment %} </li> {% endcomment %}
+          </ul>
+          <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-mygreen" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+<!--▲▲▲▲▲▲▲▲▲▲ navbar ▲▲▲▲▲▲▲▲▲▲-->
+
+
+    <div>
+      <div class="py-2 py-md-4"></div>
+        <div class="border-bottom-mygreen mt-1 w-75 mx-auto"></div>  <!-- ■■ Line ■■ -->
+      <div class="py-2 py-md-4"></div>
+    </div>
+
+
+<!--▼▼▼▼▼▼▼▼▼▼ image ▼▼▼▼▼▼▼▼▼▼-->
+    <img src={% static "images/top.jpg" %} class="img-fluid bg-teal" alt="">
+<!--▲▲▲▲▲▲▲▲▲▲ image ▲▲▲▲▲▲▲▲▲▲-->
+
+
+    <div>
+      <div class="py-3 py-md-5"></div>
+        <div class="border-bottom-mygreen mt-1 w-75 mx-auto"></div>  <!-- ■■ Line ■■ -->
+      <div class="py-3 py-md-5"></div>
+    </div>
+<!--▼▼▼▼▼▼▼▼▼▼ top contents ▼▼▼▼▼▼▼▼▼▼-->
+<!--▼▼▼▼▼▼▼▼▼▼ introduction ▼▼▼▼▼▼▼▼▼▼-->
+    {% if view.0 == 1 %}
+    <div class="container">
+      <div class="row">
+        <div class="col-36">
+          <div class="py-1 py-md-2 py-lg-3 w-100 text-center">
+            <a class="text-decoration-none text-teal m-auto fw-bold fs-3 fs-md-1" href="#">
+              <svg class="h-100 mx-2" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-book" viewBox="0 0 16 16">
+                <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
+              </path>            
+              </svg>
+              Book DB
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-36">
+          <div class="py-1 py-md-2 py-lg-3">
+            <p class="text-center m-auto">ブログ紹介文 ・・・・・・・・・・・・・・・・・・</p>
+            <p class="text-center m-auto">ブログ紹介文 ・・・・・・・・・・・・・・・・・・</p>
+            <p class="text-center m-auto">ブログ紹介文 ・・・・・・・・・・・・・・・・・・</p>
+          </div>
+        </div>
+      </div>
+<!--▲▲▲▲▲▲▲▲▲▲ introduction ▲▲▲▲▲▲▲▲▲▲-->
+      <div>
+        <div class="py-2 py-md-5"></div>
+          <div class="border-bottom-mygreen mt-1 w-75 mx-auto"></div>  <!-- ■■ Line ■■ -->
+        <div class="py-2 py-md-5"></div>
+      </div>
+    </div>
+    {% else %}
+    <div class="container">
+      {% block top %}
+      {% endblock %}
+    </div>
+    {% endif %}
+<!--▲▲▲▲▲▲▲▲▲▲ top contents ▲▲▲▲▲▲▲▲▲▲-->
+
+<!--▼▼▼▼▼▼▼▼▼▼ ranking ▼▼▼▼▼▼▼▼▼▼-->
+    {% if view.0 == 1 %}
+    <div class="container">
+      <div class="row">
+        <div class="col-36">
+          <div class="py-1 py-md-2 py-lg-3 w-100 text-center">
+            <a class="text-decoration-none text-teal m-auto fw-bold fs-3 fs-md-1" href="#">
+              ランキング
+            </a>
+          </div>
+        </div>
+      </div>
+
+  
+    <div style="width: 90%;
+        display: block;
+      margin-left: auto;
+      margin-right: auto;">
+      <div id="myslider" class="example-3d">
+        <swiper class="swiper PageFrame" :options="swiperOption">
+        {% comment %} style="display:flex;
+justify-content:center;
+align-items:center" {% endcomment %}
+          {% comment %} <swiper-slide style="linear-gradient(to bottom, rgba(255,255,0,0.5), rgba(0,0,255,0.5)), background-image: url('https://hbb.afl.rakuten.co.jp/hgb/1c8df943.b0cc10a1.1c8df944.22ca7156/?me_id=1213310&item_id=19573739&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F0368%2F9784041080368.jpg%3F_ex%3D240x240&s=240x240&t=pict'); "></swiper-slide> {% endcomment %}
+          {% comment %} <swiper-slide style="background-image: url('https://assets.techacademy.jp/assets/trial-illust-pc-c54f73b386e9b7cde27958c080d43ec76ab26745335c9665cc41d7e9d6e40f4a.png');"></swiper-slide> {% endcomment %}
+            <swiper-slide class="slide-1 "><image src="https://hbb.afl.rakuten.co.jp/hgb/1c8df943.b0cc10a1.1c8df944.22ca7156/?me_id=1213310&item_id=19573739&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F0368%2F9784041080368.jpg%3F_ex%3D240x240&s=240x240&t=pict"></swiper-slide>
+            <swiper-slide class="slide-2 "><image src="https://hbb.afl.rakuten.co.jp/hgb/1c8df943.b0cc10a1.1c8df944.22ca7156/?me_id=1213310&item_id=19573739&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F0368%2F9784041080368.jpg%3F_ex%3D240x240&s=240x240&t=pict"></swiper-slide>
+            <swiper-slide class="slide-3 "><image src="https://hbb.afl.rakuten.co.jp/hgb/1c8df943.b0cc10a1.1c8df944.22ca7156/?me_id=1213310&item_id=19573739&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F0368%2F9784041080368.jpg%3F_ex%3D240x240&s=240x240&t=pict"></swiper-slide>
+            <swiper-slide class="slide-4 "><image src="https://hbb.afl.rakuten.co.jp/hgb/1c8df943.b0cc10a1.1c8df944.22ca7156/?me_id=1213310&item_id=19573739&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F0368%2F9784041080368.jpg%3F_ex%3D240x240&s=240x240&t=pict"></swiper-slide>
+            <swiper-slide class="slide-5 "><image src="https://hbb.afl.rakuten.co.jp/hgb/1c8df943.b0cc10a1.1c8df944.22ca7156/?me_id=1213310&item_id=19573739&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F0368%2F9784041080368.jpg%3F_ex%3D240x240&s=240x240&t=pict"></swiper-slide>
+            <swiper-slide class="slide-6 "><image src="https://hbb.afl.rakuten.co.jp/hgb/1c8df943.b0cc10a1.1c8df944.22ca7156/?me_id=1213310&item_id=19573739&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F0368%2F9784041080368.jpg%3F_ex%3D240x240&s=240x240&t=pict"></swiper-slide>
+            <swiper-slide class="slide-7 "><image src="https://hbb.afl.rakuten.co.jp/hgb/1c8df943.b0cc10a1.1c8df944.22ca7156/?me_id=1213310&item_id=19573739&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F0368%2F9784041080368.jpg%3F_ex%3D240x240&s=240x240&t=pict"></swiper-slide>
+            <swiper-slide class="slide-8 "><image src="https://hbb.afl.rakuten.co.jp/hgb/1c8df943.b0cc10a1.1c8df944.22ca7156/?me_id=1213310&item_id=19573739&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F0368%2F9784041080368.jpg%3F_ex%3D240x240&s=240x240&t=pict"></swiper-slide>
+          <div class="swiper-pagination" slot="pagination"></div>
+          <div class="swiper-button-prev" slot="button-prev"></div>
+          <div class="swiper-button-next" slot="button-next"></div>
+          {% comment %} <div class="swiper-scrollbar"></div> {% endcomment %}
+        </swiper>
+      </div>
+    </div>
+  </div>
+  
+
+
+
+
+    <div>
+      <div class="py-3 py-md-5"></div>
+        <div class="border-bottom-mygreen mt-1 w-75 mx-auto"></div> <!-- ■■ Line ■■ -->
+      <div class="py-3 py-md-5"></div>
+    </div>
+    {% endif %}
+<!--▲▲▲▲▲▲▲▲▲▲ ranking ▲▲▲▲▲▲▲▲▲▲-->
+
+<!--▼▼▼▼▼▼▼▼▼▼ breadcrumb ▼▼▼▼▼▼▼▼▼▼-->
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-1 col-sm-2 col-md-2 col-lg-3"></div> <!-- ■■2■■ -->
+      <div class="col-36 col-sm-32 col-md-32 col-lg-30">
+        <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="パンくずリスト">
+          <ol class="breadcrumb">
+            <a class="text-teal text-decoration-none">
+              <span class="pe-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-fill" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+                  <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
+                </svg>
+              </span>
+            </a>
+            {% for url, path in breadcrumb.items %}
+            {% comment %} <a>{{request.META.HTTP_HOST}}</a> {% endcomment %}
+            <li class=" text-decoration-none breadcrumb-item {% if forloop.last %}active" aria-current="page{% endif %}"><a {% if forloop.last %}{%else%}class="text-teal"  href="{{path}}"{% endif %}>{{url}}</a></li>
+            {% comment %} <li class="breadcrumb-item active" aria-current="page">{{ request }}</li> {% endcomment %}
+            {% endfor %}
+
+          </ol>
+        </nav>
+      </div>
+      <div class="col-1 col-sm-2 col-md-2 col-lg-3 "></div> <!-- ■■2■■ -->
+    </div>
+  </div>
+<!--▲▲▲▲▲▲▲▲▲▲ breadcrumb ▲▲▲▲▲▲▲▲▲▲-->
+
+
+
+<!--▼▼▼▼▼▼▼▼▼▼ center contents ▼▼▼▼▼▼▼▼▼▼-->
+    <main class="container-fluid">
+      <div class="row">
+        <div class="col-1 col-sm-2 col-md-2 col-lg-3 "></div> <!-- ■■2■■ -->
+        <!--▼▼▼▼▼▼▼▼▼▼ main contents ▼▼▼▼▼▼▼▼▼▼-->
+        {% if view.1 == 1 %}
+        <div class="col-34 col-sm-32 col-md-25 col-lg-23 pb-2 pb-md-4 bg-white rounded"> <!-- .maincontents -->
+          <div class="row">
+            <div class="col-36">
+              {% comment %} <div class="bg-teal rounded w-25  py-2 py-md-3"> {% endcomment %}
+              <div class="bg-teal rounded mb-5 w-100">
+                {% comment %} <a class="text-decoration-none fw-blod fs-3 text-white px-md-4 px-3">▽ {% block info %}{% endblock %}</a> {% endcomment %}
+                <h1 class="text-decoration-none fw-blod fs-3 text-white px-md-4 px-3 py-2">▽ {% block info %}{% endblock %}</h1>
+                
+              </div>
+              {% comment %} </div> {% endcomment %}
+            </div>
+
+            {% if view.2 == 1 %}
+
+            {% for item in book_list %}
+            <div class="col-12 col-lg-9 col-xxl-7 text-center py-1 py-md-2 py-mx-2 px-xl-3 border-gray-dark">
+              <div class="text-start text-dark ps-1 fs-6">{{ item.post_day | date:"Y-m-d" }}</div>
+                <div class="ratio ratio-138x200 border-gray-dark border">
+                  {{ item.amazon_url | safe}}
+                </div>
+              <div>
+              <div class="fw-bold fs-6 fs-lg-5 my-1 my-md-2 py-0 text-truncate-2 h-48 d-table w-100"><a class="text-dark align-middle d-table-cell text-decoration-none" href="{% url 'book:book_info' item.post_day %}">{{ item.title }}</a></div>
+              </div>
+                <div class="text-start ps-1">
+                  <div class="fs-6"><a>著者：<span class="rounded">{{ item.Author_info }}</span></a></div>
+                  <div class="fs-6"><a>カテゴリー：<span class="text-decoration-none py-0 px-01 border-gray-dark border text-white bg-{% for item2 in item.category_info.all %}{{item2.color}}{%endfor%} rounded">{% for item2 in item.category_info.all %}{{item2.get_category_display}}{%endfor%}</span><span>{{item.youth_choices}}</span></a></div>
+                  <div class="fs-6">出版社：<span class="bg-ararm rounded">{{ item.publisher_info }}</div>
+                  <div class="py-1 py-md-2"></div>
+                  <div class="border-bottom-mygreen mt-1 w-75 mx-auto"></div>
+                  <div class="py-1 py-md-2"></div>
+              </div>
+            </div>
+            {% endfor %}
+
+            <div class="col-12 col-lg-9 col-xxl-7 text-center py-1 py-md-2 py-mx-2 px-xl-3">
+              <div class="ratio ratio-138x200 ">
+                <a class="bg-gray-dark border-gray-dark d-flex align-items-center" href="https://hb.afl.rakuten.co.jp/ichiba/1c8df943.b0cc10a1.1c8df944.22ca7156/_RTLink9016?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F15868961%2F&link_type=pict&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0Iiwic2l6ZSI6IjI0MHgyNDAiLCJuYW0iOjEsIm5hbXAiOiJyaWdodCIsImNvbSI6MSwiY29tcCI6ImRvd24iLCJwcmljZSI6MCwiYm9yIjoxLCJjb2wiOjEsImJidG4iOjEsInByb2QiOjAsImFtcCI6ZmFsc2V9" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"><img class="w-100" src="https://hbb.afl.rakuten.co.jp/hgb/1c8df943.b0cc10a1.1c8df944.22ca7156/?me_id=1213310&item_id=19573739&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F0368%2F9784041080368.jpg%3F_ex%3D240x240&s=240x240&t=pict" border="0" alt="" title=""></a>
+              </div>
+                <div class="fw-bold fs-6 fs-lg-5 my-1 my-md-2 py-0 text-truncate-2 h-48">虹を待つ彼女</div>
+              <div class="text-start ps-1">
+                <div class="fs-6"><a>著者：<span class="bg-gray rounded">逸木裕</span></a></div>
+                <div class="fs-6"><a>カテゴリー：<span class="bg-secondary rounded text-white">ミステリー</span></a></div>
+                <div class="fs-6">出版社：<span class="bg-ararm rounded">集英社</div>
+                <div class="py-1 py-md-2"></div>
+                  <div class="border-bottom-mygreen mt-1 w-75 mx-auto"></div>
+                <div class="py-1 py-md-2"></div>
+              </div>
+            </div>
+            <div class="col-12 col-lg-9 col-xxl-7 text-center py-1 py-md-2 py-mx-2 px-xl-3">
+              <div class="ratio ratio-138x200">
+                <a href="https://hb.afl.rakuten.co.jp/ichiba/1c8df943.b0cc10a1.1c8df944.22ca7156/_RTLink9016?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F11568889%2F&link_type=pict&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0Iiwic2l6ZSI6IjI0MHgyNDAiLCJuYW0iOjEsIm5hbXAiOiJyaWdodCIsImNvbSI6MSwiY29tcCI6ImRvd24iLCJwcmljZSI6MCwiYm9yIjoxLCJjb2wiOjEsImJidG4iOjEsInByb2QiOjAsImFtcCI6ZmFsc2V9" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"  ><img class="w-100" src="https://hbb.afl.rakuten.co.jp/hgb/1c8df943.b0cc10a1.1c8df944.22ca7156/?me_id=1213310&item_id=15762701&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F7987%2F9784087467987.jpg%3F_ex%3D240x240&s=240x240&t=pict" border="0" alt="" title=""></a>
+              </div>
+              <div class="ratio ratio-21x9">
+                <div class="fw-bold fs-6 fs-lg-5 my-1 my-md-2 py-0 text-truncate-2">何もかも憂鬱な夜</div>
+              </div>
+              <div class="text-start ps-1">
+                <div class="fs-6"><a>著者：<span class="bg-teal rounded">中村文則</span></a></div>
+                <div class="fs-6"><a>カテゴリー：<span class="bg-{{ primary.category_eng }} rounded">ミステリー</span></a></div>
+                <div class="fs-6">出版社：<span class="bg-ararm rounded">集英社</div>
+              </div>
+              <div class="py-1 py-md-2"></div>
+                <div class="border-bottom-mygreen mt-1 w-75 mx-auto"></div>
+              <div class="py-1 py-md-2"></div>
+            </div>
+            <div class="col-12 col-lg-9 col-xxl-7 text-center py-1 py-md-2 py-mx-2 px-xl-3">
+              <div class="ratio ratio-138x200">
+                <a href="https://hb.afl.rakuten.co.jp/ichiba/1c8df943.b0cc10a1.1c8df944.22ca7156/_RTLink9016?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F11568889%2F&link_type=pict&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0Iiwic2l6ZSI6IjI0MHgyNDAiLCJuYW0iOjEsIm5hbXAiOiJyaWdodCIsImNvbSI6MSwiY29tcCI6ImRvd24iLCJwcmljZSI6MCwiYm9yIjoxLCJjb2wiOjEsImJidG4iOjEsInByb2QiOjAsImFtcCI6ZmFsc2V9" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"  ><img class="w-100" src="https://hbb.afl.rakuten.co.jp/hgb/1c8df943.b0cc10a1.1c8df944.22ca7156/?me_id=1213310&item_id=15762701&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F7987%2F9784087467987.jpg%3F_ex%3D240x240&s=240x240&t=pict" border="0" alt="" title=""></a>
+              </div>
+                <div class="fw-bold fs-6 fs-lg-5 my-1 my-md-2 py-0 text-truncate-2 h-42">何もかも憂鬱な夜何もかも憂鬱な夜に何もかも憂鬱な夜にに</div>
+              <div class="fs-6"><a>著者：<span class="bg-teal rounded">中村文則</span></a></div>
+              <div class="fs-6"><a>カテゴリー：<span class="bg-primary rounded">ミステリー</span></a></div>
+              <div class="fs-6">出版社：<span class="bg-ararm rounded">集英社</div>
+              <div class="py-1 py-md-2"></div>
+                <div class="border-bottom-mygreen mt-1 w-75 mx-auto"></div>
+              <div class="py-1 py-md-2"></div>
+            </div>
+            <div class="col-12 col-lg-9 col-xxl-7 text-center py-1 py-md-2 py-mx-2 px-xl-3">
+              <a href="https://hb.afl.rakuten.co.jp/ichiba/1c8df943.b0cc10a1.1c8df944.22ca7156/_RTLink9016?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F11568889%2F&link_type=pict&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0Iiwic2l6ZSI6IjI0MHgyNDAiLCJuYW0iOjEsIm5hbXAiOiJyaWdodCIsImNvbSI6MSwiY29tcCI6ImRvd24iLCJwcmljZSI6MCwiYm9yIjoxLCJjb2wiOjEsImJidG4iOjEsInByb2QiOjAsImFtcCI6ZmFsc2V9" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"  ><img class="w-100" src="https://hbb.afl.rakuten.co.jp/hgb/1c8df943.b0cc10a1.1c8df944.22ca7156/?me_id=1213310&item_id=15762701&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F7987%2F9784087467987.jpg%3F_ex%3D240x240&s=240x240&t=pict" border="0" alt="" title=""></a>
+              <div class="fw-bold py-1 py-md-2 fs-5">何もかも憂鬱な夜に</div>
+              <div><a>著者：<span class="bg-teal rounded">中村文則</span></a></div>
+              <div><a>カテゴリー：<span class="bg-primary rounded">ミステリー</span></a></div>
+              <div>出版社：<span class="bg-ararm rounded">集英社</div>
+              <div class="py-1 py-md-2"></div>
+                <div class="border-bottom-mygreen mt-1 w-75 mx-auto"></div>
+              <div class="py-1 py-md-2"></div>
+            </div>
+            <div class="col-12 col-lg-9 col-xxl-7 text-center py-1 py-md-2 py-mx-2 px-xl-3">
+              <a href="https://hb.afl.rakuten.co.jp/ichiba/1c8df943.b0cc10a1.1c8df944.22ca7156/_RTLink9016?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F11568889%2F&link_type=pict&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0Iiwic2l6ZSI6IjI0MHgyNDAiLCJuYW0iOjEsIm5hbXAiOiJyaWdodCIsImNvbSI6MSwiY29tcCI6ImRvd24iLCJwcmljZSI6MCwiYm9yIjoxLCJjb2wiOjEsImJidG4iOjEsInByb2QiOjAsImFtcCI6ZmFsc2V9" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"  ><img class="w-100" src="https://hbb.afl.rakuten.co.jp/hgb/1c8df943.b0cc10a1.1c8df944.22ca7156/?me_id=1213310&item_id=15762701&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F7987%2F9784087467987.jpg%3F_ex%3D240x240&s=240x240&t=pict" border="0" alt="" title=""></a>
+              <div class="fw-bold py-2 py-md-3 fs-5">何もかも憂鬱な夜に</div>
+              <div><a>著者：<span class="bg-teal rounded">中村文則</span></a></div>
+              <div><a>カテゴリー：<span class="bg-primary rounded">ミステリー</span></a></div>
+              <div>出版社：<span class="bg-ararm rounded">集英社</div>
+              <div class="py-1 py-md-2"></div>
+                <div class="border-bottom-mygreen mt-1 w-75 mx-auto"></div>
+              <div class="py-1 py-md-2"></div>
+            </div>
+            <div class="col-12 col-lg-9 col-xxl-7 text-center py-1 py-md-2 py-mx-2 px-xl-3">
+              <a href="https://hb.afl.rakuten.co.jp/ichiba/1c8df943.b0cc10a1.1c8df944.22ca7156/_RTLink9016?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F11568889%2F&link_type=pict&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0Iiwic2l6ZSI6IjI0MHgyNDAiLCJuYW0iOjEsIm5hbXAiOiJyaWdodCIsImNvbSI6MSwiY29tcCI6ImRvd24iLCJwcmljZSI6MCwiYm9yIjoxLCJjb2wiOjEsImJidG4iOjEsInByb2QiOjAsImFtcCI6ZmFsc2V9" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"  ><img class="w-100" src="https://hbb.afl.rakuten.co.jp/hgb/1c8df943.b0cc10a1.1c8df944.22ca7156/?me_id=1213310&item_id=15762701&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F7987%2F9784087467987.jpg%3F_ex%3D240x240&s=240x240&t=pict" border="0" alt="" title=""></a>
+              <div class="fw-bold py-2 py-md-3 fs-5">何もかも憂鬱な夜に</div>
+              <div><a>著者：<span class="bg-teal rounded">中村文則</span></a></div>
+              <div><a>カテゴリー：<span class="bg-primary rounded">ミステリー</span></a></div>
+              <div>出版社：<span class="bg-ararm rounded">集英社</div>
+              <div class="py-1 py-md-2"></div>
+                <div class="border-bottom-mygreen mt-1 w-75 mx-auto"></div>
+              <div class="py-1 py-md-2"></div>
+            </div>
+            <div class="col-12 col-lg-9 col-xxl-7 text-center py-1 py-md-2 py-mx-2 px-xl-3">
+              <a href="https://hb.afl.rakuten.co.jp/ichiba/1c8df943.b0cc10a1.1c8df944.22ca7156/_RTLink9016?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F11568889%2F&link_type=pict&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0Iiwic2l6ZSI6IjI0MHgyNDAiLCJuYW0iOjEsIm5hbXAiOiJyaWdodCIsImNvbSI6MSwiY29tcCI6ImRvd24iLCJwcmljZSI6MCwiYm9yIjoxLCJjb2wiOjEsImJidG4iOjEsInByb2QiOjAsImFtcCI6ZmFsc2V9" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"  ><img class="w-100" src="https://hbb.afl.rakuten.co.jp/hgb/1c8df943.b0cc10a1.1c8df944.22ca7156/?me_id=1213310&item_id=15762701&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F7987%2F9784087467987.jpg%3F_ex%3D240x240&s=240x240&t=pict" border="0" alt="" title=""></a>
+              <div>何もかも憂鬱な夜に</div>
+              <div><a>著者：<span class="bg-teal rounded">中村文則</span></a></div>
+              <div><a>カテゴリー：<span class="bg-primary rounded">ミステリー</span></a></div>
+              <div>出版社：<span class="bg-ararm rounded">集英社</div>
+              <div class="py-1 py-md-2"></div>
+                <div class="border-bottom-mygreen mt-1 w-75 mx-auto"></div>
+              <div class="py-1 py-md-2"></div>
+            </div>
+            <div class="col-12 col-lg-9 col-xxl-7 text-center py-1 py-md-2 py-mx-2 px-xl-3">
+              <a href="https://hb.afl.rakuten.co.jp/ichiba/1c8df943.b0cc10a1.1c8df944.22ca7156/_RTLink9016?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F11568889%2F&link_type=pict&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0Iiwic2l6ZSI6IjI0MHgyNDAiLCJuYW0iOjEsIm5hbXAiOiJyaWdodCIsImNvbSI6MSwiY29tcCI6ImRvd24iLCJwcmljZSI6MCwiYm9yIjoxLCJjb2wiOjEsImJidG4iOjEsInByb2QiOjAsImFtcCI6ZmFsc2V9" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"  ><img class="w-100" src="https://hbb.afl.rakuten.co.jp/hgb/1c8df943.b0cc10a1.1c8df944.22ca7156/?me_id=1213310&item_id=15762701&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F7987%2F9784087467987.jpg%3F_ex%3D240x240&s=240x240&t=pict" border="0" alt="" title=""></a>
+              <div>何もかも憂鬱な夜に</div>
+              <div><a>著者：<span class="bg-teal rounded">中村文則</span></a></div>
+              <div><a>カテゴリー：<span class="bg-primary rounded">ミステリー</span></a></div>
+              <div>出版社：<span class="bg-ararm rounded">集英社</div>
+              <div class="py-1 py-md-2"></div>
+                <div class="border-bottom-mygreen mt-1 w-75 mx-auto"></div>
+              <div class="py-1 py-md-2"></div>
+            </div>
+            <div class="col-12 col-lg-9 col-xxl-7 text-center py-1 py-md-2 py-mx-2 px-xl-3">
+              <a href="https://hb.afl.rakuten.co.jp/ichiba/1c8df943.b0cc10a1.1c8df944.22ca7156/_RTLink9016?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F11568889%2F&link_type=pict&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0Iiwic2l6ZSI6IjI0MHgyNDAiLCJuYW0iOjEsIm5hbXAiOiJyaWdodCIsImNvbSI6MSwiY29tcCI6ImRvd24iLCJwcmljZSI6MCwiYm9yIjoxLCJjb2wiOjEsImJidG4iOjEsInByb2QiOjAsImFtcCI6ZmFsc2V9" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"  ><img class="w-100" src="https://hbb.afl.rakuten.co.jp/hgb/1c8df943.b0cc10a1.1c8df944.22ca7156/?me_id=1213310&item_id=15762701&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F7987%2F9784087467987.jpg%3F_ex%3D240x240&s=240x240&t=pict" border="0" alt="" title=""></a>
+              <div>何もかも憂鬱な夜に</div>
+              <div><a>著者：<span class="bg-teal rounded">中村文則</span></a></div>
+              <div><a>カテゴリー：<span class="bg-primary rounded">ミステリー</span></a></div>
+              <div>出版社：<span class="bg-ararm rounded">集英社</div>
+              <div class="py-1 py-md-2"></div>
+                <div class="border-bottom-mygreen mt-1 w-75 mx-auto"></div>
+              <div class="py-1 py-md-2"></div>
+            </div>
+            <div class="" style="height:1px;">
+              <div class="position-relative w-100 bg-white" style="height: 20px; top:-30px"></div>
+            </div>
+        {% else %}
+          <!--▼▼▼▼▼▼▼▼▼▼ main contents option ▼▼▼▼▼▼▼▼▼▼-->
+          {% block only_main %}
+          {% endblock %}     
+          <!--▲▲▲▲▲▲▲▲▲▲ main contents option ▲▲▲▲▲▲▲▲▲▲-->
+        {% endif %}
+      </div>
+    </div>
+    <!--▲▲▲▲▲▲▲▲▲▲ main contents ▲▲▲▲▲▲▲▲▲▲-->
+
+          <div class="d-md-none-r col-md-1"></div> <!-- ■■1■■ -->
+
+          <div class="d-md-none-r col-md-6 text-center pb-2 pb-md-4"> <!-- .sidebar -->
+            {% comment %} <div class="fs-4 fw-bold">Side</div> {% endcomment %}
+              
+            <div class="row">
+              <div class="col-36 py-2 bg-teal rounded">
+                <button class="navbar-toggler shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#DropCategory" aria-controls="DropCategory" aria-expanded="false" aria-label="Toggle navigation">
+                  {% comment %} <span class="navbar-toggler-icon"></span> {% endcomment %}
+                  <span class="text-white d-inline-block">
+                    <svg class="h-100" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-folder" viewBox="0 0 16 16">
+                      <path d="M.54 3.87.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.826a2 2 0 0 1-1.991-1.819l-.637-7a1.99 1.99 0 0 1 .342-1.31zM2.19 4a1 1 0 0 0-.996 1.09l.637 7a1 1 0 0 0 .995.91h10.348a1 1 0 0 0 .995-.91l.637-7A1 1 0 0 0 13.81 4H2.19zm4.69-1.707A1 1 0 0 0 6.172 2H2.5a1 1 0 0 0-1 .981l.006.139C1.72 3.042 1.95 3 2.19 3h5.396l-.707-.707z"/>
+                    </svg>              
+                    カテゴリー
+                  </span>
+                </button>
+                <div class="collapse navbar-collapse mt-2 border-top" id="DropCategory">
+                  <div class="me-auto mb-2 py-2 mb-lg-0 ps-2 text-start text-dark">
+                    {% for item in category %}
+                      {% comment %} <li class="nav-item px-01 py-0"> {% endcomment %}
+                        <a class="text-decoration-none py-1 px-01" href="{% url 'book:category_info' item.category %}"><span class="d-inline-block px-01 py-0 my-1 border rounded btn-{{ item.color }}">{{ item.get_category_display}}</span></a>
+                      {% comment %} </li> {% endcomment %}
+                    {% endfor %}
+                  </div>
+                  <a class="text-white" href="{% url 'book:category' %}">カテゴリー一覧ページへ移動</a>
+                </div>
+              </div>
+            </div>
+            
+            <div class="py-01 bg-light"></div>
+
+            <div class="row">
+              <div class="col-36 py-2 bg-teal rounded">
+                <button class="navbar-toggler shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#DropAuther" aria-controls="DropAuther" aria-expanded="false" aria-label="Toggle navigation">
+                  {% comment %} <span class="navbar-toggler-icon"></span> {% endcomment %}
+                  <span class="text-white d-inline-block">
+                    <svg class="h-100" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                      <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                      <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                    </svg>              
+                    著者
+                  </span>
+                </button>
+                <div class="collapse navbar-collapse mt-2 border-top" id="DropAuther">
+                    <ul class="me-auto mb-2 py-2 mb-lg-0 ps-2 text-start text-dark">                    
+                        {% for item in author_Aa %}
+                          <div class="me-auto mb-2 mb-lg-0 text-start mt-2">
+                          {% for item2 in item %}
+                            {% if forloop.first %}
+                              <a class="text-decoration-none text-start btn-teal text-white fs-5 rounded border">{{item2.get_word_oder_display}}＞</a>
+                            {% endif %}
+                            <a class="text-decoration-none py-0 px-01 btn-dark d-inline-block border rounded" href="{% url 'book:author_info' item2.author_eng %}">{{ item2.author }}</a>
+                          {% endfor %}
+                          </div>
+                        {% endfor %}
+                    </ul>
+                  <a class="text-white" href="{% url 'book:author' %}">著者一覧ページへ移動</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="py-01 bg-light"></div>
+            
+            <div class="row">
+              <div class="col-36 py-2 bg-teal rounded">
+
+                <button class="navbar-toggler shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#DropPublisher" aria-controls="DropPublisher" aria-expanded="false" aria-label="Toggle navigation">
+                  {% comment %} <span class="navbar-toggler-icon"></span> {% endcomment %}
+                  <span class="text-white d-inline-block"> 
+                    <svg class="h-100" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-building" viewBox="0 0 16 16">
+                      <path fill-rule="evenodd" d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022zM6 8.694 1 10.36V15h5V8.694zM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5V15z"/>
+                      <path d="M2 11h1v1H2v-1zm2 0h1v1H4v-1zm-2 2h1v1H2v-1zm2 0h1v1H4v-1zm4-4h1v1H8V9zm2 0h1v1h-1V9zm-2 2h1v1H8v-1zm2 0h1v1h-1v-1zm2-2h1v1h-1V9zm0 2h1v1h-1v-1zM8 7h1v1H8V7zm2 0h1v1h-1V7zm2 0h1v1h-1V7zM8 5h1v1H8V5zm2 0h1v1h-1V5zm2 0h1v1h-1V5zm0-2h1v1h-1V3z"/>
+                    </svg>
+                    出版社
+                  </span> 
+                </button>  
+                <div class="collapse navbar-collapse mt-2 border-top" id="DropPublisher">
+                  <div class="me-auto mb-2 py-2 mb-lg-0 ps-2 text-start text-dark">
+                    {% for item in publisher %}
+                        <a class="text-decoration-none py-0 px-01" href="{% url 'book:publisher_info' item.publisher_eng %}"><span class="d-inline-block px-01 py-0 my-1 border rounded btn-dark">{{ item}}</span></a>
+                    {% endfor %}
+                  </div>
+                  <a class="text-white" href="{% url 'book:publisher' %}">出版社一覧ページへ移動</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="py-01 bg-light"></div>
+            
+            <div class="row">
+              <div class="col-36 py-2 bg-teal rounded">
+                <button class="navbar-toggler shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#DropOthers" aria-controls="DropOthers" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="text-white d-inline-block"> 
+                    <svg class="h-100" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                      <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                    </svg>              
+                    その他
+                  </span>
+                </button>
+                <div class="collapse navbar-collapse mt-2 border-top" id="DropOthers">
+                  <div class="me-auto mb-2 py-2 mb-lg-0 ps-2 text-start text-dark">
+                    {% for item in others %}
+                        <a class="text-decoration-none py-0 px-01" href="#"><span class="px-01 py-0 border rounded btn-dark">{{ item}}</span></a>
+                    {% endfor %}
+                  </div>
+                  <a class="text-white" href="">その他一覧ページへ移動</a>
+                </div>
+              </div>
+            </div>
+          </div> <!-- /.sidebar -->
+
+        {% else %}
+          <div class="col-34 col-sm-32 col-md-32 col-lg-30 ">
+            <div class="row">
+              {% block main_sidebar %}
+              {% endblock %}
+            </div> <!-- ■■2■■ -->
+          </div> <!-- ■■2■■ -->
+        {% endif %}
+
+        <div class="col-1 col-sm-2 col-md-2 col-lg-3 "></div> <!-- ■■ LineClose ■■ -->
+      </div><!-- /.row -->
+    </main><!-- /.container -->
+
+      {% comment %} <img src={% static "images/top.jpg" %} class="img-fluid" alt=""> {% endcomment %}
+      {% comment %} <div class="row align-items-center" style="padding-top: 10%;"></div> {% endcomment %}
+
+      {% block center %}
+      {% endblock %}
+
+
+      {% block contents %}
+      {% endblock %}
+
+          {% comment %} <nav class="blog-pagination my-md-3" aria-label="Pagination">
+            <a class="btn btn-outline-primary" href="#">Older</a>
+            <a class="btn btn-outline-secondary disabled" href="#" tabindex="-1" aria-disabled="true">Newer</a>
+          </nav> {% endcomment %}
+
+    <div>
+      <div class="py-3 py-md-5"></div>
+        <div class="border-bottom-mygreen mt-1 w-75 mx-auto"></div> <!-- ■■ Line ■■ -->
+      <div class="py-3 py-md-5"></div>
+    </div>
+
+
+  {% if view.3 == 1 %}
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-1 col-sm-3 col-md-4 col-lg-5 px-sm-0-r"></div> <!-- ■■ Col ■■ -->
+
+        <div class="col-34 col-sm-30 col-md-28 col-lg-26">
+          <div class="bg-teal table-success rounded-top">
+            <a class="text-dark fw-blod fs-4 p-2 text-white text-decoration-none">新着情報</a>
+          </div>
+          <table class="table table-striped w-100 table-hover table-sm table-borderless table-bordered p-0">
+            {% for item in book_list|slice:":10" %}
+            <tbody>
+              <td class="text-center border-width border-right p-01" style="width: 150px;"><a>{{ item.post_day|date:"Y/m/d" }}</a></td>
+              <td class="border-0 p-01">「{{ item.title }}」を更新しました</td>
+            </tbody>
+            {% endfor %}
+          </table>
+        </div>
+
+        <div class="col-1 col-sm-3 col-md-4 col-lg-5 px-sm-0-r"></div> <!-- ■■ Col ■■ -->
+      </div>
+    </div>
+
+      
+    <div>
+      <div class="py-3 py-md-5"></div>
+        <div class="border-bottom-mygreen mt-1 w-75 mx-auto"></div>
+      <div class="py-3 py-md-5"></div>
+    </div>
+  {% else %}
+    {% block bottom %}
+    {% endblock %}
+  {% endif %}
+
+
+
+    <footer class="py-2 py-md-4 py-lg-5 bg-teal">
+      <div class="row">
+          <div class="col-1 col-sm-2 col-md-2 col-lg-3 "></div> <!-- ■■2■■ -->
+          <div class="col-34 col-sm-32 col-lg-30">
+        <div class="container-fluid">
+            <div class="row">
+              <div class="col-18 col-lg-9">
+                <span class="text-white fs-4 d-inline-block">
+                  <svg class="" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-folder" viewBox="0 0 16 16">
+                    <path d="M.54 3.87.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.826a2 2 0 0 1-1.991-1.819l-.637-7a1.99 1.99 0 0 1 .342-1.31zM2.19 4a1 1 0 0 0-.996 1.09l.637 7a1 1 0 0 0 .995.91h10.348a1 1 0 0 0 .995-.91l.637-7A1 1 0 0 0 13.81 4H2.19zm4.69-1.707A1 1 0 0 0 6.172 2H2.5a1 1 0 0 0-1 .981l.006.139C1.72 3.042 1.95 3 2.19 3h5.396l-.707-.707z"/>
+                  </svg>              
+                  カテゴリー
+                </span>
+                <div class="me-auto mb-2 py-2 mb-lg-0 ps-2 text-start text-dark">
+                  {% for item in category %}
+                      <a class="text-decoration-none py-0 px-01 my-1 d-inline-block" href="#"><span class="px-01 py-0 border rounded btn-{{ item.color }}">{{ item.get_category_display}}</span></a>
+                  {% endfor %}
+                </div>          
+              </div>
+              <div class="col-18 col-lg-9">
+                <span class="text-white fs-4">
+                  <svg class="" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                  </svg>              
+                  著者
+                </span>   
+                <ul class="me-auto mb-2 py-2 mb-lg-0 ps-2 text-start text-dark">                    
+                    {% for item in author_Aa %}
+                      <div class="me-auto mb-2 mb-lg-0 text-start text-dark mt-2">
+                      {% for item2 in item %}
+                        {% if forloop.first %}
+                          <a class="text-decoration-none text-start btn-light text-dark fs-5 rounded ">{{item2.get_word_oder_display}}＞</a>
+                        {% endif %}
+                        <a class="text-decoration-none py-0 px-01" href="#"><span class="px-01 py-0 border rounded btn-dark">{{ item2.author }}</span></a>
+                      {% endfor %}
+                      </div>
+                    {% endfor %}
+                </ul>              
+              </div>
+              <div class="col-18 col-lg-9">
+                <span class="text-white fs-4">
+                  <svg class="" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-building" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022zM6 8.694 1 10.36V15h5V8.694zM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5V15z"/>
+                    <path d="M2 11h1v1H2v-1zm2 0h1v1H4v-1zm-2 2h1v1H2v-1zm2 0h1v1H4v-1zm4-4h1v1H8V9zm2 0h1v1h-1V9zm-2 2h1v1H8v-1zm2 0h1v1h-1v-1zm2-2h1v1h-1V9zm0 2h1v1h-1v-1zM8 7h1v1H8V7zm2 0h1v1h-1V7zm2 0h1v1h-1V7zM8 5h1v1H8V5zm2 0h1v1h-1V5zm2 0h1v1h-1V5zm0-2h1v1h-1V3z"/>
+                  </svg>
+                  出版社
+                </span>
+                <div class="me-auto mb-2 py-2 mb-lg-0 ps-2 text-start text-dark">
+                  {% for item in publisher %}
+                      <a class="text-decoration-none py-0 px-01" href="#"><span class="px-01 py-0 border rounded btn-dark">{{ item}}</span></a>
+                  {% endfor %}
+                </div>
+              </div>
+              <div class="col-18 col-lg-9">
+                <span class="text-white fs-4">
+                  <svg class="" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                  </svg>              
+                  その他
+                </div>
+              </span>
+            </div>
+          </div>
+      </div>
+          <div class="col-1 col-sm-2 col-md-2 col-lg-3 "></div> <!-- ■■2■■ -->
+        </div>
+    </footer>
+<script tyle="module">
+Vue.use(VueAwesomeSwiper);
+
+let myslider = new Vue({
+  el: '#myslider',
+  name: 'swiper-example-3d-coverflow',
+  title: '3D Coverflow effect',
+  data: {
+      swiperOption: {
+        effect: 'coverflow',
+        {% comment %} "slide", "fade", "cube", "coverflow" "flip" {% endcomment %}
+        {% comment %} grabCursor: true, {% endcomment %}
+        centeredSlides: true,
+        slidesPerView: 4,
+        coverflowEffect: {
+          rotate: 35,
+          stretch: 0,
+          depth: 200,
+          modifier: 1,
+          slideShadows : true
+        },
+        initialSlide: 2,
+        followFinger: true,
+        speed: 600,
+        autoplay: {
+          delay: 2500,
+          disableOnInteraction: false
+        },
+        autoHeight: true,
+        spaceBetween: 30,
+        centeredSlides: true,
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+          {% comment %} type: 'progressbar', {% endcomment %}
+          type: 'bullets',
+        },
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev'
+        },
+        {% comment %} scrollbar: { {% endcomment %}
+          {% comment %} el: '.swiper-scrollbar', {% endcomment %}
+          {% comment %} draggable: true {% endcomment %}
+        {% comment %} } {% endcomment %}
+      }
+  } 
+  })
+
+
+</script>
+<style>
+.swiper-pagination-progressbar-fill {
+	background: #ffb6c1; /* 塗りつぶし：ピンク */
+}
+
+  .swiper-slide-shadow-left {
+    {% comment %} width: 169px !important; {% endcomment %}
+    {% comment %} height: 240px !important; {% endcomment %}
+    background-image: none !important;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  width: 80%;
+  height: 3.2rem;
+  }
+
+  .swiper-slide-shadow-right {
+    {% comment %} width: 169px !important; {% endcomment %}
+    {% comment %} height: 240px !important; {% endcomment %}
+  background-image: none !important;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  width: 80%;
+  height: 3.2rem;
+  }
+</style>
+
+  </body>
+</html>
+
+
+
+
+
+{% comment %} 
+
+{% for file_id in ""|rjust:"100" %}
+  (繰り返したいなにか)
+{% endfor %}
+
+{% for comment in post.comments.all %}
+    {% if forloop.counter >= 10 %}
+        <p>{{comment}}</p>
+    {% endif %}
+{% endfor %}
+
+{% with ''|center:n as range %}
+{% for _ in range %}
+    <p>繰り返しの要素</p>
+{% endfor %}
+{% endwith %}
+
+slice:"2:5"
+
+ {% endcomment %}

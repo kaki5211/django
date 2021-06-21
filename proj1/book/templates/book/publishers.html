@@ -1,0 +1,28 @@
+{% extends 'book/base.html' %}
+
+
+{% block top %}
+{% endblock %}
+
+{% block info %}
+出版社一覧
+{% endblock %}
+
+
+{% block only_main %}
+<div class="col-12 col-lg-9 col-xxl-7 text-center py-1 py-md-2 py-mx-2 px-xl-3 border-gray-dark">
+  <a>publisher</a>
+
+{% for item in book_list %}
+{% endfor %}
+</div>
+{% endblock %}
+
+{% block main_sidebar %}
+{% endblock %}
+
+
+{% block bottom %}
+{% endblock %}
+
+

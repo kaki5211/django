@@ -68,8 +68,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'app.apps.AppConfig'
+    'app.apps.AppConfig',
+    'book.apps.BookConfig',
+    'django.contrib.sites',  # 追加
+    'django.contrib.sitemaps',  # 追加
+    'webpack_loader', # 追加
+    'django_middleware_global_request',
 ]
+
+SITE_ID = 1 #追加
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -79,14 +86,17 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_middleware_global_request.middleware.GlobalRequestMiddleware',
 ]
 
 ROOT_URLCONF = 'proj1.urls'
 
+TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates') # 追加
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [TEMPLATES_DIR,], # TEMPLATES_DIR 追加
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -95,6 +105,8 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.media',
+                'book.my_context_processor.common' # 追記
+
             ],
         },
     },
@@ -166,3 +178,6 @@ MEDIA_URL = '/media/'
 
 # LOGIN_REDIRECT_URL
 LOGIN_REDIRECT_URL = '/'
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+

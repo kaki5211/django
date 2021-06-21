@@ -1,0 +1,64 @@
+{% extends 'book/base.html' %}
+
+
+{% block top %}
+{% endblock %}
+
+{% block info %}
+カテゴリー
+{% endblock %}
+
+
+{% block only_main %}
+<div class="col-36">
+  <div class="row">
+  
+  {% for item in category %}
+    <div>
+      <a class="text-decoration-none py-0 px-01 fs-4" href="#"><span class="px-01 py-0 border rounded btn-{{ item.color }}">{{ item.get_category_display}}</span></a>
+      <a> ・・・ </a>
+      <a class="fs-4 text-dark text-decoration-none"> {{item.contents}} </a>
+    </div>
+
+      <div class="text-center">当ブログ人気作</div>
+
+        <div class="row">
+          <div class="px-0 col-2 col-md-4 col-lg-5 col-xxl-6"></div>
+            {% for item in book_list %}
+            <div class="px-0 col-14 col-md-11 col-lg-9 col-xxl-8 text-center py-1 py-md-2 px-xl-3 border-gray-dark">
+              <div class="text-start text-dark ps-1 fs-6">{{ item.post_day | date:"Y-m-d" }}</div>
+                <div class="ratio ratio-138x200 border-gray-dark border">
+                  {{ item.amazon_url | safe}}
+                  {% comment %} <a class="bg-teal d-flex align-items-center" href="https://hb.afl.rakuten.co.jp/ichiba/1c8df943.b0cc10a1.1c8df944.22ca7156/_RTLink9016?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F12861334%2F&link_type=pict&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0Iiwic2l6ZSI6IjI0MHgyNDAiLCJuYW0iOjEsIm5hbXAiOiJyaWdodCIsImNvbSI6MSwiY29tcCI6ImRvd24iLCJwcmljZSI6MCwiYm9yIjoxLCJjb2wiOjEsImJidG4iOjEsInByb2QiOjAsImFtcCI6ZmFsc2V9" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"><img class="w-100" src="https://hbb.afl.rakuten.co.jp/hgb/1c8df943.b0cc10a1.1c8df944.22ca7156/?me_id=1213310&item_id=17037475&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F1783%2F9784167901783.jpg%3F_ex%3D240x240&s=240x240&t=pict" border="0" alt="" title=""></a> {% endcomment %}
+                </div>
+              <div>
+              <div class="fw-bold fs-6 fs-lg-5 my-1 my-md-2 py-0 text-truncate-2 h-48 d-table w-100"><a class="text-dark align-middle d-table-cell text-decoration-none" href="{% url 'book:book_info' item.post_day %}">{{ item.title }}</a></div>
+              </div>
+                <div class="text-start ps-1">
+                  <div class="fs-7 fs-sm-6"><a>著者：<span class="rounded">{{ item.Author_info }}</span></a></div>
+                  <div class="fs-7 fs-sm-6"><a>カテゴリー：<span class="text-decoration-none py-0 px-01 border-gray-dark border text-white bg-{% for item2 in item.category_info.all %}{{item2.color}}{%endfor%} rounded">{% for item2 in item.category_info.all %}{{item2.get_category_display}}{%endfor%}</span></a></div>
+                  <div class="fs-7 fs-sm-6">出版社：<span class="bg-ararm rounded">{{ item.publisher_info }}</div>
+                  {% comment %} <div class="py-1 py-md-2"></div> {% endcomment %}
+                  {% comment %} <div class="border-bottom-mygreen mt-1 w-75 mx-auto"></div> {% endcomment %}
+                  {% comment %} <div class="py-1 py-md-2"></div> {% endcomment %}
+                  <div class="py-3 py-md-4"></div>
+              </div>
+            </div>
+            {% if forloop.first %}<div class="col-4 col-md-6 col-lg-8 col-xxl-8"><div></div></div>{%endif%}
+            {% endfor %}
+          <div class="px-0 col-2 col-md-4 col-lg-5 col-xxl-6"></div>
+        </div>
+
+  {% endfor %}
+  </div>
+  </div>
+{% endblock %}                
+
+{% block main_sidebar %}
+{% endblock %}
+
+
+{% block bottom %}
+{% endblock %}
+
+

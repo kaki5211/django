@@ -1,0 +1,88 @@
+{% extends 'app/base_sidebar_none.html' %}
+
+
+
+  {% block contents %}
+
+
+  <div class="row">
+    <div class="col-md-12">
+
+      <h3 class="fs-sm-5 text-white mb-5 bg-dark rounded px-4 py-2 mb-4 font-italic align-middle">
+        動画検索
+      </h3>
+<div class="c-table-container">
+  <form class="ms-sm-auto ms-0 mb-3" style=""  action="" method="POST">
+      <table class="w-sm-75 c-table" style="margin: 10px auto; width: 100%; text-align: left;">
+          {{ form.as_table }}
+      </table>
+      {% csrf_token %}
+      <div class="" style="text-align: center;">
+        <button class="btn btn-dark" type="submit">送信</button>
+      </div>
+  </form>
+</div>
+
+<div style="white-space: nowrap; width: 100%; line-height: 1em; overflow-x: hidden; overflow-x: scroll;" >
+      <table class="serch-video-t mt-4 w-100" border="1">
+        <tr class="b-b-w3">
+          <th class="fs-sm-6 text-center"><a>Title</a></th>
+          <th class="fs-sm-6 text-center"><a>Category</a></th>
+          <th class="fs-sm-6 text-center"><a>Episode</a></th>
+          <th class="fs-sm-6 text-center"><a>Member</a></th>
+          <th class="fs-sm-6 text-center"><a>Day</a></th>
+          {% comment %} post.published_date|date:"Y m d" {% endcomment %}
+          {% comment %} new_date|date:"Y/m/d H:i:s" {% endcomment %}
+        </tr>
+        {% for video in manage_list %}
+          <tr>
+            <td><a class="small-v my-0" href="
+
+                {% if video.category_id.category_eng != None and video.youtube_video_episode != None and video.youtube_video_episode > 0 %}
+                  {% url "video_info" category_eng=video.category_id.category_eng youtube_video_episode=video.youtube_video_episode %}
+                {% else %}
+                  {% url "video_info_un" pk=video.pk %}
+                {% endif %}
+                
+                ">{{ video.youtube_video_title }}</a></td>
+            <td class="text-center"><a class="small-v my-0">{{ video.category_id.category_eng }}</a></td>
+            <td class="text-center"><a class="small-v my-0">{{ video.youtube_video_episode }}</a></td>
+            <td class="text-center"><a class="small-v my-0">{% for member_list in video.members.all %}{% if forloop.first == False %} {% endif %}{{ member_list.member_jp }}{% endfor %}</a></td>
+            <td class="text-center"><a class="small-v my-0">{{ video.youtube_video_day|date:"Y/m/d" }}</a></td>
+          </tr>
+        {% endfor %}
+      </table>
+</div>
+      
+    </div>
+
+      {% comment %} <nav class="blog-pagination my-md-3" aria-label="Pagination">
+        <a class="btn btn-outline-primary" href="#">Older</a>
+        <a class="btn btn-outline-secondary disabled" href="#" tabindex="-1" aria-disabled="true">Newer</a>
+      </nav> {% endcomment %}
+
+    {% comment %} <div style="padding-left: 4%; padding-right:5px" class="col-sm-auto col-md-auto"></div> {% endcomment %}
+
+
+  </div><!-- /.row -->
+
+</main><!-- /.container -->
+
+  {% endblock %}
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+

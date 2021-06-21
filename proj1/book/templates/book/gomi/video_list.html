@@ -1,0 +1,23 @@
+
+<table border="1">
+  <tr>
+    <th>pk</th>
+    <th>VideoID</th>
+    <th>Title</th>
+    <th>Category</th>
+    <th>Episode</th>
+    <th>Day</th>
+    <th>twitter_already</th>
+  </tr>
+  {% for video in manage_list %}
+    <tr>
+      <td>{{ video.pk }}</td>
+      <td>{{ video.youtube_video_id }}</td>
+      <td>{{ video.youtube_video_title }}</td>
+      <td>{{ video.category_id.category_eng }}</td>
+      <td>{{ video.youtube_video_episode }}</td>
+      <td>{{ video.youtube_video_day }}</td>
+      <td>{{ video.manage_twitter_already }}</td>
+    </tr>
+  {% endfor %}
+</table>

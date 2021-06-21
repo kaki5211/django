@@ -1,0 +1,98 @@
+{% extends 'app/base.html' %}
+
+{% block contents %}
+
+
+      <h3 class="text-white mb-5 bg-dark rounded px-4 py-2 mb-4 font-italic align-middle">
+        カテゴリー詳細
+      </h3>
+        <article style="text-overflow: ellipsis; " class="row border">
+          <p class="my-2 mb-0">{{ manage.youtube_video_day }}</p>
+
+            <div>
+            <h4 style="font-weight: bold;" class="display-5 mt-3 mb-2 textOverflow "><a>{{ manage.youtube_video_title }}</a></h4>
+            {% comment %} <p class="my-md-2 textOverflow ">{{ manage.youtube_video_contents }}<p> {% endcomment %}
+            </div>
+
+            <div class="col-12 col-sm-12 col-md-12 my-5"></div>
+
+            <div class="col-sm-1 col-md-2"></div>
+            <div style="min-width:100px;" class="col-12 col-sm-10 col-md-8">
+              <a href="https://www.youtube.com/watch?v={{ manage.youtube_video_id }}">
+                <img style="min-width:100px; text-align: center;" class="my-md-3" width="100%" hight="100%" src="https://img.youtube.com/vi/{{ manage.youtube_video_id }}/mqdefault.jpg" />
+                ↑アマゾン商品リンク用
+              </a>
+            </div>
+            <div class="col-sm-1 col-md-2"></div>
+
+            <div class="col-12 col-sm-12 col-md-12 my-3 my-md-5"></div>
+
+            <div class="col-1 col-sm-1 col-md-1"></div>
+            <div class="col-sm-10 col-md-10">
+              <div class="row align-items-center" style="padding-top: 2%;"></div>
+              <div style="padding-top:3%;">
+                <h4 class="">カテゴリ： {{category_.category_jp}}</h4>
+              </div>
+              <div style="padding-top:3%;">
+                <h4 class="" >episode：全 {{episode_max}}話</h4>
+                <div class="ps-2 ps-md-4" style="margin:0; padding:-0.1em;">
+                  {% for count in episode_list %}
+                    <a class="fs-7" href="{% url "video_info" category_eng=category_.category_eng youtube_video_episode=count %}">#{{count}}</a>
+                  {% endfor %}
+                </div>
+              </div>
+              <div style="padding-top:3%;">
+                <h4>
+                  メンバー：
+                  {% for item in member %}
+                    {% if forloop.first == False %}、{% endif %}{{ item }}
+                  {% endfor %} 
+                </h4>
+              </div>
+              <div class="col-1 col-sm-1 col-md-1"></div>
+            </div>
+            
+            <div class=" col-12 col-sm-12 col-md-12 my-3 my-md-5"></div>
+              <div class="rounded-2 p-5m" style="padding-top:3%;">
+                <p　class="">
+                  {{ contents_demo | safe }}
+                </p>
+              </div>
+
+
+            
+            {% comment %} <div class="rounded-2 col-12 col-sm-12 col-md-12 my-5"></div>
+            <h1>↓HTML 表示</h1>
+              <div class="rounded-2 border-4  p-5m" style="padding-top:3%; border:solid 20px #000;">
+                <p　class="">
+                  {{ contents_demo }}
+                </p>
+              </div>」 {% endcomment %}
+
+
+
+
+            <form class="mb-3" style="width: 75%; margin-left: 0px; margin-right: auto;"  action="" method="POST">
+                <table class="c-table" style="margin-top: 10px auto; width: 100%; text-align: left;">
+                    {{ form.as_table }}
+                </table>
+                {% csrf_token %}
+                <div class="mt-5" style="position: relative;">
+                  <button class="botton-i" type="submit">送信</button>
+                </div>
+            </form>            
+
+
+
+
+            <div class="col-1 col-sm-1 col-md-1"></div>
+
+            <div class="col-12 col-sm-12 col-md-12 my-5"></div>
+
+            {% comment %} <div class="col-1 col-sm-1 col-md-1 my-5"></div> {% endcomment %}
+
+        </article>
+        <!-- /.blog-post -->
+        <div style="padding-top: 1%;" class="mt-1 col-12 col-sm-12 col-md-12"></div>
+
+{% endblock %}

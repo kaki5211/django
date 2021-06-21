@@ -1,0 +1,54 @@
+{% extends 'app/base.html' %}
+
+{% block contents %}
+
+
+
+      <h3 class="text-white mb-5 bg-dark rounded px-4 py-2 mb-4 font-italic align-middle">
+        動画詳細
+      </h3>
+
+        <article style="text-overflow: ellipsis; " class="row border">
+          <p class="my-2 mb-0">{{ manage.youtube_video_day }}</p>
+
+            <div >
+            <h4 style="font-weight: bold;" class="display-5 mt-3 mb-2 textOverflow "><a>{{ manage.youtube_video_title }}</a></h4>
+            {% comment %} <p class="my-md-2 textOverflow ">{{ manage.youtube_video_contents }}<p> {% endcomment %}
+            </div>
+
+            <div class="col-12 col-sm-12 col-md-12 my-5"></div>
+
+            <div class="col-sm-1 col-md-2"></div>
+            <div style="min-width:100px;" class="col-12 col-sm-10 col-md-8">
+              <a class="fs-sm-6 text-break d-block" href="https://www.youtube.com/watch?v={{ manage.youtube_video_id }}">
+                <img style="min-width:100px; text-align: center;" class="fs-lg-5 fs-md-6 fs-sm-5 mb-0 my-2" width="100%" hight="100%" src="https://img.youtube.com/vi/{{ manage.youtube_video_id }}/mqdefault.jpg" />
+                https://www.youtube.com/watch?v={{ manage.youtube_video_id }}
+              </a>
+            </div>
+            <div class="col-sm-1 col-md-2"></div>
+
+            <div class="col-12 col-sm-12 col-md-12 my-1 my-sm-2 my-md-3 my-lg-4"></div>
+
+            <div class="col-1 col-sm-1 col-md-1"></div>
+            <div class="col-sm-10 col-md-10">
+              <div style="">
+                <p class="fs-lg-5 fs-md-6 fs-sm-5 mb-0" style="height:1.5rem;">カテゴリ： {{manage.category_id}}</h4>
+              </div>
+              <div style="padding-top:3%;">
+                <p class="fs-lg-5 fs-md-6 fs-sm-5 mb-0" style="height:1.5rem;">episode： {{manage.youtube_video_episode}}</h4>
+              <div style="padding-top:3%;">
+              </div>
+                <p class="fs-lg-5 fs-md-6 fs-sm-5 mb-0" style="height:1.5rem;">メンバー： {% for member_list in manage.members.all %}{% if forloop.first == False %}、{% endif %}{{ member_list.member_jp }}{% endfor %}</p>
+              </div>
+            </div>
+            <div class="col-1 col-sm-1 col-md-1"></div>
+
+            <div class="col-12 col-sm-12 col-md-12 my-5"></div>
+
+            <div class="col-1 col-sm-1 col-md-1 my-5"></div>
+
+        </article>
+        <!-- /.blog-post -->
+        <div style="padding-top: 1%;" class="mt-1 col-12 col-sm-12 col-md-12"></div>
+
+{% endblock %}
