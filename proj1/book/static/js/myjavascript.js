@@ -1,7 +1,7 @@
 const TOC_INSERT_SELECTOR = '#toc';              // [セレクター指定] 目次を挿入する要素 querySelector用
 const HEADING_SELECTOR    = 'h1,h2,h3,h4,h5,h6'; // [セレクター指定] 収集する見出し要素 querySelectorAll用
 const LINK_CLASS_NAME     = 'tocLink link-dark text-decoration-none';           // [クラス名] 目次用aタグに追加するクラス名     .無し
-const LINK_CLASS_NAME_LI  = 'link-dark text-decoration-none';  //追加した
+const LINK_CLASS_NAME_LI  = 'link-dark text-decoration-none mt-0 mt-md-2';  //追加した
 const ID_NAME             = 'heading';           // [ID名]    目次に追加するID名のプレフィックス #無し
 const tocInsertElement    = document.querySelector(TOC_INSERT_SELECTOR);
 const headingElements     = document.querySelectorAll(HEADING_SELECTOR);

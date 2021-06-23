@@ -20,6 +20,8 @@
   <!-- vue-awesome-swiper -->
   <script src="https://cdn.jsdelivr.net/npm/vue-awesome-swiper"></script>
 
+  <!-- media query-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 
   <!-- Font Awesome -->
   {% comment %} <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous"> {% endcomment %}
@@ -274,32 +276,37 @@ background-color: $white;
     </nav>
 <!--▲▲▲▲▲▲▲▲▲▲ navbar ▲▲▲▲▲▲▲▲▲▲-->
 
-
+  <div class="d-none">
     <div>
       <div class="py-2 py-md-4"></div>
         <div class="border-bottom-mygreen mt-1 w-75 mx-auto"></div>  <!-- ■■ Line ■■ -->
       <div class="py-2 py-md-4"></div>
     </div>
+  </div>
 
 
 <!--▼▼▼▼▼▼▼▼▼▼ image ▼▼▼▼▼▼▼▼▼▼-->
-    <img src={% static "images/top.jpg" %} class="img-fluid bg-teal" alt="">
+    <img src={% static "images/book__tree__road__field__Creative_roads_landscapes_manipulation_fields_sky_clouds_2560x1600.jpg" %} class="img-fluid bg-teal" alt="">
 <!--▲▲▲▲▲▲▲▲▲▲ image ▲▲▲▲▲▲▲▲▲▲-->
 
 
+  {% comment %} <div class="d-none"> {% endcomment %}
     <div>
       <div class="py-3 py-md-5"></div>
         <div class="border-bottom-mygreen mt-1 w-75 mx-auto"></div>  <!-- ■■ Line ■■ -->
       <div class="py-3 py-md-5"></div>
     </div>
+  {% comment %} </div> {% endcomment %}
+
+
 <!--▼▼▼▼▼▼▼▼▼▼ top contents ▼▼▼▼▼▼▼▼▼▼-->
 <!--▼▼▼▼▼▼▼▼▼▼ introduction ▼▼▼▼▼▼▼▼▼▼-->
     {% if view.0 == 1 %}
     <div class="container">
       <div class="row">
         <div class="col-36">
-          <div class="py-1 py-md-2 py-lg-3 w-100 text-center">
-            <a class="text-decoration-none text-teal m-auto fw-bold fs-3 fs-md-1" href="#">
+          <div class="py-4 py-md-2 py-lg-3 w-100 text-center">
+            <a class="text-decoration-none text-teal m-auto fw-bold fs-4 fs-md-1" href="#">
               <svg class="h-100 mx-2" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-book" viewBox="0 0 16 16">
                 <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
               </path>            
@@ -311,16 +318,16 @@ background-color: $white;
       </div>
       <div class="row">
         <div class="col-36">
-          <div class="py-1 py-md-2 py-lg-3">
-            <p class="text-center m-auto">ブログ紹介文 ・・・・・・・・・・・・・・・・・・</p>
-            <p class="text-center m-auto">ブログ紹介文 ・・・・・・・・・・・・・・・・・・</p>
-            <p class="text-center m-auto">ブログ紹介文 ・・・・・・・・・・・・・・・・・・</p>
+          <div class="py-2 py-md-2 py-lg-3">
+            <p class="text-center m-auto fs-6 fs-md-2">ブログ紹介文 ・・・・・・・・・・・・・・・・・・</p>
+            <p class="text-center m-auto fs-6 fs-md-2">ブログ紹介文 ・・・・・・・・・・・・・・・・・・</p>
+            <p class="text-center m-auto fs-6 fs-md-2">ブログ紹介文 ・・・・・・・・・・・・・・・・・・</p>
           </div>
         </div>
       </div>
 <!--▲▲▲▲▲▲▲▲▲▲ introduction ▲▲▲▲▲▲▲▲▲▲-->
       <div>
-        <div class="py-2 py-md-5"></div>
+        <div class="py-4 py-md-5"></div>
           <div class="border-bottom-mygreen mt-1 w-75 mx-auto"></div>  <!-- ■■ Line ■■ -->
         <div class="py-2 py-md-5"></div>
       </div>
@@ -338,7 +345,7 @@ background-color: $white;
     <div class="container">
       <div class="row">
         <div class="col-36">
-          <div class="py-1 py-md-2 py-lg-3 w-100 text-center">
+          <div class="py-4 py-md-2 py-lg-3 w-100 text-center">
             <a class="text-decoration-none text-teal m-auto fw-bold fs-3 fs-md-1" href="#">
               ランキング
             </a>
@@ -424,13 +431,13 @@ align-items:center" {% endcomment %}
         <div class="col-1 col-sm-2 col-md-2 col-lg-3 "></div> <!-- ■■2■■ -->
         <!--▼▼▼▼▼▼▼▼▼▼ main contents ▼▼▼▼▼▼▼▼▼▼-->
         {% if view.1 == 1 %}
-        <div class="col-34 col-sm-32 col-md-25 col-lg-23 pb-2 pb-md-4 bg-white rounded"> <!-- .maincontents -->
+        <div class="col-36 col-sm-32 col-md-25 col-lg-23 pb-2 pb-md-4 bg-white rounded"> <!-- .maincontents -->
           <div class="row">
             <div class="col-36">
               {% comment %} <div class="bg-teal rounded w-25  py-2 py-md-3"> {% endcomment %}
-              <div class="bg-teal rounded mb-5 w-100">
+              <div class="bg-teal rounded mb-2 mb-md-5 w-100">
                 {% comment %} <a class="text-decoration-none fw-blod fs-3 text-white px-md-4 px-3">▽ {% block info %}{% endblock %}</a> {% endcomment %}
-                <h1 class="text-decoration-none fw-blod fs-3 text-white px-md-4 px-3 py-2">▽ {% block info %}{% endblock %}</h1>
+                <h1 class="text-decoration-none fw-blod fs-4 text-white px-md-4 px-3 py-2">▽ {% block info %}{% endblock %}</h1>
                 
               </div>
               {% comment %} </div> {% endcomment %}
@@ -439,7 +446,7 @@ align-items:center" {% endcomment %}
             {% if view.2 == 1 %}
 
             {% for item in book_list %}
-            <div class="col-12 col-lg-9 col-xxl-7 text-center py-1 py-md-2 py-mx-2 px-xl-3 border-gray-dark">
+            <div class="col-18 col-lg-9 col-xxl-7 text-center py-1 py-md-2 py-mx-2 px-xl-3 border-gray-dark">
               <div class="text-start text-dark ps-1 fs-6">{{ item.post_day | date:"Y-m-d" }}</div>
                 <div class="ratio ratio-138x200 border-gray-dark border">
                   {{ item.amazon_url | safe}}
@@ -720,7 +727,7 @@ align-items:center" {% endcomment %}
 
 
   {% if view.3 == 1 %}
-    <div class="container-fluid">
+    <div class="container-fluid fs-6 fs-md-5">
       <div class="row">
         <div class="col-1 col-sm-3 col-md-4 col-lg-5 px-sm-0-r"></div> <!-- ■■ Col ■■ -->
 
@@ -755,7 +762,7 @@ align-items:center" {% endcomment %}
 
 
 
-    <footer class="py-2 py-md-4 py-lg-5 bg-teal">
+    <footer class="py-2 py-md-4 py-lg-5 bg-teal fs-6 fs-md-5">
       <div class="row">
           <div class="col-1 col-sm-2 col-md-2 col-lg-3 "></div> <!-- ■■2■■ -->
           <div class="col-34 col-sm-32 col-lg-30">
