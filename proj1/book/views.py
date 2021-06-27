@@ -7,13 +7,14 @@ from django.db.models import Q
 import re, datetime
 from django_middleware_global_request.middleware import get_request
 # import django.django_middleware_global_request.middleware
-
+# from django.
+from .forms import BookForm, CategoryForm, AuthorForm
 # from . import forms
 
 
 from .models import Book, Category, Author, Publisher, Series
 
-# Create your views here.
+# Create your views here
 
 
 
@@ -192,7 +193,7 @@ class ArticlesView(MyListView):
 class BookView(ListView):
     model = Book
     template_name = 'book/books.html'
-    
+    success_url = '/books/'    
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
         data_info = self.get_date()
@@ -200,6 +201,10 @@ class BookView(ListView):
         context['category_y'] = data_info['category_y']
         context['category_m'] = data_info['category_m']
         context['category_d'] = data_info['category_d']
+        context['myform'] = [BookForm() ,AuthorForm() ,CategoryForm()]
+        # context['form_author'] = AuthorForm()
+        # context['form_category'] = CategoryForm()
+
         try:
             context['date'] = data_info['data_info']
         except:
@@ -218,6 +223,8 @@ class BookView(ListView):
         else:
             q =  Book.objects.all()
         return q
+
+    
 
     def get_template_names(self, *args, **kwargs):
         # ■■■ urlの文字列で、テンプレートの分岐 ■■■
@@ -260,6 +267,7 @@ class BookView(ListView):
             return data_info
         except:
             return data_info
+
 
 
 class SearchView(ListView):

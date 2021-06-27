@@ -5,10 +5,69 @@
 {% endblock %}
 
 {% block info %}
-投稿一覧
+書籍一覧
 {% endblock %}
 
 {% block only_main %}
+
+
+{% comment %} 
+    <form method="post">
+        <table>
+        {% csrf_token %}
+        {% for field in form.book %}
+            
+        {% endfor %}
+        {{ form_book.as_p }}
+        {{ form_author.as_p }}
+        {{ form_category.as_p }}
+        </table>
+        <input type="submit" value="保存">
+    </form>
+
+     {% endcomment %}
+
+<form class="myform mx-auto mb-3" action="" method="POST">
+    {% if form_book.errors %}
+        <div class="errorlist">
+            {% for errors in form_book.errors.values %}
+                {% for error in errors %}
+                    {{ error }}<br>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% for field2 in myform %}
+    {{field2.0.id_for_label}}
+        {% for field in field2 %}
+        {% if "high" not in field.id_for_label %}
+        <div>
+        <div class="d-inline-block">
+        {% endif %}
+            {% comment %} {{field.id_for_label}} {% endcomment %}
+            {{ field.label_tag }}
+            {% if "high" not in field.id_for_label %}
+            ：
+            {% endif %}
+            {{ field }}
+            {% if field.help_text %}
+                <span class="helptext">{{ field.help_text }}</span>
+            {% endif %}
+
+        {% if "low" not in field.id_for_label %}
+        </div>
+        </div>
+        {% endif %}
+    {% endfor %}
+    {% endfor %}
+
+    <div class="field">
+        <button type="submit">送信</button>
+    </div>
+
+    {% csrf_token %}
+</form>
+
 
 {% for item in book_list %}
 <div class="col-12 col-lg-9 col-xxl-7 text-center py-1 py-md-2 py-mx-2 px-xl-3 border-gray-dark">

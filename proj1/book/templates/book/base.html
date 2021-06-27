@@ -3,6 +3,13 @@
   <head>
     <title>本ブログ - Book Blog</title>
 
+  {% comment %} <link href="http://fonts.googleapis.com/earlyaccess/notosansjp.css"> {% endcomment %}
+  {% comment %} <link href="https://fonts.googleapis.com/earlyaccess/notosansjapanese.css" rel="stylesheet"> {% endcomment %}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Sawarabi+Gothic&display=swap" rel="stylesheet">
+
     <!-- jQuery tablesorter core LINK -->
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.0/js/jquery.tablesorter.min.js"></script>
@@ -40,11 +47,13 @@
   }
   </style>
 
+
   <script>
   $(document).ready(function() {
       $('#table-sort').tablesorter();
   });
   </script>
+
 
   {% comment %} <script type="module">
     import { Toast } from 'bootstrap.esm.min.js'
@@ -333,7 +342,6 @@ background-color: $white;
       </div>
     </div>
     {% else %}
-    <div class="container">
       {% block top %}
       {% endblock %}
     </div>
@@ -398,7 +406,7 @@ align-items:center" {% endcomment %}
   <div class="container-fluid">
     <div class="row">
       <div class="col-1 col-sm-2 col-md-2 col-lg-3"></div> <!-- ■■2■■ -->
-      <div class="col-36 col-sm-32 col-md-32 col-lg-30">
+      <div class="col-34 col-sm-32 col-md-32 col-lg-30">
         <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="パンくずリスト">
           <ol class="breadcrumb">
             <a class="text-teal text-decoration-none">
@@ -414,11 +422,11 @@ align-items:center" {% endcomment %}
             <li class=" text-decoration-none breadcrumb-item {% if forloop.last %}active" aria-current="page{% endif %}"><a {% if forloop.last %}{%else%}class="text-teal"  href="{{path}}"{% endif %}>{{url}}</a></li>
             {% comment %} <li class="breadcrumb-item active" aria-current="page">{{ request }}</li> {% endcomment %}
             {% endfor %}
-
           </ol>
         </nav>
       </div>
       <div class="col-1 col-sm-2 col-md-2 col-lg-3 "></div> <!-- ■■2■■ -->
+      </div>
     </div>
   </div>
 <!--▲▲▲▲▲▲▲▲▲▲ breadcrumb ▲▲▲▲▲▲▲▲▲▲-->
@@ -447,17 +455,17 @@ align-items:center" {% endcomment %}
 
             {% for item in book_list %}
             <div class="col-18 col-lg-9 col-xxl-7 text-center py-1 py-md-2 py-mx-2 px-xl-3 border-gray-dark">
-              <div class="text-start text-dark ps-1 fs-6">{{ item.post_day | date:"Y-m-d" }}</div>
+              <div class="text-start text-dark ps-1 fs-7">{{ item.post_day | date:"Y-m-d" }}</div>
                 <div class="ratio ratio-138x200 border-gray-dark border">
                   {{ item.amazon_url | safe}}
                 </div>
               <div>
               <div class="fw-bold fs-6 fs-lg-5 my-1 my-md-2 py-0 text-truncate-2 h-48 d-table w-100"><a class="text-dark align-middle d-table-cell text-decoration-none" href="{% url 'book:book_info' item.post_day %}">{{ item.title }}</a></div>
               </div>
-                <div class="text-start ps-1">
-                  <div class="fs-6"><a>著者：<span class="rounded">{{ item.Author_info }}</span></a></div>
-                  <div class="fs-6"><a>カテゴリー：<span class="text-decoration-none py-0 px-01 border-gray-dark border text-white bg-{% for item2 in item.category_info.all %}{{item2.color}}{%endfor%} rounded">{% for item2 in item.category_info.all %}{{item2.get_category_display}}{%endfor%}</span><span>{{item.youth_choices}}</span></a></div>
-                  <div class="fs-6">出版社：<span class="bg-ararm rounded">{{ item.publisher_info }}</div>
+                <div class="text-start ps-1 fs-8">
+                  <div class="">著者：<span class="rounded">{{ item.Author_info }}</span></div>
+                  <div class="">カテゴリー：<span class="text-decoration-none py-0 px-01 border-gray-dark border text-white bg-{% for item2 in item.category_info.all %}{{item2.color}}{%endfor%} rounded">{% for item2 in item.category_info.all %}{{item2.get_category_display}}{%endfor%}</span><span>{{item.youth_choices}}</span></div>
+                  <div class="">出版社：<span class="bg-ararm rounded">{{ item.publisher_info }}</div>
                   <div class="py-1 py-md-2"></div>
                   <div class="border-bottom-mygreen mt-1 w-75 mx-auto"></div>
                   <div class="py-1 py-md-2"></div>
@@ -465,7 +473,7 @@ align-items:center" {% endcomment %}
             </div>
             {% endfor %}
 
-            <div class="col-12 col-lg-9 col-xxl-7 text-center py-1 py-md-2 py-mx-2 px-xl-3">
+            {% comment %} <div class="col-12 col-lg-9 col-xxl-7 text-center py-1 py-md-2 py-mx-2 px-xl-3">
               <div class="ratio ratio-138x200 ">
                 <a class="bg-gray-dark border-gray-dark d-flex align-items-center" href="https://hb.afl.rakuten.co.jp/ichiba/1c8df943.b0cc10a1.1c8df944.22ca7156/_RTLink9016?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F15868961%2F&link_type=pict&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0Iiwic2l6ZSI6IjI0MHgyNDAiLCJuYW0iOjEsIm5hbXAiOiJyaWdodCIsImNvbSI6MSwiY29tcCI6ImRvd24iLCJwcmljZSI6MCwiYm9yIjoxLCJjb2wiOjEsImJidG4iOjEsInByb2QiOjAsImFtcCI6ZmFsc2V9" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"><img class="w-100" src="https://hbb.afl.rakuten.co.jp/hgb/1c8df943.b0cc10a1.1c8df944.22ca7156/?me_id=1213310&item_id=19573739&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F0368%2F9784041080368.jpg%3F_ex%3D240x240&s=240x240&t=pict" border="0" alt="" title=""></a>
               </div>
@@ -569,7 +577,7 @@ align-items:center" {% endcomment %}
             </div>
             <div class="" style="height:1px;">
               <div class="position-relative w-100 bg-white" style="height: 20px; top:-30px"></div>
-            </div>
+            </div> {% endcomment %}
         {% else %}
           <!--▼▼▼▼▼▼▼▼▼▼ main contents option ▼▼▼▼▼▼▼▼▼▼-->
           {% block only_main %}
@@ -727,7 +735,7 @@ align-items:center" {% endcomment %}
 
 
   {% if view.3 == 1 %}
-    <div class="container-fluid fs-6 fs-md-5">
+    <div class="container-fluid fs-7 fs-md-5">
       <div class="row">
         <div class="col-1 col-sm-3 col-md-4 col-lg-5 px-sm-0-r"></div> <!-- ■■ Col ■■ -->
 
@@ -738,7 +746,7 @@ align-items:center" {% endcomment %}
           <table class="table table-striped w-100 table-hover table-sm table-borderless table-bordered p-0">
             {% for item in book_list|slice:":10" %}
             <tbody>
-              <td class="text-center border-width border-right p-01" style="width: 150px;"><a>{{ item.post_day|date:"Y/m/d" }}</a></td>
+              <td class="text-center border-width border-right p-01" style="width: 100px;"><a>{{ item.post_day|date:"Y/m/d" }}</a></td>
               <td class="border-0 p-01">「{{ item.title }}」を更新しました</td>
             </tbody>
             {% endfor %}
@@ -762,14 +770,14 @@ align-items:center" {% endcomment %}
 
 
 
-    <footer class="py-2 py-md-4 py-lg-5 bg-teal fs-6 fs-md-5">
+    <footer class="container-fluid py-2 py-md-4 py-lg-5 bg-teal fs-7 fs-md-5 fs-md-5">
       <div class="row">
           <div class="col-1 col-sm-2 col-md-2 col-lg-3 "></div> <!-- ■■2■■ -->
-          <div class="col-34 col-sm-32 col-lg-30">
-        <div class="container-fluid">
+          <div class="py-4 col-34 col-sm-32 col-lg-30">
+        {% comment %} <div class="container-fluid"> {% endcomment %}
             <div class="row">
               <div class="col-18 col-lg-9">
-                <span class="text-white fs-4 d-inline-block">
+                <span class="text-white fs-4_5 fs-md-4 d-inline-block">
                   <svg class="" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-folder" viewBox="0 0 16 16">
                     <path d="M.54 3.87.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.826a2 2 0 0 1-1.991-1.819l-.637-7a1.99 1.99 0 0 1 .342-1.31zM2.19 4a1 1 0 0 0-.996 1.09l.637 7a1 1 0 0 0 .995.91h10.348a1 1 0 0 0 .995-.91l.637-7A1 1 0 0 0 13.81 4H2.19zm4.69-1.707A1 1 0 0 0 6.172 2H2.5a1 1 0 0 0-1 .981l.006.139C1.72 3.042 1.95 3 2.19 3h5.396l-.707-.707z"/>
                   </svg>              
@@ -782,7 +790,7 @@ align-items:center" {% endcomment %}
                 </div>          
               </div>
               <div class="col-18 col-lg-9">
-                <span class="text-white fs-4">
+                <span class="text-white fs-4_5 fs-md-4">
                   <svg class="" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
                     <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
@@ -794,16 +802,16 @@ align-items:center" {% endcomment %}
                       <div class="me-auto mb-2 mb-lg-0 text-start text-dark mt-2">
                       {% for item2 in item %}
                         {% if forloop.first %}
-                          <a class="text-decoration-none text-start btn-light text-dark fs-5 rounded ">{{item2.get_word_oder_display}}＞</a>
+                          <a class="text-decoration-none text-start btn-light text-dark fs-6 fs-md-5 rounded d-inline-block">{{item2.get_word_oder_display}}＞</a>
                         {% endif %}
-                        <a class="text-decoration-none py-0 px-01" href="#"><span class="px-01 py-0 border rounded btn-dark">{{ item2.author }}</span></a>
+                        <a class="text-decoration-none py-0 px-01 my-1 d-inline-block" href="#"><span class="px-01 py-0 border rounded btn-dark">{{ item2.author }}</span></a>
                       {% endfor %}
                       </div>
                     {% endfor %}
                 </ul>              
               </div>
               <div class="col-18 col-lg-9">
-                <span class="text-white fs-4">
+                <span class="text-white fs-4_5 fs-md-4">
                   <svg class="" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-building" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022zM6 8.694 1 10.36V15h5V8.694zM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5V15z"/>
                     <path d="M2 11h1v1H2v-1zm2 0h1v1H4v-1zm-2 2h1v1H2v-1zm2 0h1v1H4v-1zm4-4h1v1H8V9zm2 0h1v1h-1V9zm-2 2h1v1H8v-1zm2 0h1v1h-1v-1zm2-2h1v1h-1V9zm0 2h1v1h-1v-1zM8 7h1v1H8V7zm2 0h1v1h-1V7zm2 0h1v1h-1V7zM8 5h1v1H8V5zm2 0h1v1h-1V5zm2 0h1v1h-1V5zm0-2h1v1h-1V3z"/>
@@ -812,12 +820,12 @@ align-items:center" {% endcomment %}
                 </span>
                 <div class="me-auto mb-2 py-2 mb-lg-0 ps-2 text-start text-dark">
                   {% for item in publisher %}
-                      <a class="text-decoration-none py-0 px-01" href="#"><span class="px-01 py-0 border rounded btn-dark">{{ item}}</span></a>
+                      <a class="text-decoration-none py-0 px-01 my-1 d-inline-block" href="#"><span class="px-01 py-0 border rounded btn-dark">{{ item}}</span></a>
                   {% endfor %}
                 </div>
               </div>
               <div class="col-18 col-lg-9">
-                <span class="text-white fs-4">
+                <span class="text-white fs-4_5 fs-md-4">
                   <svg class="" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                   </svg>              
@@ -826,7 +834,7 @@ align-items:center" {% endcomment %}
               </span>
             </div>
           </div>
-      </div>
+      {% comment %} </div> {% endcomment %}
           <div class="col-1 col-sm-2 col-md-2 col-lg-3 "></div> <!-- ■■2■■ -->
         </div>
     </footer>

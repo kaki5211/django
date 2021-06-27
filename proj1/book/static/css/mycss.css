@@ -1,3 +1,6 @@
+/* --bs-font-sans-serif: 'Noto Sans JP', sans-serif, */
+
+
 .btn-outline-mygreen {
   /* color: #0d503c; */
   /* border-color: #0d503c; */
@@ -61,12 +64,20 @@
   font-size: 1.5rem !important;
 }
 
+.fs-4_5 {
+  font-size: 1.25rem !important;
+}
+
 .fs-5 {
   font-size: 1.0rem !important;
 }
 
 .fs-6 {
   font-size: 0.875rem !important;
+}
+
+.fs-6_5 {
+  font-size: 0.825rem !important;
 }
 
 .fs-7 {
@@ -122,6 +133,10 @@
 
   .fs-md-4 {
     font-size: 1.5rem !important;
+  }
+
+  .fs-md-4_5 {
+    font-size: 1.25rem !important;
   }
 
   .fs-md-5 {
@@ -564,4 +579,28 @@ blockquote cite {
 .list_center {
   display: flex;
   align-items: center;
+}
+
+.form-inline > li {
+  display: inline;
+}
+
+.form-inline {
+  display: inline;
+}
+
+.myform > div > div > input {
+    width: 100px;
+}
+
+#id_title {
+  width: 200px;
+}
+
+#issue_low, #issue_high, #age_low, #age_high {
+  width: 95px;
+}
+
+#pages_low, #pages_high {
+  width: 50px;
 }
