@@ -56,6 +56,7 @@ class MyListView(ListView):
                     q = Author.objects.get(author_eng=item)
                     get_data['author_info'] = q.author
                     get_data['contents'] = q.contents
+                    get_data['author_info_q'] = Book.objects.filter(Author_info=q.id)
                 if flag == 4:
                     q = Publisher.objects.get(publisher_eng=item)
                     get_data['publisher_info'] = q.publisher
@@ -88,6 +89,8 @@ class MyListView(ListView):
         except:
             pass
         context['view'] = [1,1,1,1,1] # [ブログ紹介, メインコンテンツ+サイドバー, メインコンテンツのみ, トピックス] 
+        # context['author'] = {}
+        # context['author']['author_in_category'] = [Book.objects.filter(Author_info=a).count for a in Author.objects.all()]
         return context
 
     def my_get_template_names(self, *args, **kwargs):
@@ -201,7 +204,7 @@ class BookView(ListView):
         context['category_y'] = data_info['category_y']
         context['category_m'] = data_info['category_m']
         context['category_d'] = data_info['category_d']
-        context['myform'] = [BookForm() ,AuthorForm() ,CategoryForm()]
+        context['myform'] = [BookForm(), CategoryForm() ,AuthorForm()]
         # context['form_author'] = AuthorForm()
         # context['form_category'] = CategoryForm()
 

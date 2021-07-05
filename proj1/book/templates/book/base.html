@@ -407,7 +407,7 @@ align-items:center" {% endcomment %}
     <div class="row">
       <div class="col-1 col-sm-2 col-md-2 col-lg-3"></div> <!-- ■■2■■ -->
       <div class="col-34 col-sm-32 col-md-32 col-lg-30">
-        <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="パンくずリスト">
+        <nav class="fs-6 fs-md-5 fs-lg-4_5" style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="パンくずリスト">
           <ol class="breadcrumb">
             <a class="text-teal text-decoration-none">
               <span class="pe-2">
@@ -830,8 +830,11 @@ align-items:center" {% endcomment %}
                     <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                   </svg>              
                   その他
-                </div>
               </span>
+              <div class="me-auto mb-2 py-2 mb-lg-0 ps-2 text-start text-dark">
+                  <a class="text-decoration-none py-0 px-01 my-1 d-inline-block　tex" href="{% url 'book:book' %}">書籍一覧</a>
+              </div>                   
+              </div>     
             </div>
           </div>
       {% comment %} </div> {% endcomment %}

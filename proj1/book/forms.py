@@ -59,6 +59,7 @@ class CategoryForm(forms.ModelForm):
     def __init__(self, *args, **kwd):
         super(CategoryForm, self).__init__(*args, **kwd)
         self.fields["category"].required = False
+        self.fields["category"].label = "[本] カテゴリー"
         self.label_suffix = " "
         # self.fields['category'].empty_label = '未選択'
     
@@ -66,7 +67,7 @@ class CategoryForm(forms.ModelForm):
         model = Category
         fields = ('category',)
         widgets = {
-            "category": forms.CheckboxSelectMultiple(attrs={'placeholder': '[本] カテゴリー', 'class': 'form-inline'})
+            "category": forms.CheckboxSelectMultiple(attrs={'class': 'd-inline-block form-inline mb-2'})
             }
 
 

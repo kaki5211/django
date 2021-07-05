@@ -27,6 +27,15 @@ def common(request):
                                 Author.objects.filter(word_oder='Wa').order_by("author")
                                 ]
     context['author'] = Author.objects.all()
+    # context['author'] = []
+    set_count = [Book.objects.filter(Author_info=a).count for a in Author.objects.all()]
+    
+    # for a in range(1, len(Author.objects.all())):
+        # context['author'].append(Author.objects.values()[a] | {'category_count':set_count[a-1]})
+
+
+
+
     context['publisher'] = Publisher.objects.all()
     context['templates'] = Templates.objects.all()
 
