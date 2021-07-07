@@ -804,7 +804,7 @@ align-items:center" {% endcomment %}
                         {% if forloop.first %}
                           <a class="text-decoration-none text-start btn-light text-dark fs-6 fs-md-5 rounded d-inline-block">{{item2.get_word_oder_display}}＞</a>
                         {% endif %}
-                        <a class="text-decoration-none py-0 px-01 my-1 d-inline-block" href="#"><span class="px-01 py-0 border rounded btn-dark">{{ item2.author }}</span></a>
+                        <a class="text-decoration-none py-0 px-01 my-1 d-inline-block" href="{% url 'book:author_info' item2.author_eng %}"><span class="px-01 py-0 border rounded btn-dark">{{ item2.author }}</span></a>
                       {% endfor %}
                       </div>
                     {% endfor %}
@@ -820,7 +820,7 @@ align-items:center" {% endcomment %}
                 </span>
                 <div class="me-auto mb-2 py-2 mb-lg-0 ps-2 text-start text-dark">
                   {% for item in publisher %}
-                      <a class="text-decoration-none py-0 px-01 my-1 d-inline-block" href="#"><span class="px-01 py-0 border rounded btn-dark">{{ item}}</span></a>
+                      <a class="text-decoration-none py-0 px-01 my-1 d-inline-block" href="{% url 'book:publisher_info' item.publisher_eng %}"><span class="px-01 py-0 border rounded btn-dark">{{ item}}</span></a>
                   {% endfor %}
                 </div>
               </div>

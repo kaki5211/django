@@ -1,21 +1,44 @@
 {% extends 'book/base.html' %}
-
+{% load static %}
 
 {% block top %}
 {% endblock %}
 
 {% block info %}
-出版社一覧
+{{publisher_info}}
 {% endblock %}
 
-
 {% block only_main %}
-<div class="col-12 col-lg-9 col-xxl-7 text-center py-1 py-md-2 py-mx-2 px-xl-3 border-gray-dark">
-  <a>publisher</a>
 
-{% for item in book_list %}
-{% endfor %}
+  <div class="col-36">
+  <div class="l_toc table_of_contents text-end">
+      <label class="bg-teal rounded-top text-white fw-blod" for="tocopen">
+        <svg class="h-100" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-list-ul" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+        </svg>
+          目次
+      </label>
+      <input id="tocopen" class="table_of_contents" type="checkbox" checked>
+      <div id="toc" class="text-left toc_container bg-white border-teal-my text-start"></div>
+      <div class="m-2 m-md-3 m-lg-5"></div>
+  </div>
 </div>
+
+<h2 id="heading_h2_1"class="decoration_simple my-4 mb-lg-3">出版社紹介</h2>
+
+
+
+
+
+
+<script src={% static "js/myjavascript.js" %}></script>
+
+{% comment %} </div> {% endcomment %}
+
+
+{% comment %} {% for item in book_list %} {% endcomment %}
+{% comment %} {% endfor %} {% endcomment %}
+{% comment %} </div> {% endcomment %}
 {% endblock %}
 
 {% block main_sidebar %}

@@ -56,11 +56,11 @@ try {
         object.id = "object"
         object.setAttribute("type","image/svg+xml");
         object.setAttribute("data",SVG_PATH);
-        object.setAttribute("width","34");
-        object.setAttribute("height","34");
+        object.setAttribute("width","35");
+        object.setAttribute("height","28");
         // el.insertAdjacentHTML('afterbegin', object);
         // el.insertBefore(object, el.children[0]);
-        $(el).wrap('<li class="ps-2 list_center"></li>')
+        $(el).wrap('<li class="ps-2 pb-2 pb-md-3 list_center"></li>')
         $(el).before(object);
 
       }

@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, FormView, TemplateView
 from django.views.generic.edit import ModelFormMixin, UpdateView
+
 from django.http import Http404
 from django.db.models import Prefetch
 from django.db.models import Q
@@ -9,6 +10,7 @@ from django_middleware_global_request.middleware import get_request
 # import django.django_middleware_global_request.middleware
 # from django.
 from .forms import BookForm, CategoryForm, AuthorForm
+from . import forms
 # from . import forms
 
 
@@ -197,7 +199,14 @@ class BookView(ListView):
     model = Book
     template_name = 'book/books.html'
     success_url = '/books/'    
-    def get_context_data(self, **kwargs):
+    # form_class = BookForm
+    object_list = Book
+    def get_context_data(self, *args, **kwargs):
+        # if self.request.method != "POST":
+        #     context = super().get_context_data()
+        # else:
+        #     context = self.context
+        #     return context
         context = super().get_context_data()
         data_info = self.get_date()
         context['view'] = [0,1,0,0,1] # [ブログ紹介, メインコンテンツ+サイドバー, メインコンテンツのみ, トピックス, メインコンテンツタイトル]
@@ -270,6 +279,54 @@ class BookView(ListView):
             return data_info
         except:
             return data_info
+
+    # def get(self, request, *args, **kwargs):
+        # form = self.form_class(initial=self.initial)
+        # return render(request, self.template_name, {'form': form})
+
+
+    # def post(self, request, *args, **kwargs):
+    #     self.object = Manage
+    #     form_value = {
+    #         'youtube_video_title':self.request.POST.get('youtube_video_title', None),
+    #         'youtube_video_day':self.request.POST.get('youtube_video_day', None),
+    #         'youtube_video_episode':self.request.POST.get('youtube_video_episode', None),
+    #         'category_id':self.request.POST.get('category_id', None),
+    #         'members':self.request.POST.get('members', None),
+    #     }
+    #     request.session['form_value'] = form_value
+    #     # 検索時にページネーションに関連したエラーを防ぐ
+    #     self.request.POST = self.request.POST.copy()
+    #     self.request.POST.clear()
+    #     return render(request, 'hello/index.html', self.params)
+
+    def post(self, request, *args, **kwargs):
+            # 一覧表示からの遷移や、確認画面から戻った時
+        context = super().get_context_data()
+        data_info = self.get_date()
+
+
+        context['myform'] = [BookForm(request.POST), CategoryForm(request.POST) ,AuthorForm(request.POST)]
+        context2 = context['myform'][1]
+        # aa
+
+        # 送信された値が正しかった時の処理
+        # BookForm(request.POST)
+        # CategoryForm(request.POST)
+        # AuthorForm(request.POST)
+
+        # セッションにデータを格納
+        request.session['form_data'] = request.POST
+        # aa
+        # 遷移させるページ
+        return redirect('book:book')
+        # コンテキストにフォームのオブジェクトを指定してレンダリング
+        context = {
+            'myform': [BookForm(request.POST), CategoryForm(request.POST) ,AuthorForm(request.POST)],
+        }
+        return render(request, 'hoge_form.html', context)
+
+
 
 
 
