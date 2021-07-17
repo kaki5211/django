@@ -88,6 +88,14 @@
   font-size: 0.825rem !important;
 }
 
+.fs-6_75 {
+  font-size: 0.7825rem !important;
+}
+
+.fs-6_75_p * p {
+  font-size: 0.7825rem !important;
+}
+
 .fs-7 {
   font-size: 0.75rem !important;
 }
@@ -150,7 +158,12 @@
   .fs-md-5 {
     font-size: 1.0rem !important;
   }
+
   .fs-md-6 {
+    font-size: 0.875rem !important;
+  }
+
+  .fs-md-6_p * p  {
     font-size: 0.875rem !important;
   }
 
@@ -177,6 +190,10 @@
     }
 
     .fs-lg-5 {
+      font-size: 1.0rem !important;
+    }
+
+    .fs-lg-5_p * p {
       font-size: 1.0rem !important;
     }
 
@@ -647,3 +664,41 @@ blockquote cite {
 .pt-5 {
   padding-top: 3rem !important;
 }
+
+
+.margin_nav_md_max {
+  margin: 0 0 auto 5px;
+}
+
+.line-left-white {
+  padding: 0em 1em;/*上下 左右の余白*/
+  background: transparent;/*背景透明に*/
+  border-left: solid 2px var(--bs-white);/*左線*/
+}
+
+.line-top-white {
+  padding: 0em 1em;/*上下 左右の余白*/
+  background: transparent;/*背景透明に*/
+  border-top: solid 2px var(--bs-white);/*左線*/
+}
+
+@media (max-width: 992px) {
+  .ms-md-mx-auto {
+    /* margin-left: 0 !important; */
+    width: 150px;
+  }
+
+
+  @media (min-width: 768px) {
+    h1, .h1 {
+      font-size: 2.5rem;
+    }
+  }
+
+  h3, .h3 {
+    font-size: calc(1.0rem + 0.5vw);
+  }
+
+  .mt-0_5 {
+    margin-top: 0.125rem !important;
+  }

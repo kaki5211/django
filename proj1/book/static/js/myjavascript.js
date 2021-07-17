@@ -20,8 +20,9 @@ try {
         object.id = "mokuji_child"
         object.setAttribute("type","image/svg+xml");
         object.setAttribute("data",SVG_PATH);
-        object.setAttribute("width","20");
-        object.setAttribute("height","20");
+        object.setAttribute("width","15");
+        object.setAttribute("height","15");
+        object.setAttribute("class","mt-0_5");
 
         if (rank == 1) {
           a.className = (LINK_CLASS_NAME + " fs-4_5 lh-xl");
@@ -57,7 +58,8 @@ try {
         object.setAttribute("type","image/svg+xml");
         object.setAttribute("data",SVG_PATH);
         object.setAttribute("width","35");
-        object.setAttribute("height","28");
+        object.setAttribute("height","20");
+        object.setAttribute("class",",mt-0_5");
         // el.insertAdjacentHTML('afterbegin', object);
         // el.insertBefore(object, el.children[0]);
         $(el).wrap('<li class="ps-2 pb-2 pb-md-3 list_center"></li>')

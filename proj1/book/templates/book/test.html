@@ -327,5 +327,125 @@ let thumbexample = new Vue({
 
 
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+.v-enter {
+  opacity: 0;
+}
+
+.v-enter-to {
+  opacity: 1;
+}
+
+.v-enter-active {
+  transition: all 500ms;
+}
+
+
+
+.v-leave-to {
+  opacity: 0;
+}
+
+.v-leave-active {
+  transition: all 500ms;
+}
+</style>
+
+
+
+
+
+
+
+{% comment %} <div id="app6"></div> {% endcomment %}
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.10/lodash.min.js"></script>
+
+
+
+<div id="app6">
+    <button @click="show = !show">
+      click!
+    </button>
+    <transition>
+      <div class="hoge" v-if="show">
+          hogehoge
+      </div>
+    </transition>
+     
+ </div>
+
+<script>
+const App = {
+  template: `
+<div id="app6">
+    <button @click="show = !show">
+      click!
+    </button>
+    <transition>
+      <div class="hoge" v-if="show">
+          hogehoge
+      </div>
+    </transition>
+     
+ </div>
+  `,
+  data() {
+    return {
+      show: false
+    }
+  },
+};
+
+/**
+ * mount
+ */
+new Vue({
+  el: '#app6',
+  data: {
+    show: true
+  }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
 </body>
 </html>

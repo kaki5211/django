@@ -10,10 +10,16 @@ from django.db.models import Prefetch
 # from . import forms
 # from betterforms.multiform import MultiModelForm
 from django.db.models import Q
+import datetime
+
+MONTHS = {}
+for i in range(1,12):
+    MONTHS[i] = i
+
 
 class BookForm(forms.ModelForm):
 
-    pages_low = forms.IntegerField(label='[本] ページ数', required=False, 
+    pages_low = forms.IntegerField(label='[本] ページ数', required=False,
         widget=forms.TextInput(attrs={
             'id': 'pages_low',
             'placeholder':'0',
@@ -26,23 +32,21 @@ class BookForm(forms.ModelForm):
             'pattern':'^[0-9]+$'}))
 
 
-    issue_low = forms.IntegerField(label='[本] 発行日', required=False, 
-        widget=forms.TextInput(attrs={
+    issue_low = forms.IntegerField(label='[本] 発行日', required=False, initial="1990-1-1",
+        widget=forms.SelectDateWidget(months=MONTHS, years=[x for x in range(1990, datetime.date.today().year+1)], attrs={
             'id': 'issue_low',
-            'placeholder':'1900/1/1',
-            'pattern':'(19[0-9]{2}|20[0-9]{2})/([1-9]|1[0-2])/([1-9]|[12][0-9]|3[01])'}))
+        }))
 
-    issue_high = forms.IntegerField(label="～", label_suffix = " ", required=False,
-        widget=forms.TextInput(attrs={
+    issue_high = forms.IntegerField(label="～", label_suffix = " ", required=False, initial=datetime.date.today(),
+        widget=forms.SelectDateWidget(months=MONTHS, years=[x for x in range(1990, datetime.date.today().year+1)], attrs={
             'id': 'issue_high',
-            'placeholder':'2021/1/1',
-            'pattern':'(19[0-9]{2}|20[0-9]{2})/([1-9]|1[0-2])/([1-9]|[12][0-9]|3[01])'}))
-
+            }))
 
     def __init__(self, *args, **kwd):
         super(BookForm, self).__init__(*args, **kwd)
         self.fields["title"].required = False
         self.fields["title"].label = "[本] タイトル"
+        self.fields["title"].initial = ""
 
         self.label_suffix = " "
         self.labels = None
@@ -72,28 +76,35 @@ class CategoryForm(forms.ModelForm):
 
 
 class AuthorForm(forms.ModelForm):
-    age_low = forms.CharField(
-        label="[著者] 生年月日",
-        required=False,
-        disabled=False,
-        max_length=10,
-        min_length=8,
-        widget=forms.TextInput(attrs={
+    age_low = forms.IntegerField(label="[著者] 生年月日",  required=False, initial="1990-1-1",
+        widget=forms.SelectDateWidget(months=MONTHS, years=[x for x in range(1990, datetime.date.today().year+1)], attrs={
             'id': 'age_low',
-            'placeholder':'2021/1/1',
-            'pattern':'(19[0-9]{2}|20[0-9]{2})/([1-9]|1[0-2])/([1-9]|[12][0-9]|3[01])'}))
+            }))
+    
+    # forms.CharField(
+    #     label="[著者] 生年月日",
+    #     required=False,
+    #     widget=forms.SelectDateWidget(months=MONTHS, years=[x for x in range(1990, datetime.date.today().year+1)], attrs={
+    #         'id': 'age_low',
+    #     }))
 
-    age_high = forms.CharField(
-        label="～",
-        label_suffix = " ",
-        required=False,
-        disabled=False,
-        max_length=10,
-        min_length=8,
-        widget=forms.TextInput(attrs={
+
+    age_high = forms.IntegerField(label="～", label_suffix = " ", required=False, initial=datetime.date.today(),
+        widget=forms.SelectDateWidget(months=MONTHS, years=[x for x in range(1990, datetime.date.today().year+1)], attrs={
             'id': 'age_high',
-            'placeholder':'2021/1/1',
-            'pattern':'(19[0-9]{2}|20[0-9]{2})/([1-9]|1[0-2])/([1-9]|[12][0-9]|3[01])'}))
+            }))
+    
+    
+    # forms.CharField(
+    #     label="～",
+    #     label_suffix = " ",
+    #     required=False,
+    #     disabled=False,
+    #     max_length=10,
+    #     min_length=8,
+    #     widget=forms.SelectDateWidget(months=MONTHS, years=[x for x in range(1990, datetime.date.today().year+1)], attrs={
+    #         'id': 'age_high',
+    #     }))
 
 
     def __init__(self, *args, **kwd):
@@ -105,6 +116,7 @@ class AuthorForm(forms.ModelForm):
         self.fields["sex"].label="[著者] 性別"
         self.fields["author"].label="[著者] 名前"
         self.label_suffix = " "
+        self.fields['sex'].choices.insert(0, ('','-----a----' ) )
         
     class Meta:
         model = Author

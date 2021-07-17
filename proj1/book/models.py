@@ -48,7 +48,7 @@ class Author(models.Model):
     author_eng = models.CharField('著者eng', max_length=100) # 追加していく-----------
     word_oder = models.CharField('五十音', choices=WORD_CHOICES, max_length=10)
     age = models.DateField('生年月日')
-    sex = models.CharField('性別', choices=GENDER_CHOICES, max_length=10, default=None)
+    sex = models.CharField('性別', choices=(('', '未選択'),)+GENDER_CHOICES, max_length=10, blank=True)
     contents = models.TextField("コンテンツ")
     contents_lite = models.TextField("コンテンツ", blank=True, null=True)
 

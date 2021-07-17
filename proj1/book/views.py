@@ -200,20 +200,24 @@ class BookView(ListView):
     template_name = 'book/books.html'
     success_url = '/books/'    
     # form_class = BookForm
-    object_list = Book
+    # object_list = Book
     def get_context_data(self, *args, **kwargs):
         # if self.request.method != "POST":
         #     context = super().get_context_data()
         # else:
         #     context = self.context
         #     return context
-        context = super().get_context_data()
+        # context = super().get_context_data()
+        context = {}
         data_info = self.get_date()
         context['view'] = [0,1,0,0,1] # [ブログ紹介, メインコンテンツ+サイドバー, メインコンテンツのみ, トピックス, メインコンテンツタイトル]
         context['category_y'] = data_info['category_y']
         context['category_m'] = data_info['category_m']
         context['category_d'] = data_info['category_d']
         context['myform'] = [BookForm(), CategoryForm() ,AuthorForm()]
+        try:
+            context['book_info'] = Book.objects.filter(post_day=datetime.date(int(data_info['category_y']), int(data_info['category_m']), int(data_info['category_d'])))
+        except:pass
         # context['form_author'] = AuthorForm()
         # context['form_category'] = CategoryForm()
 
@@ -222,7 +226,8 @@ class BookView(ListView):
         except:
             pass
         try:
-            context['book_info'] = self.model.objects.get(post_day=data_info['data_info'])
+            if context['date'] != None:
+                context['book_info'] = Book.objects.get(post_day=context['date'])
         except:
             pass
         return context
@@ -235,8 +240,6 @@ class BookView(ListView):
         else:
             q =  Book.objects.all()
         return q
-
-    
 
     def get_template_names(self, *args, **kwargs):
         # ■■■ urlの文字列で、テンプレートの分岐 ■■■
@@ -276,6 +279,7 @@ class BookView(ListView):
                     if len(str(date_split[2])) == 2:
                         category_d = date_split[2]
                         data_info['category_d'] = category_d    
+                        data_info['data_info'] = "{}-{}-{}".format(category_y, category_m, category_d)
             return data_info
         except:
             return data_info
@@ -302,29 +306,76 @@ class BookView(ListView):
 
     def post(self, request, *args, **kwargs):
             # 一覧表示からの遷移や、確認画面から戻った時
-        context = super().get_context_data()
+        context = self.get_context_data(self, request, *args, **kwargs)
+        context['myform'] = [BookForm(request.POST), CategoryForm(request.POST) ,AuthorForm(request.POST)]
         data_info = self.get_date()
 
+        # con22 = self.context
 
-        context['myform'] = [BookForm(request.POST), CategoryForm(request.POST) ,AuthorForm(request.POST)]
-        context2 = context['myform'][1]
-        # aa
 
-        # 送信された値が正しかった時の処理
-        # BookForm(request.POST)
-        # CategoryForm(request.POST)
-        # AuthorForm(request.POST)
 
-        # セッションにデータを格納
+
+
+
+
+
+        # context['myform'] = [BookForm(request.POST), CategoryForm(request.POST) ,AuthorForm(request.POST)]
+        # context2 = context['myform'][1].__dict__
         request.session['form_data'] = request.POST
+        aaa = BookForm(request.POST)
         # aa
-        # 遷移させるページ
-        return redirect('book:book')
+
+        # sessionに値がある場合、その値でクエリ発行する。
+        # if 'form_value' in self.request.session and self.request.session['form_value'] != None:
+        # form_value = self.request.session['form_value']
+        # youtube_video_day = form_value['youtube_video_day']
+        # youtube_video_episode = form_value['youtube_video_episode']
+        # 検索条件
+        condition_result = []
+        if request.POST['title']:
+            condition_title = Q(title__contains=request.POST['title'])
+            condition_result.append("condition_title")
+        if request.POST['pages_low'] and request.POST['pages_high']:
+            condition_pages = Q(pages__range=[request.POST['pages_low'], request.POST['pages_high']])
+            condition_result.append("condition_pages")
+        # if request.POST['issue_low_year'] and request.POST['issue_low_month'] and request.POST['issue_low_day']:
+        condition_issue = Q(issue__range=["{}-{}-{}".format(request.POST['issue_low_year'], request.POST['issue_low_month'], request.POST['issue_low_day']),
+            "{}-{}-{}".format(request.POST['issue_high_year'], request.POST['issue_high_month'], request.POST['issue_high_day'])])
+        condition_result.append("condition_issue")
+        if request.POST['author']:
+            condition_author = Q(Author_info__author__contains=request.POST['author'])
+            condition_result.append("condition_author")
+        # if request.POST['age_high_year'] and request.POST['age_high_month'] and request.POST['age_high_day']:
+        condition_age = Q(Author_info__age__range=["{}-{}-{}".format(request.POST['age_low_year'], request.POST['age_low_month'], request.POST['age_low_day']),
+            "{}-{}-{}".format(request.POST['age_high_year'], request.POST['age_high_month'], request.POST['age_high_day'])])
+        condition_result.append("condition_age")
+        if request.POST.getlist('category'):
+            ct_list=[]
+            for ct in request.POST.getlist('category'):
+                ct_list.append(ct)
+            condition_category = Q(category_info__category__in=ct_list)
+            condition_result.append("condition_category")
+        if request.POST['sex']:
+            condition_sex = Q(Author_info__sex=request.POST['sex'])
+            condition_result.append("condition_sex")
+        result_q=""
+        for q in condition_result:
+            if condition_result[0] != q:
+                q = "{} {}".format("&", q)
+            else:
+                q = "{}".format(q)
+                result_q = "{}".format(q)
+                continue
+            result_q = "{} {}".format(result_q, q)
+        rdict = {}
+        exec("result_and = {}".format(result_q), locals(), rdict)
+        result = Book.objects.select_related().filter(rdict["result_and"])
+
+            
+
+        context["book"] = result
+        return render(request, 'book/books.html', context)
         # コンテキストにフォームのオブジェクトを指定してレンダリング
-        context = {
-            'myform': [BookForm(request.POST), CategoryForm(request.POST) ,AuthorForm(request.POST)],
-        }
-        return render(request, 'hoge_form.html', context)
 
 
 

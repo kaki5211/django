@@ -1,4 +1,5 @@
 {% extends 'book/base.html' %}
+{% load static %}
 
 
 {% block top %}
@@ -16,30 +17,256 @@
 {% block only_main %}
 
 
-            <div class="col-12 col-lg-9 col-xxl-7 text-center py-1 py-md-2 py-mx-2 px-xl-3 border-gray-dark">
 
-              <div class="text-start text-dark ps-1 fs-6">{{ book_list.0.post_day | date:"Y-m-d" }}</div>
-                <div class="ratio ratio-138x200 border-gray-dark border">
-                  {{ book_list.0.amazon_url | safe}}
-                  {% comment %} <a class="bg-teal d-flex align-items-center" href="https://hb.afl.rakuten.co.jp/ichiba/1c8df943.b0cc10a1.1c8df944.22ca7156/_RTLink9016?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F12861334%2F&link_type=pict&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0Iiwic2l6ZSI6IjI0MHgyNDAiLCJuYW0iOjEsIm5hbXAiOiJyaWdodCIsImNvbSI6MSwiY29tcCI6ImRvd24iLCJwcmljZSI6MCwiYm9yIjoxLCJjb2wiOjEsImJidG4iOjEsInByb2QiOjAsImFtcCI6ZmFsc2V9" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"><img class="w-100" src="https://hbb.afl.rakuten.co.jp/hgb/1c8df943.b0cc10a1.1c8df944.22ca7156/?me_id=1213310&item_id=17037475&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F1783%2F9784167901783.jpg%3F_ex%3D240x240&s=240x240&t=pict" border="0" alt="" title=""></a> {% endcomment %}
-                </div>
-              <div>
-              <div class="fw-bold fs-6 fs-lg-5 my-1 my-md-2 py-0 text-truncate-2 h-48 d-table w-100"><a class="text-dark align-middle d-table-cell text-decoration-none" href="{% url 'book:book_info' book_list.0.post_day %}">{{ book_list.0.title }}</a></div>
+<div class="col-36">
+  <div class="l_toc table_of_contents text-end">
+    {% comment %} <div class="text-end"> {% endcomment %}
+      <label class="bg-teal rounded-top text-white fw-blod fs-6 fs-md-5" for="tocopen">
+        <svg class="h-100" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-list-ul" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+        </svg>
+          目次
+      </label>
+    {% comment %} </div> {% endcomment %}
+      <input id="tocopen" class="table_of_contents mt-md-2" type="checkbox" checked>
+      <div id="toc" class="text-left toc_container bg-white border-teal-my-1 text-start"></div>
+      <div class="m-2 m-md-3 m-lg-5"></div>
+  </div>
+</div>
+
+
+
+
+
+<div class="col-36">
+
+<a class="fs-6 text-decoration-none text-dark">{{ book_info.post_day|date:"Y/m/d" }}</a>
+<h2 class="decoration_simple my-3 my-md-4 mb-lg-3">{{book_info.title}}</h2>
+
+
+<div class="my-lg-5 my-5 w-50 ratio ratio-138x200 border-gray-dark border mx-auto" style="max-width: 350px; min-width:200px;">
+    {{ book_info.amazon_url|safe }}
+</div>
+
+
+              {% comment %} <div class="fw-bold fs-6 fs-lg-5 my-1 my-md-2 py-0 text-truncate-2 h-48 d-table w-100"><a class="text-dark align-middle d-table-cell text-decoration-none" href="{% url 'book:book_info' book_info.post_day %}">{{ book_info.title }}</a></div> {% endcomment %}
               </div>
-                <div class="text-start ps-1">
-                  <div class="fs-6"><a>著者：<span class="rounded">{{ book_list.0.Author_info }}</span></a></div>
-                  <div class="fs-6"><a>カテゴリー：<span class="text-decoration-none py-0 px-01 border-gray-dark border text-white bg-{% for item2 in book_list.0.category_info.all %}{{item2.color}}{%endfor%} rounded">{% for item2 in book_list.0.category_info.all %}{{item2.get_category_display}}{%endfor%}</span></a></div>
-                  <div class="fs-6">出版社：<span class="bg-ararm rounded">{{ book_list.0.publisher_info }}</div>
+                <div class="text-start ps-1 fs-6_5">
+                  <div class="w-75 mx-auto">著者：<span class="rounded">{{ book_info.Author_info }}</span></div>
+                  <div class="w-75 mx-auto">カテゴリー：<span class="text-decoration-none py-0 px-01 border-gray-dark border text-white bg-{% for item2 in book_info.category_info.all %}{{item2.color}}{%endfor%} rounded">{% for item2 in book_info.category_info.all %}{{item2.get_category_display}}{%endfor%}</span><span>{{item.youth_choices}}</span></div>
+                  <div class="w-75 mx-auto">出版社：<span class="bg-ararm rounded">{{ book_info.publisher_info }}</div>
                   <div class="py-1 py-md-2"></div>
                   <div class="border-bottom-mygreen mt-1 w-75 mx-auto"></div>
                   <div class="py-1 py-md-2"></div>
+                </div>
               </div>
-            </div>
 
 
-          <div>
-            {{book_info.post_day|date:"Y-m-d"}}
-          </div>
+
+
+              <div class="py-3">
+              <p>あらすじとか。</p>
+                <p class="pb-3 pt-3">
+　本のカテゴリーって、その本を読んだ人がどう思ったかで決まるんだよね。
+
+　だから、ある人がその本のカテゴリーを恋愛だと思っても、他の人にとってはその本のカテゴリーは青春だったりミステリーだったりに思うこともある。
+
+　つまり、その本がどのカテゴリーかと思うかは、人それぞれなんだよね。
+
+　このブログでは、俺がその本を読んだ結果、どのカテゴリーに入るかを主観のみで判断しているので、よろしくお願いします。
+
+　以下の表が、このブログで使用するカテゴリーと、簡単なイメージ。                
+                
+                主人公頭いい、</p>
+              {% comment %} </div> {% endcomment %}
+
+
+<h2 class="decoration_simple my-3 my-md-4 mb-lg-3">登場人物と感想</h2>
+            <h3 class="d-inline my-auto">主人公</h3>
+          
+            {% comment %} <div class="container-fluid"> {% endcomment %}
+
+              <div class="">
+                <p>　本のカテゴリーって、<strong>その本を読んだ人がどう思ったか</strong>で決まるんだよね。</p>
+                <p>　だから、ある人が<b>その本のカテゴリーを恋愛</b>だと思っても、他の人にとっては<b>その本のカテゴリーは青春だったりミステリーだったり</b>に思うこともある。</p>
+                <p>　つまり、その本がどのカテゴリーかと思うかは、<b>人それぞれなんだよね。</b></p>
+                <p>　このブログでは、俺がその本を読んだ結果、どのカテゴリーに入るかを<b>主観のみで判断</b>しているので、よろしくお願いします。</p>
+                <p>　以下の表が、このブログで使用するカテゴリーと、簡単なイメージ。</p>
+              </div>
+
+
+            {% comment %} </div> {% endcomment %}
+
+            <h3 class="d-inline my-auto">主人公</h3>
+
+              <div class="">
+                <p>　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル
+                　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル
+                　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル
+                　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプ
+                </p>
+                <p>　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル
+                　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル
+                　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル
+                　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプ
+                </p>
+                <p>　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル
+                　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル
+                　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル
+                　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプ
+                </p>
+
+              <div>
+                <figure>
+                  <blockquote>
+                    <p>　古代中国の五行思想で、「春」は「青春（せいしゅん）」、夏は「朱夏（しゅか）」、秋は「白秋（はくしゅう）」、冬を「玄冬（げんとう）」といった。これを、人生に当てはめたもの。</p>
+                    <p>　幼少期はまだ人として芽吹く前の冬であり「玄冬」。若々しく、これからの未来に希望を膨らませ、成長しつづける時期は「青春」。</p>
+                    <p>　世の中で中心的な役割を果たし、バイタリティあふれる活躍を見せる現役世代が「朱夏」の時期。最後の「白秋」は老年期で、人として穏やかな空気やたたずまいを見せ、人生の実りを楽しむ期間。</p>
+
+                    <figcaption class="blockquote-footer text-end">
+                      中楽坊<cite title="Source Title">https://www.highness-co.jp/churakubou/detail/216</cite>
+                    </figcaption>
+                  </blockquote>
+                </figure>
+              </div>
+
+
+            <h3 class="d-inline my-auto">主人公</h3>
+
+              <div class="">
+                <p>　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル
+                　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル
+                　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル
+                　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプ
+                </p>
+
+            <h3 class="d-inline my-auto">主人公</h3>
+
+              <div class="">
+                <p>　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル
+                　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル
+                　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル
+                　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプル　サンプ
+                </p>
+              </div>
+              
+              
+              
+              
+              
+              
+              
+
+
+
+
+<h2 class="decoration_simple my-4 my-lg-5">その他感想</h2>
+
+  {% comment %} <div class="container-fluid"> {% endcomment %}
+  
+    <div>
+      <p>　このブログでは、カテゴリーとは別に、<b>Young/Old</b>で、大きく<b>２つに分類</b>してる。
+      　これは、<b>主人公と登場人物が、若い/若く無い</b>を、意味してる。
+      　この方が、後々紹介する本が多くなってきたときに、目的の本に辿りやすいかなと思ったから、独自に追加した。
+      　とりあえずチャレンジ。
+      　以下の表が、ざっくりした定義。</p>
+    </div>
+
+
+{% comment %} テーブル {% endcomment %}
+{% comment %} 
+
+              <div class="table-responsive">
+                <table id="" class="table table-striped table-hover table-sm table-bordered table_sticky w-100">
+                
+                  <thead class="">
+                    <tr class="text-center d-inline">
+                      <th class="ps-3 fs-6 text-white bg-teal fw-normal" style="width: 200px;" >カテゴリー</th>
+                      <th class="ps-3 fs-6 text-white bg-teal fw-normal" style="width: 400px;">カテゴリー説明</th>
+                      <th class="ps-3 fs-6 text-white bg-teal fw-normal" style="width: 300px;">キーワード</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% for item in category %}
+                    <tr>
+                      <td class="text-center table-item fs-6 p-01" style="width: 200px;"><a class="text-decoration-none px-01 text-white" href="{% url 'book:category_info' item.category_eng %}"><span class="d-inline-block px-01 py-0 my-1 rounded btn-{{ item.color }} text-white">{{ item.get_category_display}}</span></a></td>
+                      <td class="text-center table-item fs-6 p-01" style="width: 400px;"><a class="text-decoration-none text-dark px-01"><span class="my-1 d-inline-block px-01 py-0">{{item.contents}}</span></a></td>
+                      <td class="text-center table-item fs-6 p-01" style="width: 300px;"><a class="text-decoration-none text-dark px-01"><span class="my-1 d-inline-block px-01 py-0">{{item.contents_keyword}}</span></a></td>
+                    </tr>
+                  {% endfor %}
+
+                  </tbody>
+                </table>
+              </div>
+ {% endcomment %}
+
+
+
+{% comment %} テーブル {% endcomment %}
+{% comment %} 
+              <div class="table-responsive">
+                <table id="" class="table table-striped table-hover table-sm table-bordered table_sticky w-100">
+                
+                  <thead class="">
+                    <tr class="text-center d-inline">
+                      <th class="ps-3 fs-6 text-white bg-teal fw-normal" style="width: 200px;" >カテゴリー（青春/白秋）</th>
+                      <th class="ps-3 fs-6 text-white bg-teal fw-normal" style="width: 600px;">カテゴリー説明</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="text-center table-item fs-6 p-01 " style="width: 200px;">青春</td>
+                      <td class="text-center table-item fs-6 p-01" style="width: 600px;">主人公や周りの登場人物の年齢が、大体<b>０～２９歳</b>で構成される場合、</br>青春/白秋カテゴリーが「<b>Y</b>」（Young）に分類される</td>
+                    </tr>
+                    <tr>
+                      <td class="text-center table-item fs-6 p-01" style="width: 200px;">白秋</td>
+                      <td class="text-center table-item fs-6 p-01" style="width: 600px;">主人公や周りの登場人物の年齢が、大体<b>２９歳以上</b>で構成される場合、</br>青春/白秋カテゴリーが「<b>O</b>」（Old）に分類される</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div>
+                  <p>　青春/白秋は以下参照。</p>
+                </div>
+              </div>
+ {% endcomment %}
+
+
+
+
+{% comment %} 引用 {% endcomment %}
+{% comment %} 
+              <div>
+                <figure>
+                  <blockquote>
+                    <p>　古代中国の五行思想で、「春」は「青春（せいしゅん）」、夏は「朱夏（しゅか）」、秋は「白秋（はくしゅう）」、冬を「玄冬（げんとう）」といった。これを、人生に当てはめたもの。</p>
+                    <p>　幼少期はまだ人として芽吹く前の冬であり「玄冬」。若々しく、これからの未来に希望を膨らませ、成長しつづける時期は「青春」。</p>
+                    <p>　世の中で中心的な役割を果たし、バイタリティあふれる活躍を見せる現役世代が「朱夏」の時期。最後の「白秋」は老年期で、人として穏やかな空気やたたずまいを見せ、人生の実りを楽しむ期間。</p>
+
+                    <figcaption class="blockquote-footer text-end">
+                      中楽坊<cite title="Source Title">https://www.highness-co.jp/churakubou/detail/216</cite>
+                    </figcaption>
+                  </blockquote>
+                </figure>
+              </div>
+ {% endcomment %}
+
+
+
+
+
+  {{ book_info.contents|safe }}
+
+{% comment %} </div> {% endcomment %}
+
+{% comment %} </div> {% endcomment %}
+
+
+
+
+
+
+<script src={% static "js/myjavascript.js" %}></script>
+
 
 {% endblock %}
 
