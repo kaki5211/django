@@ -714,9 +714,9 @@ h3, .h3 {
   margin-top: 0.125rem !important;
 }
 
-@media (min-width:991px) and (max-width:1020px) {
+@media (min-width:990px) and (max-width:1050px) {
   .nav-search {
-    width: 290px !important;
+    width: 250px !important;
   }
 }
 

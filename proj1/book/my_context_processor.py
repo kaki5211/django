@@ -11,6 +11,16 @@ import datetime
 from .models import Book, Category, Author, Publisher, Series, Templates
 
 
+import os
+import platform
+
+pf = platform.system()
+
+
+
+
+
+
 
 def common(request):
     context = {}
@@ -32,7 +42,11 @@ def common(request):
     context['book'] = Book.objects.all()
     # context['author'] = []
     set_count = [Book.objects.filter(Author_info=a).count for a in Author.objects.all()]
-    
+    if pf == 'Windows':
+        context['google_analytics'] = 0
+    else:
+        context['google_analytics'] = 1
+        
     # for a in range(1, len(Author.objects.all())):
         # context['author'].append(Author.objects.values()[a] | {'category_count':set_count[a-1]})
 

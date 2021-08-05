@@ -38,6 +38,20 @@
     const VueAwesomeSwiper = window.VueAwesomeSwiper;
   </script>
 
+  {% if google_analytics == 1 %}
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-751MBYHCMC"></script>
+      <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-751MBYHCMC');
+      </script>
+  {% else %}
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+  {% endif %}
+
 
   <style>
   .container-fluid {
@@ -230,60 +244,59 @@ background-color: $white;
 <!--▼▼▼▼▼▼▼▼▼▼ navbar ▼▼▼▼▼▼▼▼▼▼-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-teal fixed-top py-1">
       <div id="mynav" class="container-fluid">
-          <a v-if="show" class="navbar-brand h-100" href="{% url 'book:top'%}">
-            <svg class="h-100 mx-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-book" viewBox="0 0 16 16">
-              <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
-            </svg>
-            Book DB
-                <?xml version="1.0" ?>
-                <svg class="" viewBox="0 0 64 64" width="0" height="0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><style>.cls-1{fill:url(#radial-gradient);}.cls-2{fill:#fff;}</style><radialGradient cx="-578.95" cy="-837.6" gradientTransform="translate(499.5 629.5) scale(0.75)" gradientUnits="userSpaceOnUse" id="radial-gradient" r="197.06"><stop offset="0" stop-color="#f9ed32"/><stop offset="0.36" stop-color="#ee2a7b"/><stop offset="0.44" stop-color="#d22a8a"/><stop offset="0.6" stop-color="#8b2ab2"/><stop offset="0.83" stop-color="#1b2af0"/><stop offset="0.88" stop-color="#002aff"/></radialGradient></defs><title/><g data-name="3-instagram" id="_3-instagram"><rect class="cls-1" height="64" rx="11.2" ry="11.2" transform="translate(64 64) rotate(180)" width="64"/><path class="cls-2" d="M44,56H20A12,12,0,0,1,8,44V20A12,12,0,0,1,20,8H44A12,12,0,0,1,56,20V44A12,12,0,0,1,44,56ZM20,12.8A7.21,7.21,0,0,0,12.8,20V44A7.21,7.21,0,0,0,20,51.2H44A7.21,7.21,0,0,0,51.2,44V20A7.21,7.21,0,0,0,44,12.8Z"/><path class="cls-2" d="M32,45.6A13.6,13.6,0,1,1,45.6,32,13.61,13.61,0,0,1,32,45.6Zm0-22.4A8.8,8.8,0,1,0,40.8,32,8.81,8.81,0,0,0,32,23.2Z"/><circle class="cls-2" cx="45.6" cy="19.2" r="2.4"/></g>
-                </svg>
-          </a>
+        <a v-if="show" class="navbar-brand h-100" href="{% url 'book:top'%}">
+          <svg class="h-100 mx-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-book" viewBox="0 0 16 16">
+            <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
+          </svg>
+          Book DB
+          <?xml version="1.0" ?>
+          <svg class="" viewBox="0 0 64 64" width="0" height="0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><style>.cls-1{fill:url(#radial-gradient);}.cls-2{fill:#fff;}</style><radialGradient cx="-578.95" cy="-837.6" gradientTransform="translate(499.5 629.5) scale(0.75)" gradientUnits="userSpaceOnUse" id="radial-gradient" r="197.06"><stop offset="0" stop-color="#f9ed32"/><stop offset="0.36" stop-color="#ee2a7b"/><stop offset="0.44" stop-color="#d22a8a"/><stop offset="0.6" stop-color="#8b2ab2"/><stop offset="0.83" stop-color="#1b2af0"/><stop offset="0.88" stop-color="#002aff"/></radialGradient></defs><title/><g data-name="3-instagram" id="_3-instagram"><rect class="cls-1" height="64" rx="11.2" ry="11.2" transform="translate(64 64) rotate(180)" width="64"/><path class="cls-2" d="M44,56H20A12,12,0,0,1,8,44V20A12,12,0,0,1,20,8H44A12,12,0,0,1,56,20V44A12,12,0,0,1,44,56ZM20,12.8A7.21,7.21,0,0,0,12.8,20V44A7.21,7.21,0,0,0,20,51.2H44A7.21,7.21,0,0,0,51.2,44V20A7.21,7.21,0,0,0,44,12.8Z"/><path class="cls-2" d="M32,45.6A13.6,13.6,0,1,1,45.6,32,13.61,13.61,0,0,1,32,45.6Zm0-22.4A8.8,8.8,0,1,0,40.8,32,8.81,8.81,0,0,0,32,23.2Z"/><circle class="cls-2" cx="45.6" cy="19.2" r="2.4"/></g>
+          </svg>
+        </a>
         <button @click="show = !show" class="ms-auto navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-        <div class="d-flex">
+          <div class="d-flex">
 
-        <div class="d-lg-none m-auto d-inline-block">
-          <a class="navbar-brand h-100" href="{% url 'book:top'%}">
-            <svg class="h-100 mx-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-book" viewBox="0 0 16 16">
-              <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
-            </svg>
-            Book DB
-          </a>
-        </div>
+            <div class="d-lg-none m-auto d-inline-block">
+              <a class="navbar-brand h-100" href="{% url 'book:top'%}">
+                <svg class="h-100 mx-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-book" viewBox="0 0 16 16">
+                  <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
+                </svg>
+                Book DB
+              </a>
+            </div>
 
 
 
         
-          <ul class="navbar-nav mb-2 mb-lg-0 text-start ms-md-mx-auto line-left-white">
-            {% comment %} <li class="nav-item"> {% endcomment %}
-              {% comment %} <a class="nav-link active" aria-current="page" href="#">ホーム</a> {% endcomment %}
-              {% comment %} {%if nav_active == None %}<a class="nav-link active" aria-current="page" href="#">{%else%}<a class="nav-link" href="{% url 'book:top' %}">{%endif%}ホーム</a> {% endcomment %}
-            {% comment %} </li> {% endcomment %}
-            <li class="nav-item">
-              {%if nav_active == 1%}<a class="nav-link active" aria-current="page" href="#">{%else%}<a class="nav-link" href="{% url 'book:book' %}">{%endif%}書籍一覧</a>
-            </li>            
-            <li class="nav-item">
-              {%if nav_active == 2%}<a class="nav-link active" aria-current="page" href="#">{%else%}<a class="nav-link" href="{% url 'book:category' %}">{%endif%}カテゴリー</a>
-            </li>
-            <li class="nav-item">
-              {%if nav_active == 3%}<a class="nav-link active" aria-current="page" href="#">{%else%}<a class="nav-link" href="{% url 'book:author' %}">{%endif%}著者</a>
-            </li>
-            <li class="nav-item">
-              {%if nav_active == 4%}<a class="nav-link active" aria-current="page" href="#">{%else%}<a class="nav-link" href="{% url 'book:publisher' %}">{%endif%}出版社</a>
-            </li>
+            <ul class="navbar-nav mb-2 mb-lg-0 text-start ms-md-mx-auto line-left-white">
+              {% comment %} <li class="nav-item"> {% endcomment %}
+                {% comment %} <a class="nav-link active" aria-current="page" href="#">ホーム</a> {% endcomment %}
+                {% comment %} {%if nav_active == None %}<a class="nav-link active" aria-current="page" href="#">{%else%}<a class="nav-link" href="{% url 'book:top' %}">{%endif%}ホーム</a> {% endcomment %}
+              {% comment %} </li> {% endcomment %}
+              <li class="nav-item">
+                {%if nav_active == 1%}<a class="nav-link active" aria-current="page" href="#">{%else%}<a class="nav-link" href="{% url 'book:book' %}">{%endif%}書籍一覧</a>
+              </li>            
+              <li class="nav-item">
+                {%if nav_active == 2%}<a class="nav-link active" aria-current="page" href="#">{%else%}<a class="nav-link" href="{% url 'book:category' %}">{%endif%}カテゴリー</a>
+              </li>
+              <li class="nav-item">
+                {%if nav_active == 3%}<a class="nav-link active" aria-current="page" href="#">{%else%}<a class="nav-link" href="{% url 'book:author' %}">{%endif%}著者</a>
+              </li>
+              <li class="nav-item">
+                {%if nav_active == 4%}<a class="nav-link active" aria-current="page" href="#">{%else%}<a class="nav-link" href="{% url 'book:publisher' %}">{%endif%}出版社</a>
+              </li>
 
 
-          </ul>
+            </ul>
+          </div>
 
-
-        </div>
-
-            <ul class="ms-lg-auto ms-auto me-lg-0 my-0 px-0 py-2 text-center d-block"> 
-              <li class="nav-item d-inline-block">
+          <ul class="ms-lg-auto ms-auto me-lg-0 my-0 px-0 py-2 text-center d-block"> 
+            <li class="nav-item d-inline-block">
               <a class="fs-6 pt-3 text-white" href="https://www.youtube.com/channel/UCe14cApK5chdxcWewhMZR7g">
                 <svg class="p-1 mx-1" xmlns="http://www.w3.org/2000/svg" width="35" height="35" class="bi bi-twitter" viewBox="0 0 16 16">
                   <path style="fill:#ff0000;" d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.122C.002 7.343.01 6.6.064 5.78l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"/>
@@ -314,25 +327,6 @@ background-color: $white;
             </li>
           </ul>
 
-
-
-            {% comment %} <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Dropdown
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-              </ul>
-            </li> {% endcomment %}
-
-
-            {% comment %} <li class="nav-item"> {% endcomment %}
-              {% comment %} <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a> {% endcomment %}
-            {% comment %} </li> {% endcomment %}
-          </ul>
           <form class="d-flex nav-search ms-0">
             <input class="form-control me-2 ms-auto" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-mygreen" type="submit">Search</button>
@@ -342,14 +336,13 @@ background-color: $white;
     </nav>
 <!--▲▲▲▲▲▲▲▲▲▲ navbar ▲▲▲▲▲▲▲▲▲▲-->
 
-  <div class="d-none">
+  <div class="">
     <div>
-      <div class="py-2 py-md-4"></div>
+      <div class="py-3 py-lg-3"></div>
         <div class="border-bottom-mygreen mt-1 w-75 mx-auto"></div>  <!-- ■■ Line ■■ -->
-      <div class="py-2 py-md-4"></div>
+      <div class="py-0 py-md-0"></div>
     </div>
   </div>
-
 
 <!--▼▼▼▼▼▼▼▼▼▼ image ▼▼▼▼▼▼▼▼▼▼-->
     <img src={% static "images/book__tree__road__field__Creative_roads_landscapes_manipulation_fields_sky_clouds_2560x1600.jpg" %} class="img-fluid bg-teal" alt="">
@@ -391,18 +384,18 @@ background-color: $white;
           </div>
         </div>
       </div>
+    </div>
+  </div>
 <!--▲▲▲▲▲▲▲▲▲▲ introduction ▲▲▲▲▲▲▲▲▲▲-->
-      <div>
-        <div class="py-4 py-md-5"></div>
-          <div class="border-bottom-mygreen mt-1 w-75 mx-auto"></div>  <!-- ■■ Line ■■ -->
-        <div class="py-2 py-md-5"></div>
-      </div>
+    <div>
+      <div class="py-4 py-md-5"></div>
+        <div class="border-bottom-mygreen mt-1 w-75 mx-auto"></div>  <!-- ■■ Line ■■ -->
+      <div class="py-2 py-md-5"></div>
     </div>
-    {% else %}
-      {% block top %}
-      {% endblock %}
-    </div>
-    {% endif %}
+  {% else %}
+    {% block top %}
+    {% endblock %}
+  {% endif %}
 <!--▲▲▲▲▲▲▲▲▲▲ top contents ▲▲▲▲▲▲▲▲▲▲-->
 
 <!--▼▼▼▼▼▼▼▼▼▼ ranking ▼▼▼▼▼▼▼▼▼▼-->
@@ -494,54 +487,55 @@ align-items:center" {% endcomment %}
     <main class="container-fluid fs-6_75_p fs-6_75_p fs-md-6_p fs-lg-5_p">
       <div class="row">
         <div class="col-1 col-sm-2 col-md-2 col-lg-3 "></div> <!-- ■■2■■ -->
-        <!--▼▼▼▼▼▼▼▼▼▼ main contents ▼▼▼▼▼▼▼▼▼▼-->
-        {% if view.1 == 1 %}
         <div class="col-36 col-sm-32 col-md-25 col-lg-23 pb-2 pb-md-4 bg-white rounded"> <!-- .maincontents -->
-          <div class="row">
-            <div class="col-36">
-              {% comment %} <div class="bg-teal rounded w-25  py-2 py-md-3"> {% endcomment %}
-              <div class="bg-teal rounded mb-2 mb-md-5 w-100">
-                {% comment %} <a class="text-decoration-none fw-blod fs-3 text-white px-md-4 px-3">▽ {% block info %}{% endblock %}</a> {% endcomment %}
-                <h1 class="text-decoration-none fw-blod fs-4 text-white px-md-4 px-3 py-2">▽ {% block info %}{% endblock %}</h1>
-                
-              </div>
-              {% comment %} </div> {% endcomment %}
-            </div>
+        
+                          <!--▼▼▼▼▼▼▼▼▼▼ main contents ▼▼▼▼▼▼▼▼▼▼-->
+                          {% if view.1 == 1 %}
+                            <div class="row">
+                              <div class="col-36">
+                                {% comment %} <div class="bg-teal rounded w-25  py-2 py-md-3"> {% endcomment %}
+                                <div class="bg-teal rounded mb-2 mb-md-5 w-100">
+                                  {% comment %} <a class="text-decoration-none fw-blod fs-3 text-white px-md-4 px-3">▽ {% block info %}{% endblock %}</a> {% endcomment %}
+                                  <h1 class="text-decoration-none fw-blod fs-4 text-white px-md-4 px-3 py-2">▽ {% block info %}{% endblock %}</h1>
+                                  
+                                </div>
+                              </div>
+                            </div>
+                            
 
-            {% if view.2 == 1 %}
+                              {% if view.2 == 1 %}
+                            <div class="row">
 
-            {% for item in book_list %}
-            <div class="col-18 col-lg-9 col-xxl-7 text-center py-1 py-md-2 py-mx-2 px-xl-3 border-gray-dark">
-              <div class="text-start text-dark ps-1 fs-7">{{ item.post_day | date:"Y-m-d" }}</div>
-              <div class="ratio ratio-138x200 border-gray-dark border">
-                {{ item.amazon_url | safe}}
-              </div>
-              <div>
-                <div class="fw-bold fs-6 fs-lg-5 my-1 my-md-2 py-0 text-truncate-2 h-48 d-table w-100"><a class="text-dark align-middle d-table-cell text-decoration-none" href="{% url 'book:book_info' item.post_day %}">{{ item.title }}</a></div>
-              </div>
-                <div class="text-start ps-1 fs-8">
-                  <div class="">著者：<span class="rounded">{{ item.Author_info }}</span></div>
-                  <div class="">カテゴリー：<span class="text-decoration-none py-0 px-01 border-gray-dark border text-white bg-{% for item2 in item.category_info.all %}{{item2.color}}{%endfor%} rounded">{% for item2 in item.category_info.all %}{{item2.get_category_display}}{%endfor%}</span><span>{{item.youth_choices}}</span></div>
-                  <div class="">出版社：<span class="bg-ararm rounded">{{ item.publisher_info }}</span></div>
-                  <div class="py-1 py-md-2"></div>
-                  <div class="border-bottom-mygreen mt-1 w-75 mx-auto"></div>
-                  <div class="py-1 py-md-2"></div>
-              </div>
-            </div>
-            {% endfor %}
-
-          {% comment %} </div> {% endcomment %}
-        {% else %}
-          <!--▼▼▼▼▼▼▼▼▼▼ main contents option ▼▼▼▼▼▼▼▼▼▼-->
-          <div>
-          {% block only_main %}
-          {% endblock %}     
-          </div>
-          <!--▲▲▲▲▲▲▲▲▲▲ main contents option ▲▲▲▲▲▲▲▲▲▲-->
-        {% endif %}
+                              {% for item in book_list %}
+                              <div class="col-18 col-lg-9 col-xxl-7 text-center py-1 py-md-2 py-mx-2 px-xl-3 border-gray-dark">
+                                <div class="text-start text-dark ps-1 fs-7">{{ item.post_day | date:"Y-m-d" }}</div>
+                                <div class="ratio ratio-138x200 border-gray-dark border">
+                                  {{ item.amazon_url | safe}}
+                                </div>
+                                <div>
+                                  <div class="fw-bold fs-6 fs-lg-5 my-1 my-md-2 py-0 text-truncate-2 h-48 d-table w-100"><a class="text-dark align-middle d-table-cell text-decoration-none" href="{% url 'book:book_info' item.post_day %}">{{ item.title }}</a></div>
+                                </div>
+                                <div class="text-start ps-1 fs-8">
+                                  <div class="">著者：<span class="rounded">{{ item.Author_info }}</span></div>
+                                  <div class="">カテゴリー：<span class="text-decoration-none py-0 px-01 border-gray-dark border text-white bg-{% for item2 in item.category_info.all %}{{item2.color}}{%endfor%} rounded">{% for item2 in item.category_info.all %}{{item2.get_category_display}}{%endfor%}</span><span>{{item.youth_choices}}</span></div>
+                                  <div class="">出版社：<span class="bg-ararm rounded">{{ item.publisher_info }}</span></div>
+                                  <div class="py-1 py-md-2"></div>
+                                  <div class="border-bottom-mygreen mt-1 w-75 mx-auto"></div>
+                                  <div class="py-1 py-md-2"></div>
+                                </div>
+                              </div>
+                              
+                              {% endfor %}
+                            </div>
+                            {% comment %} </div> {% endcomment %}
+                          {% else %}
+                            <!--▼▼▼▼▼▼▼▼▼▼ main contents option ▼▼▼▼▼▼▼▼▼▼-->
+                              {% block only_main %}
+                              {% endblock %}     
+                            <!--▲▲▲▲▲▲▲▲▲▲ main contents option ▲▲▲▲▲▲▲▲▲▲-->
+                          {% endif %}
+                      <!--▲▲▲▲▲▲▲▲▲▲ main contents ▲▲▲▲▲▲▲▲▲▲-->
         </div>
-      </div>
-    <!--▲▲▲▲▲▲▲▲▲▲ main contents ▲▲▲▲▲▲▲▲▲▲-->
 
           <div class="d-md-none-r col-md-1"></div> <!-- ■■1■■ -->
 
@@ -776,7 +770,7 @@ align-items:center" {% endcomment %}
                         {% comment %} <form action="{% url 'book:book' %}" method="post"> {% endcomment %}
                         {% comment %} {% csrf_token %} {% endcomment %}
                         {% comment %} <a class="text-decoration-none py-0 mx-01 my-1 fs-5_5 d-inline-block rounded btn-dark" name="" href="{% url 'book:author_info' item2.author_eng %}"><span class="px-01 py-0 border rounded btn-dark">{{ item2.author }}</span></a> {% endcomment %}
-                            <form class="d-inline-block fs-5_5" action="{% url 'book:book' %}" method="post">{% csrf_token %}<input type="hidden" name="author" value={{ item2.author }}><input type="hidden" name="age_low" value='1900-1-1'><input type="hidden" name="age_high" value={{ date_now|date:"Y-n-j" }}><input type="submit" class="text-decoration-none py-0 px-01 my-1 d-inline-block px-01 py-0 border rounded btn-dark" href="{% url "book:book" %}" value="{{ item2.author }}"></input></form>
+                            <form class="d-inline-block fs-7" action="{% url 'book:book' %}" method="post">{% csrf_token %}<input type="hidden" name="author" value={{ item2.author }}><input type="hidden" name="age_low" value='1900-1-1'><input type="hidden" name="age_high" value={{ date_now|date:"Y-n-j" }}><input type="submit" class="text-decoration-none py-0 px-01 my-1 d-inline-block border rounded btn-dark" href="{% url "book:book" %}" value="{{ item2.author }}"></input></form>
                         {% comment %} </form> {% endcomment %}
                       {% endfor %}
                       </div>
@@ -795,7 +789,7 @@ align-items:center" {% endcomment %}
                 </a>
                 <div class="me-auto mb-2 py-2 mb-lg-0 ps-2 text-start text-dark">
                   {% for item in publisher %}
-                      <form class="text-decoration-none fs-5_5 py-0 px-01 my-1 d-inline-block fs-5_5" action="{% url 'book:book' %}" method="post">{% csrf_token %}<input type="hidden" name="publisher" value={{ item.publisher_eng}}><input type="submit" class="text-decoration-none py-0 px-01 my-1 d-inline-block px-01 py-0 border rounded btn-dark" href="{% url "book:book" %}" value="{{ item.publisher}}"></input></form>
+                      <form class="text-decoration-none fs-5_5 py-0 px-01 my-1 d-inline-block fs-md-5_5 fs-7" action="{% url 'book:book' %}" method="post">{% csrf_token %}<input type="hidden" name="publisher" value={{ item.publisher_eng}}><input type="submit" class="text-decoration-none py-0 px-01 my-1 d-inline-block px-01 py-0 border rounded btn-dark" href="{% url "book:book" %}" value="{{ item.publisher}}"></input></form>
                       {% comment %} <a class="text-decoration-none py-0 px-01 my-1 d-inline-block" href="{% url 'book:publisher_info' item.publisher_eng %}"><span class="px-01 py-0 border rounded btn-dark">{{ item}}</span></a> {% endcomment %}
                   {% endfor %}
                 </div>
