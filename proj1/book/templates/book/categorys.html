@@ -59,18 +59,30 @@
                     <tr class="text-center d-inline">
                       <th class="ps-3 fs-6 text-white bg-teal fw-normal" style="width: 200px;" >カテゴリー</th>
                       <th class="ps-3 fs-6 text-white bg-teal fw-normal" style="width: 400px;">カテゴリー説明</th>
-                      <th class="ps-3 fs-6 text-white bg-teal fw-normal" style="width: 300px;">キーワード</th>
+                      <th class="ps-3 fs-6 text-white bg-teal fw-normal" style="width: 350px;">キーワード</th>
                     </tr>
                   </thead>
                   <tbody>
+                  
+                  
                   {% for item in category %}
                     {% comment %} <li class="nav-item px-01 py-0"> {% endcomment %}
                     <tr>
-                      <td class="text-center table-item fs-6 p-01" style="width: 200px;"><a class="text-decoration-none px-01 text-white" href="{% url 'book:category_info' item.category_eng %}"><span class="d-inline-block px-01 py-0 my-1 rounded btn-{{ item.color }} text-white">{{ item.get_category_display}}</span></a></td>
-                      <td class="text-center table-item fs-6 p-01" style="width: 400px;"><a class="text-decoration-none text-dark px-01"><span class="my-1 d-inline-block px-01 py-0">{{item.contents}}</span></a></td>
-                      <td class="text-center table-item fs-6 p-01" style="width: 300px;"><a class="text-decoration-none text-dark px-01"><span class="my-1 d-inline-block px-01 py-0">{{item.contents_keyword}}</span></a></td>
+                      <td class="text-center table-item fs-6" style="width: 200px;"><form class="d-inline-block" action="{% url 'book:book' %}" method="post">{% csrf_token %}<input type="hidden" name="category" value={{ item.category}}><input type="submit" class="text-white text-decoration-none px-01 d-inline-block py-0 my-0 border-none rounded btn-{{ item.color }}" href="{% url "book:book" %}" value="{{ item.get_category_display}}"></input></form></td>
+                      <td class="text-center table-item fs-6" style="width: 400px;"><a class="text-decoration-none text-dark px-01"><span class="d-inline-block px-01">{{item.contents}}</span></a></td>
+                      <td class="text-center table-item fs-6" style="width: 350px;"><a class="text-decoration-none text-dark px-01"><span class="d-inline-block px-01">{{item.contents_keyword}}</span></a></td>
                     </tr>
                   {% endfor %}
+                  
+
+{% comment %} 
+                    <form class="d-inline-block" action="{% url 'book:book' %}" method="post">
+                        {% csrf_token %}
+                      <input type="hidden" name="category" value={{ item.category}}>
+                        <input type="submit" class="text-decoration-none py-0 px-01 my-1 d-inline-block px-01 py-0 border rounded btn-{{ item.color }}" href="{% url "book:book" %}" value="{{ item.get_category_display}}"></input>
+                        {% comment %} <input type="submit" class="text-decoration-none py-0 px-01 my-1 d-inline-block" href="{% url "book:book" %}"><span class="px-01 py-0 border rounded btn-{{ item.color }}">{{ item.get_category_display}}</span></input>
+                    </form>
+ {% endcomment %}
 
                   </tbody>
                 </table>
@@ -100,12 +112,12 @@
                   </thead>
                   <tbody>
                     <tr>
-                      <td class="text-center table-item fs-6 p-01 " style="width: 200px;">青春</td>
-                      <td class="text-center table-item fs-6 p-01" style="width: 600px;">主人公や周りの登場人物の年齢が、大体<b>０～２９歳</b>で構成される場合、</br>青春/白秋カテゴリーが「<b>Y</b>」（Young）に分類される</td>
+                      <td class="text-center table-item fs-6" style="height: 50px; width: 200px;">青春</br> </td>
+                      <td class="text-center table-item fs-6" style="width: 600px;">主人公や周りの登場人物の年齢が、大体<b>０～２９歳</b>で構成される場合、</br>青春/白秋カテゴリーが「<b>Y</b>」（Young）に分類される</td>
                     </tr>
                     <tr>
-                      <td class="text-center table-item fs-6 p-01" style="width: 200px;">白秋</td>
-                      <td class="text-center table-item fs-6 p-01" style="width: 600px;">主人公や周りの登場人物の年齢が、大体<b>２９歳以上</b>で構成される場合、</br>青春/白秋カテゴリーが「<b>O</b>」（Old）に分類される</td>
+                      <td class="text-center table-item fs-6" style="height: 50px; width: 200px;">白秋</td>
+                      <td class="text-center table-item fs-6" style="width: 600px;">主人公や周りの登場人物の年齢が、大体<b>２９歳以上</b>で構成される場合、</br>青春/白秋カテゴリーが「<b>O</b>」（Old）に分類される</td>
                     </tr>
                   </tbody>
                 </table>

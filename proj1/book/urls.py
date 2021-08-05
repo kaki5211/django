@@ -64,6 +64,8 @@ urlpatterns = [
 
     path('articles/', views.ArticlesView.as_view(), name='article'), # トピックスに近いもの
 
+    path('others/', views.OthersView.as_view(),  name='other'),
+
     path('sitemap.xml/', sitemap, {'sitemaps': sitemaps},  name='sitemap'),
 
     path('test/', views.test_,  name='test_'),

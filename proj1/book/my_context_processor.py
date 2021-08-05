@@ -4,6 +4,7 @@ from django.views.generic.edit import ModelFormMixin, UpdateView
 from django.http import Http404
 from django.db.models import Prefetch
 from django.db.models import Q
+import datetime
 # from . import forms
 
 
@@ -14,6 +15,7 @@ from .models import Book, Category, Author, Publisher, Series, Templates
 def common(request):
     context = {}
     # context['primary'] = Category.objects.all().first()
+    context['date_now'] = datetime.datetime.now()
     context['category'] = Category.objects.all().order_by('category')
     context['author_Aa'] = [Author.objects.filter(word_oder='Aa').order_by("author"),
                                 Author.objects.filter(word_oder='Ka').order_by("author"),
@@ -93,6 +95,7 @@ def common(request):
         context['breadcrumb'] = url_dict # パンくずリスト完成
     except:
         pass
+
 
     
 

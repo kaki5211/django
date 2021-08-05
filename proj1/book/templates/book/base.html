@@ -228,14 +228,16 @@ background-color: $white;
 
   <body class="">
 <!--▼▼▼▼▼▼▼▼▼▼ navbar ▼▼▼▼▼▼▼▼▼▼-->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-teal">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-teal fixed-top py-01">
       <div id="mynav" class="container-fluid">
-        
           <a v-if="show" class="navbar-brand h-100" href="{% url 'book:top'%}">
             <svg class="h-100 mx-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-book" viewBox="0 0 16 16">
               <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
             </svg>
             Book DB
+                <?xml version="1.0" ?>
+                <svg class="" viewBox="0 0 64 64" width="0" height="0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><style>.cls-1{fill:url(#radial-gradient);}.cls-2{fill:#fff;}</style><radialGradient cx="-578.95" cy="-837.6" gradientTransform="translate(499.5 629.5) scale(0.75)" gradientUnits="userSpaceOnUse" id="radial-gradient" r="197.06"><stop offset="0" stop-color="#f9ed32"/><stop offset="0.36" stop-color="#ee2a7b"/><stop offset="0.44" stop-color="#d22a8a"/><stop offset="0.6" stop-color="#8b2ab2"/><stop offset="0.83" stop-color="#1b2af0"/><stop offset="0.88" stop-color="#002aff"/></radialGradient></defs><title/><g data-name="3-instagram" id="_3-instagram"><rect class="cls-1" height="64" rx="11.2" ry="11.2" transform="translate(64 64) rotate(180)" width="64"/><path class="cls-2" d="M44,56H20A12,12,0,0,1,8,44V20A12,12,0,0,1,20,8H44A12,12,0,0,1,56,20V44A12,12,0,0,1,44,56ZM20,12.8A7.21,7.21,0,0,0,12.8,20V44A7.21,7.21,0,0,0,20,51.2H44A7.21,7.21,0,0,0,51.2,44V20A7.21,7.21,0,0,0,44,12.8Z"/><path class="cls-2" d="M32,45.6A13.6,13.6,0,1,1,45.6,32,13.61,13.61,0,0,1,32,45.6Zm0-22.4A8.8,8.8,0,1,0,40.8,32,8.81,8.81,0,0,0,32,23.2Z"/><circle class="cls-2" cx="45.6" cy="19.2" r="2.4"/></g>
+                </svg>
           </a>
         <button @click="show = !show" class="ms-auto navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -244,7 +246,7 @@ background-color: $white;
 
         <div class="d-flex">
 
-        <div class="m-auto d-inline-block">
+        <div class="d-lg-none m-auto d-inline-block">
           <a class="navbar-brand h-100" href="{% url 'book:top'%}">
             <svg class="h-100 mx-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-book" viewBox="0 0 16 16">
               <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
@@ -280,7 +282,7 @@ background-color: $white;
 
         </div>
 
-               <ul class="mx-auto my-0  p-0 text-center"> 
+            <ul class="ms-lg-auto ms-auto me-lg-0 my-0 px-0 py-2 text-center d-block"> 
               <li class="nav-item d-inline-block">
               <a class="fs-6 pt-3 text-white" href="https://www.youtube.com/channel/UCe14cApK5chdxcWewhMZR7g">
                 <svg class="p-1 mx-1" xmlns="http://www.w3.org/2000/svg" width="35" height="35" class="bi bi-twitter" viewBox="0 0 16 16">
@@ -297,9 +299,9 @@ background-color: $white;
             </li> 
             <li class="nav-item d-inline-block"> 
               <a class="fs-6 pt-3 text-white" href="https://www.instagram.com/arikui_ch/">
-                <svg class="p-1 mx-1" xmlns="http://www.w3.org/2000/svg" width="35" height="35" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 132.004 132"><defs><linearGradient id="b"><stop offset="0" stop-color="#3771c8"/><stop stop-color="#3771c8" offset=".128"/><stop offset="1" stop-color="#60f" stop-opacity="0"/></linearGradient><linearGradient id="a"><stop offset="0" stop-color="#fd5"/><stop offset=".1" stop-color="#fd5"/><stop offset=".5" stop-color="#ff543e"/><stop offset="1" stop-color="#c837ab"/></linearGradient><radialGradient id="c" cx="158.429" cy="578.088" r="65" xlink:href="#a" gradientUnits="userSpaceOnUse" gradientTransform="matrix(0 -1.98198 1.8439 0 -1031.402 454.004)" fx="158.429" fy="578.088"/><radialGradient id="d" cx="147.694" cy="473.455" r="65" xlink:href="#b" gradientUnits="userSpaceOnUse" gradientTransform="matrix(.17394 .86872 -3.5818 .71718 1648.348 -458.493)" fx="147.694" fy="473.455"/></defs><path fill="url(#c)" d="M65.03 0C37.888 0 29.95.028 28.407.156c-5.57.463-9.036 1.34-12.812 3.22-2.91 1.445-5.205 3.12-7.47 5.468C4 13.126 1.5 18.394.595 24.656c-.44 3.04-.568 3.66-.594 19.188-.01 5.176 0 11.988 0 21.125 0 27.12.03 35.05.16 36.59.45 5.42 1.3 8.83 3.1 12.56 3.44 7.14 10.01 12.5 17.75 14.5 2.68.69 5.64 1.07 9.44 1.25 1.61.07 18.02.12 34.44.12 16.42 0 32.84-.02 34.41-.1 4.4-.207 6.955-.55 9.78-1.28 7.79-2.01 14.24-7.29 17.75-14.53 1.765-3.64 2.66-7.18 3.065-12.317.088-1.12.125-18.977.125-36.81 0-17.836-.04-35.66-.128-36.78-.41-5.22-1.305-8.73-3.127-12.44-1.495-3.037-3.155-5.305-5.565-7.624C116.9 4 111.64 1.5 105.372.596 102.335.157 101.73.027 86.19 0H65.03z" transform="translate(1.004 1)"/><path fill="url(#d)" d="M65.03 0C37.888 0 29.95.028 28.407.156c-5.57.463-9.036 1.34-12.812 3.22-2.91 1.445-5.205 3.12-7.47 5.468C4 13.126 1.5 18.394.595 24.656c-.44 3.04-.568 3.66-.594 19.188-.01 5.176 0 11.988 0 21.125 0 27.12.03 35.05.16 36.59.45 5.42 1.3 8.83 3.1 12.56 3.44 7.14 10.01 12.5 17.75 14.5 2.68.69 5.64 1.07 9.44 1.25 1.61.07 18.02.12 34.44.12 16.42 0 32.84-.02 34.41-.1 4.4-.207 6.955-.55 9.78-1.28 7.79-2.01 14.24-7.29 17.75-14.53 1.765-3.64 2.66-7.18 3.065-12.317.088-1.12.125-18.977.125-36.81 0-17.836-.04-35.66-.128-36.78-.41-5.22-1.305-8.73-3.127-12.44-1.495-3.037-3.155-5.305-5.565-7.624C116.9 4 111.64 1.5 105.372.596 102.335.157 101.73.027 86.19 0H65.03z" transform="translate(1.004 1)"/>
-                  <path fill="#fff" d="M66.004 18c-13.036 0-14.672.057-19.792.29-5.11.234-8.598 1.043-11.65 2.23-3.157 1.226-5.835 2.866-8.503 5.535-2.67 2.668-4.31 5.346-5.54 8.502-1.19 3.053-2 6.542-2.23 11.65C18.06 51.327 18 52.964 18 66s.058 14.667.29 19.787c.235 5.11 1.044 8.598 2.23 11.65 1.227 3.157 2.867 5.835 5.536 8.503 2.667 2.67 5.345 4.314 8.5 5.54 3.054 1.187 6.543 1.996 11.652 2.23 5.12.233 6.755.29 19.79.29 13.037 0 14.668-.057 19.788-.29 5.11-.234 8.602-1.043 11.656-2.23 3.156-1.226 5.83-2.87 8.497-5.54 2.67-2.668 4.31-5.346 5.54-8.502 1.18-3.053 1.99-6.542 2.23-11.65.23-5.12.29-6.752.29-19.788 0-13.036-.06-14.672-.29-19.792-.24-5.11-1.05-8.598-2.23-11.65-1.23-3.157-2.87-5.835-5.54-8.503-2.67-2.67-5.34-4.31-8.5-5.535-3.06-1.187-6.55-1.996-11.66-2.23-5.12-.233-6.75-.29-19.79-.29zm-4.306 8.65c1.278-.002 2.704 0 4.306 0 12.816 0 14.335.046 19.396.276 4.68.214 7.22.996 8.912 1.653 2.24.87 3.837 1.91 5.516 3.59 1.68 1.68 2.72 3.28 3.592 5.52.657 1.69 1.44 4.23 1.653 8.91.23 5.06.28 6.58.28 19.39s-.05 14.33-.28 19.39c-.214 4.68-.996 7.22-1.653 8.91-.87 2.24-1.912 3.835-3.592 5.514-1.68 1.68-3.275 2.72-5.516 3.59-1.69.66-4.232 1.44-8.912 1.654-5.06.23-6.58.28-19.396.28-12.817 0-14.336-.05-19.396-.28-4.68-.216-7.22-.998-8.913-1.655-2.24-.87-3.84-1.91-5.52-3.59-1.68-1.68-2.72-3.276-3.592-5.517-.657-1.69-1.44-4.23-1.653-8.91-.23-5.06-.276-6.58-.276-19.398s.046-14.33.276-19.39c.214-4.68.996-7.22 1.653-8.912.87-2.24 1.912-3.84 3.592-5.52 1.68-1.68 3.28-2.72 5.52-3.592 1.692-.66 4.233-1.44 8.913-1.655 4.428-.2 6.144-.26 15.09-.27zm29.928 7.97c-3.18 0-5.76 2.577-5.76 5.758 0 3.18 2.58 5.76 5.76 5.76 3.18 0 5.76-2.58 5.76-5.76 0-3.18-2.58-5.76-5.76-5.76zm-25.622 6.73c-13.613 0-24.65 11.037-24.65 24.65 0 13.613 11.037 24.645 24.65 24.645C79.617 90.645 90.65 79.613 90.65 66S79.616 41.35 66.003 41.35zm0 8.65c8.836 0 16 7.163 16 16 0 8.836-7.164 16-16 16-8.837 0-16-7.164-16-16 0-8.837 7.163-16 16-16z"/>
-                </svg> 
+                <?xml version="1.0" ?>
+                <svg class="p-1 mx-1" viewBox="0 0 64 64" width="35" height="35" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><style>.cls-1{fill:url(#radial-gradient);}.cls-2{fill:#fff;}</style><radialGradient cx="-578.95" cy="-837.6" gradientTransform="translate(499.5 629.5) scale(0.75)" gradientUnits="userSpaceOnUse" id="radial-gradient" r="197.06"><stop offset="0" stop-color="#f9ed32"/><stop offset="0.36" stop-color="#ee2a7b"/><stop offset="0.44" stop-color="#d22a8a"/><stop offset="0.6" stop-color="#8b2ab2"/><stop offset="0.83" stop-color="#1b2af0"/><stop offset="0.88" stop-color="#002aff"/></radialGradient></defs><title/><g data-name="3-instagram" id="_3-instagram"><rect class="cls-1" height="64" rx="11.2" ry="11.2" transform="translate(64 64) rotate(180)" width="64"/><path class="cls-2" d="M44,56H20A12,12,0,0,1,8,44V20A12,12,0,0,1,20,8H44A12,12,0,0,1,56,20V44A12,12,0,0,1,44,56ZM20,12.8A7.21,7.21,0,0,0,12.8,20V44A7.21,7.21,0,0,0,20,51.2H44A7.21,7.21,0,0,0,51.2,44V20A7.21,7.21,0,0,0,44,12.8Z"/><path class="cls-2" d="M32,45.6A13.6,13.6,0,1,1,45.6,32,13.61,13.61,0,0,1,32,45.6Zm0-22.4A8.8,8.8,0,1,0,40.8,32,8.81,8.81,0,0,0,32,23.2Z"/><circle class="cls-2" cx="45.6" cy="19.2" r="2.4"/></g>
+                </svg>
               </a>
             </li> 
 
@@ -331,8 +333,8 @@ background-color: $white;
               {% comment %} <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a> {% endcomment %}
             {% comment %} </li> {% endcomment %}
           </ul>
-          <form class="d-flex ms-0">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <form class="d-flex nav-search ms-0">
+            <input class="form-control me-2 ms-auto" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-mygreen" type="submit">Search</button>
           </form>
         </div>
@@ -559,11 +561,16 @@ align-items:center" {% endcomment %}
                 </button>
                 <div class="collapse navbar-collapse mt-2 border-top" id="DropCategory">
                   <div class="me-auto mb-2 py-2 mb-lg-0 ps-2 text-start text-dark">
-                    {% for item in category %}
-                      {% comment %} <li class="nav-item px-01 py-0"> {% endcomment %}
-                        <a class="text-decoration-none py-1 px-01" href="{% url 'book:category_info' item.category %}"><span class="d-inline-block px-01 py-0 my-1 border rounded btn-{{ item.color }}">{{ item.get_category_display}}</span></a>
-                      {% comment %} </li> {% endcomment %}
-                    {% endfor %}
+                  {% for item in category %}
+                    <form class="d-inline-block" action="{% url 'book:book' %}" method="post">
+                        {% csrf_token %}
+                      <input type="hidden" name="category" value={{ item.category}}>
+                        <input type="submit" class="text-white text-decoration-none py-0 px-01 my-1 d-inline-block px-01 py-0 border rounded btn-{{ item.color }}" href="{% url "book:book" %}" value="{{ item.get_category_display}}"></input>
+                        {% comment %} <input type="submit" class="text-decoration-none py-0 px-01 my-1 d-inline-block" href="{% url "book:book" %}"><span class="px-01 py-0 border rounded btn-{{ item.color }}">{{ item.get_category_display}}</span></input> {% endcomment %}
+                    </form>
+                  {% endfor %}
+
+
                   </div>
                   <a class="text-white" href="{% url 'book:category' %}">カテゴリー一覧ページへ移動</a>
                 </div>
@@ -590,9 +597,9 @@ align-items:center" {% endcomment %}
                           <div class="me-auto mb-2 mb-lg-0 text-start mt-2">
                           {% for item2 in item %}
                             {% if forloop.first %}
-                              <a class="text-decoration-none text-start btn-teal text-white fs-5 rounded border">{{item2.get_word_oder_display}}＞</a>
+                              <a class="text-decoration-none text-start btn-light text-dark fs-6 fs-md-5 rounded d-inline-block">{{item2.get_word_oder_display}}＞</a>
                             {% endif %}
-                            <a class="text-decoration-none py-0 px-01 btn-dark d-inline-block border rounded" href="{% url 'book:author_info' item2.author_eng %}">{{ item2.author }}</a>
+                            <form class="d-inline-block fs-5_5" action="{% url 'book:book' %}" method="post">{% csrf_token %}<input type="hidden" name="author" value={{ item2.author }}><input type="hidden" name="age_low" value='1900-1-1'><input type="hidden" name="age_high" value={{ date_now|date:"Y-n-j" }}><input type="submit" class="text-decoration-none py-0 px-01 my-1 d-inline-block px-01 py-0 border rounded btn-dark" href="{% url "book:book" %}" value="{{ item2.author }}"></input></form>
                           {% endfor %}
                           </div>
                         {% endfor %}
@@ -620,7 +627,7 @@ align-items:center" {% endcomment %}
                 <div class="collapse navbar-collapse mt-2 border-top" id="DropPublisher">
                   <div class="me-auto mb-2 py-2 mb-lg-0 ps-2 text-start text-dark">
                     {% for item in publisher %}
-                        <a class="text-decoration-none py-0 px-01" href="{% url 'book:publisher_info' item.publisher_eng %}"><span class="d-inline-block px-01 py-0 my-1 border rounded btn-dark">{{ item}}</span></a>
+                      <form class="text-decoration-none py-0 px-01 my-1 d-inline-block fs-5_5" action="{% url 'book:book' %}" method="post">{% csrf_token %}<input type="hidden" name="publisher" value={{ item.publisher_eng}}><input type="submit" class="text-decoration-none py-0 px-01 my-1 d-inline-block px-01 py-0 border rounded btn-dark" href="{% url "book:book" %}" value="{{ item.publisher}}"></input></form>
                     {% endfor %}
                   </div>
                   <a class="text-white" href="{% url 'book:publisher' %}">出版社一覧ページへ移動</a>
@@ -700,7 +707,7 @@ align-items:center" {% endcomment %}
             {% for item in book_list|slice:":10" %}
             <tbody>
               <td class="text-center border-width border-right p-01" style="width: 100px;"><a>{{ item.post_day|date:"Y/m/d" }}</a></td>
-              <td class="border-0 p-01">「{{ item.title }}」を更新しました</td>
+              <td class="border-0 p-01">「<a class=" text-dark" href="{% url 'book:book_info' item.post_day %}">{{ item.title }}</a>」を投稿しました</td>
             </tbody>
             {% endfor %}
           </table>
@@ -726,30 +733,39 @@ align-items:center" {% endcomment %}
     <footer class="container-fluid py-2 py-md-4 py-lg-5 bg-teal fs-7 fs-md-5 fs-md-5">
       <div class="row">
           <div class="col-1 col-sm-2 col-md-2 col-lg-3 "></div> <!-- ■■2■■ -->
-          <div class="py-4 col-34 col-sm-32 col-lg-30">
+          <div class="pt-4 col-34 col-sm-32 col-lg-30">
         {% comment %} <div class="container-fluid"> {% endcomment %}
             <div class="row">
               <div class="col-18 col-lg-9">
-                <span class="text-white fs-4_5 fs-md-4 d-inline-block">
-                  <svg class="" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-folder" viewBox="0 0 16 16">
-                    <path d="M.54 3.87.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.826a2 2 0 0 1-1.991-1.819l-.637-7a1.99 1.99 0 0 1 .342-1.31zM2.19 4a1 1 0 0 0-.996 1.09l.637 7a1 1 0 0 0 .995.91h10.348a1 1 0 0 0 .995-.91l.637-7A1 1 0 0 0 13.81 4H2.19zm4.69-1.707A1 1 0 0 0 6.172 2H2.5a1 1 0 0 0-1 .981l.006.139C1.72 3.042 1.95 3 2.19 3h5.396l-.707-.707z"/>
-                  </svg>              
-                  カテゴリー
-                </span>
+                <a class="text-decoration-none" href="{% url 'book:category'%}">
+                  <span class="text-white fs-4_5 fs-md-4 d-inline-block">
+                    <svg class="" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-folder" viewBox="0 0 16 16">
+                      <path d="M.54 3.87.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.826a2 2 0 0 1-1.991-1.819l-.637-7a1.99 1.99 0 0 1 .342-1.31zM2.19 4a1 1 0 0 0-.996 1.09l.637 7a1 1 0 0 0 .995.91h10.348a1 1 0 0 0 .995-.91l.637-7A1 1 0 0 0 13.81 4H2.19zm4.69-1.707A1 1 0 0 0 6.172 2H2.5a1 1 0 0 0-1 .981l.006.139C1.72 3.042 1.95 3 2.19 3h5.396l-.707-.707z"/>
+                    </svg>
+                    カテゴリー
+                  </span>
+                </a>
                 <div class="me-auto mb-2 py-2 mb-lg-0 ps-2 text-start text-dark">
                   {% for item in category %}
-                      <a class="text-decoration-none py-0 px-01 my-1 d-inline-block" href="#"><span class="px-01 py-0 border rounded btn-{{ item.color }}">{{ item.get_category_display}}</span></a>
+                    <form class="d-inline-block" action="{% url 'book:book' %}" method="post">
+                        {% csrf_token %}
+                      <input type="hidden" name="category" value={{ item.category}}>
+                        <input type="submit" class="text-white text-decoration-none py-0 px-01 my-1 d-inline-block px-01 py-0 border rounded btn-{{ item.color }}" href="{% url "book:book" %}" value="{{ item.get_category_display}}"></input>
+                        {% comment %} <input type="submit" class="text-decoration-none py-0 px-01 my-1 d-inline-block" href="{% url "book:book" %}"><span class="px-01 py-0 border rounded btn-{{ item.color }}">{{ item.get_category_display}}</span></input> {% endcomment %}
+                    </form>
                   {% endfor %}
                 </div>          
               </div>
               <div class="col-18 col-lg-9">
-                <span class="text-white fs-4_5 fs-md-4">
-                  <svg class="" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-                  </svg>              
-                  著者
-                </span>   
+                <a class="text-decoration-none" href="{% url 'book:author'%}">
+                  <span class="text-white fs-4_5 fs-md-4">
+                    <svg class="" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                      <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                      <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                    </svg>              
+                    著者
+                  </span>
+                </a>
                 <ul class="me-auto mb-2 py-2 mb-lg-0 ps-2 text-start text-dark">                    
                     {% for item in author_Aa %}
                       <div class="me-auto mb-2 mb-lg-0 text-start text-dark mt-2">
@@ -757,23 +773,30 @@ align-items:center" {% endcomment %}
                         {% if forloop.first %}
                           <a class="text-decoration-none text-start btn-light text-dark fs-6 fs-md-5 rounded d-inline-block">{{item2.get_word_oder_display}}＞</a>
                         {% endif %}
-                        <a class="text-decoration-none py-0 px-01 my-1 d-inline-block" href="{% url 'book:author_info' item2.author_eng %}"><span class="px-01 py-0 border rounded btn-dark">{{ item2.author }}</span></a>
+                        {% comment %} <form action="{% url 'book:book' %}" method="post"> {% endcomment %}
+                        {% comment %} {% csrf_token %} {% endcomment %}
+                        {% comment %} <a class="text-decoration-none py-0 mx-01 my-1 fs-5_5 d-inline-block rounded btn-dark" name="" href="{% url 'book:author_info' item2.author_eng %}"><span class="px-01 py-0 border rounded btn-dark">{{ item2.author }}</span></a> {% endcomment %}
+                            <form class="d-inline-block fs-5_5" action="{% url 'book:book' %}" method="post">{% csrf_token %}<input type="hidden" name="author" value={{ item2.author }}><input type="hidden" name="age_low" value='1900-1-1'><input type="hidden" name="age_high" value={{ date_now|date:"Y-n-j" }}><input type="submit" class="text-decoration-none py-0 px-01 my-1 d-inline-block px-01 py-0 border rounded btn-dark" href="{% url "book:book" %}" value="{{ item2.author }}"></input></form>
+                        {% comment %} </form> {% endcomment %}
                       {% endfor %}
                       </div>
                     {% endfor %}
                 </ul>              
               </div>
               <div class="col-18 col-lg-9">
-                <span class="text-white fs-4_5 fs-md-4">
-                  <svg class="" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-building" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022zM6 8.694 1 10.36V15h5V8.694zM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5V15z"/>
-                    <path d="M2 11h1v1H2v-1zm2 0h1v1H4v-1zm-2 2h1v1H2v-1zm2 0h1v1H4v-1zm4-4h1v1H8V9zm2 0h1v1h-1V9zm-2 2h1v1H8v-1zm2 0h1v1h-1v-1zm2-2h1v1h-1V9zm0 2h1v1h-1v-1zM8 7h1v1H8V7zm2 0h1v1h-1V7zm2 0h1v1h-1V7zM8 5h1v1H8V5zm2 0h1v1h-1V5zm2 0h1v1h-1V5zm0-2h1v1h-1V3z"/>
-                  </svg>
-                  出版社
-                </span>
+                <a class="text-decoration-none" href="{% url 'book:publisher'%}">
+                  <span class="text-white fs-4_5 fs-md-4">
+                    <svg class="" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-building" viewBox="0 0 16 16">
+                      <path fill-rule="evenodd" d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022zM6 8.694 1 10.36V15h5V8.694zM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5V15z"/>
+                      <path d="M2 11h1v1H2v-1zm2 0h1v1H4v-1zm-2 2h1v1H2v-1zm2 0h1v1H4v-1zm4-4h1v1H8V9zm2 0h1v1h-1V9zm-2 2h1v1H8v-1zm2 0h1v1h-1v-1zm2-2h1v1h-1V9zm0 2h1v1h-1v-1zM8 7h1v1H8V7zm2 0h1v1h-1V7zm2 0h1v1h-1V7zM8 5h1v1H8V5zm2 0h1v1h-1V5zm2 0h1v1h-1V5zm0-2h1v1h-1V3z"/>
+                    </svg>
+                    出版社
+                  </span>
+                </a>
                 <div class="me-auto mb-2 py-2 mb-lg-0 ps-2 text-start text-dark">
                   {% for item in publisher %}
-                      <a class="text-decoration-none py-0 px-01 my-1 d-inline-block" href="{% url 'book:publisher_info' item.publisher_eng %}"><span class="px-01 py-0 border rounded btn-dark">{{ item}}</span></a>
+                      <form class="text-decoration-none fs-5_5 py-0 px-01 my-1 d-inline-block fs-5_5" action="{% url 'book:book' %}" method="post">{% csrf_token %}<input type="hidden" name="publisher" value={{ item.publisher_eng}}><input type="submit" class="text-decoration-none py-0 px-01 my-1 d-inline-block px-01 py-0 border rounded btn-dark" href="{% url "book:book" %}" value="{{ item.publisher}}"></input></form>
+                      {% comment %} <a class="text-decoration-none py-0 px-01 my-1 d-inline-block" href="{% url 'book:publisher_info' item.publisher_eng %}"><span class="px-01 py-0 border rounded btn-dark">{{ item}}</span></a> {% endcomment %}
                   {% endfor %}
                 </div>
               </div>
@@ -785,15 +808,78 @@ align-items:center" {% endcomment %}
                   その他
               </span>
               <div class="me-auto mb-2 py-2 mb-lg-0 ps-2 text-start text-dark">
-                  <a class="text-decoration-none py-0 px-01 my-1 d-inline-block　tex" href="{% url 'book:book' %}">書籍一覧</a>
+                  <a class="text-start text-white fs-6 fs-md-5 rounded d-inline-block" href="{% url 'book:book' %}">書籍一覧</a>
               </div>                   
               </div>     
             </div>
           </div>
       {% comment %} </div> {% endcomment %}
           <div class="col-1 col-sm-2 col-md-2 col-lg-3 "></div> <!-- ■■2■■ -->
+
+          <div class="col-36 mb-3">
+
+            <div class="text-end mb-4">
+              <li class="nav-item d-inline-block"> 
+              <a class="text-teal text-decoration-none fs-6 text-white text-end w-100" href="{% url 'book:top'%}">
+                <span class="pe-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-house-fill" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+                    <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
+                  </svg>
+                </span>
+                  HOME
+              </a>
+              </li>
+            </div>
+                      
+            <div class="text-center mx-auto">
+
+            <ul class="mx-auto my-0  p-0 text-center d-block"> 
+              <li class="nav-item d-inline-block">
+              <a class="fs-6 pt-3 text-white" href="https://www.youtube.com/channel/UCe14cApK5chdxcWewhMZR7g">
+                <svg class="p-1 mx-1" xmlns="http://www.w3.org/2000/svg" width="35" height="35" class="bi bi-twitter" viewBox="0 0 16 16">
+                  <path style="fill:#ff0000;" d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.122C.002 7.343.01 6.6.064 5.78l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"/>
+                </svg>
+              </a>
+            </li>
+            <li class="nav-item d-inline-block">
+                <a class="fs-6 pt-3 text-white" href="https://twitter.com/arikui_ch">
+              <svg class="p-1 mx-1"  xmlns="http://www.w3.org/2000/svg" width="35" height="35" class="bi bi-twitter" viewBox="0 0 16 16">
+                  <path style="fill:#1d9bf0;" d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"/>
+              </svg>
+                </a>
+            </li> 
+            <li class="nav-item d-inline-block"> 
+              <a class="fs-6 pt-3 text-white" href="https://www.instagram.com/arikui_ch/">
+                <?xml version="1.0" ?>
+                <svg class="p-1 mx-1" viewBox="0 0 64 64" width="35" height="35" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><style>.cls-1{fill:url(#radial-gradient);}.cls-2{fill:#fff;}</style><radialGradient cx="-578.95" cy="-837.6" gradientTransform="translate(499.5 629.5) scale(0.75)" gradientUnits="userSpaceOnUse" id="radial-gradient" r="197.06"><stop offset="0" stop-color="#f9ed32"/><stop offset="0.36" stop-color="#ee2a7b"/><stop offset="0.44" stop-color="#d22a8a"/><stop offset="0.6" stop-color="#8b2ab2"/><stop offset="0.83" stop-color="#1b2af0"/><stop offset="0.88" stop-color="#002aff"/></radialGradient></defs><title/><g data-name="3-instagram" id="_3-instagram"><rect class="cls-1" height="64" rx="11.2" ry="11.2" transform="translate(64 64) rotate(180)" width="64"/><path class="cls-2" d="M44,56H20A12,12,0,0,1,8,44V20A12,12,0,0,1,20,8H44A12,12,0,0,1,56,20V44A12,12,0,0,1,44,56ZM20,12.8A7.21,7.21,0,0,0,12.8,20V44A7.21,7.21,0,0,0,20,51.2H44A7.21,7.21,0,0,0,51.2,44V20A7.21,7.21,0,0,0,44,12.8Z"/><path class="cls-2" d="M32,45.6A13.6,13.6,0,1,1,45.6,32,13.61,13.61,0,0,1,32,45.6Zm0-22.4A8.8,8.8,0,1,0,40.8,32,8.81,8.81,0,0,0,32,23.2Z"/><circle class="cls-2" cx="45.6" cy="19.2" r="2.4"/></g>
+                </svg>
+              </a>
+            </li>
+            <li class="nav-item d-inline-block"> 
+              <a class="fs-6 pt-3 text-white" href="https://www.tiktok.com/@arikui_yoriga?">
+                <svg class="p-1 mx-1" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="35" height="35" viewBox="0 0 299.99999 300.00001" id="svg2" version="1.1" inkscape:version="0.92.3 (2405546, 2018-03-11)" sodipodi:docname="base.svg" inkscape:export-filename="/home/thewizardplusplus/projects/tiktok-icon/base_64x64.png" inkscape:export-xdpi="19.200001" inkscape:export-ydpi="19.200001"><defs id="defs4"/><sodipodi:namedview id="base" pagecolor="#ffffff" bordercolor="#666666" borderopacity="1.0" inkscape:pageopacity="0.0" inkscape:pageshadow="2" inkscape:zoom="1.4" inkscape:cx="177.34259" inkscape:cy="159.02713" inkscape:document-units="px" inkscape:current-layer="layer2" showgrid="false" inkscape:window-width="1280" inkscape:window-height="771" inkscape:window-x="0" inkscape:window-y="0" inkscape:window-maximized="1" units="px"/><metadata id="metadata7"><rdf:RDF><cc:Work rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/><dc:title/></cc:Work></rdf:RDF></metadata><g inkscape:groupmode="layer" id="layer2" inkscape:label="Layer 1" style="display:inline" transform="translate(0,-752.36214)"><g id="g95" transform="translate(-221.85742,376.21395)"><rect ry="71.308525" y="376.14819" x="221.85742" height="299.99948" width="299.99948" id="rect4146" style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.14339042;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"/>
+                  <path sodipodi:nodetypes="ccccsssccssscccc" inkscape:connector-curvature="0" d="m 462.5,465.93363 c -56.07143,-5.35714 -55,-54.64285 -55,-54.64285 h -36.15439 v 155.64505 c -0.91152,16.64579 -14.67491,29.67613 -31.34564,29.67613 -17.33765,0 -31.3926,-14.05495 -31.3926,-31.3926 0,-17.33765 14.05495,-31.3926 31.3926,-31.3926 3.65897,0 7.28978,0.63967 10.72845,1.89013 l 0.35473,-41.09386 c -3.82692,-0.64891 -7.7016,-0.97509 -11.58315,-0.97509 -38.26544,0 -69.28571,31.02027 -69.28571,69.28571 0,38.26544 31.02027,69.28572 69.28571,69.28572 36.95878,0 67.41115,-29.0092 69.20413,-65.92446 v -81.07556 c 0,0 19.8673,17.14285 53.79587,17.85714 z" style="display:inline;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" id="path4230"/></g></g>
+                </svg>
+              </a>
+            </li>
+            </div>
+
+
+
+          </ul>
+        </div>
         </div>
     </footer>
+
+<div class="d-none">
+  <?xml version="1.0" ?>
+  <svg class="p-1 mx-1" viewBox="0 0 64 64" width="35" height="35" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><style>.cls-1{fill:url(#radial-gradient);}.cls-2{fill:#fff;}</style><radialGradient cx="-578.95" cy="-837.6" gradientTransform="translate(499.5 629.5) scale(0.75)" gradientUnits="userSpaceOnUse" id="radial-gradient" r="197.06"><stop offset="0" stop-color="#f9ed32"/><stop offset="0.36" stop-color="#ee2a7b"/><stop offset="0.44" stop-color="#d22a8a"/><stop offset="0.6" stop-color="#8b2ab2"/><stop offset="0.83" stop-color="#1b2af0"/><stop offset="0.88" stop-color="#002aff"/></radialGradient></defs><title/><g data-name="3-instagram" id="_3-instagram"><rect class="cls-1" height="64" rx="11.2" ry="11.2" transform="translate(64 64) rotate(180)" width="64"/><path class="cls-2" d="M44,56H20A12,12,0,0,1,8,44V20A12,12,0,0,1,20,8H44A12,12,0,0,1,56,20V44A12,12,0,0,1,44,56ZM20,12.8A7.21,7.21,0,0,0,12.8,20V44A7.21,7.21,0,0,0,20,51.2H44A7.21,7.21,0,0,0,51.2,44V20A7.21,7.21,0,0,0,44,12.8Z"/><path class="cls-2" d="M32,45.6A13.6,13.6,0,1,1,45.6,32,13.61,13.61,0,0,1,32,45.6Zm0-22.4A8.8,8.8,0,1,0,40.8,32,8.81,8.81,0,0,0,32,23.2Z"/><circle class="cls-2" cx="45.6" cy="19.2" r="2.4"/></g>
+  </svg>
+<div>
+
+
+
 <script tyle="module">
 Vue.use(VueAwesomeSwiper);
 

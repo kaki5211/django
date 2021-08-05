@@ -47,7 +47,7 @@
                     <th class="ps-3 fs-6 text-white bg-teal fw-normal" style="width: 140px;" >著者</th>
                     <th class="ps-3 fs-6 text-white bg-teal fw-normal" style="width: 130px;" >生年月日</th>
                     <th class="ps-3 fs-6 text-white bg-teal fw-normal" style="width: 90px;" >性別</th>
-                    <th class="ps-3 fs-6 text-white bg-teal fw-normal" style="width: 300px;">投稿した本のカテゴリー数</th>
+                    <th class="ps-3 fs-6 text-white bg-teal fw-normal" style="width: 150px;">投稿した本の数</th>
                   </tr>
                 </thead>
 
@@ -56,11 +56,16 @@
                   <tbody>
                   {% for item in author|slice:":3" %}
                     <tr>
-                      <td class="text-center table-item fs-6 p-01" style="width: 70px;">{{item.get_word_oder_display}}</td>
-                      <td class="text-center table-item fs-6 p-01" style="width: 140px;"><a class="text-decoration-none text-teal" href="{% url 'book:author_info' item.author_eng %}">{{item.author}}</a></td>
-                      <td class="text-center table-item fs-6 p-01" style="width: 130px;">{{ item.age|date:"Y/m/d" }}</td>
-                      <td class="text-center table-item fs-6 p-01" style="width: 90px;">{{ item.get_sex_display }}</td>
-                      <td class="text-center table-item fs-6 p-01" style="width: 300px;">{{ item.author|count_books }}</td>
+                      <td class="text-center table-item fs-6" style="width: 70px;">{{item.get_word_oder_display}}</td>
+                      {% comment %} <td class="text-center table-item fs-6 p-01" style="width: 140px;"><a class="text-decoration-none text-teal" href="{% url 'book:book' item.author_eng %}">{{item.author}}</a></td> {% endcomment %}
+
+                      <td class="text-center table-item fs-6" style="width: 140px;">
+                        <form class="d-inline-block" action="{% url 'book:book' %}" method="post">{% csrf_token %}<input type="hidden" name="author" value={{ item.author }}><input type="hidden" name="age_low" value='1900-1-1'><input type="hidden" name="age_high" value={{ date_now|date:"Y-n-j" }}><input type="submit" class="py-0 text-decoration-none bg-transparent text-teal text-center fs-6 border-none" href="{% url "book:book" %}" value="{{ item.author }}"></input></form>
+                      </td>
+                      
+                      <td class="text-center table-item fs-6" style="width: 130px;">{{ item.age|date:"Y/m/d" }}</td>
+                      <td class="text-center table-item fs-6" style="width: 90px;">{{ item.get_sex_display }}</td>
+                      <td class="text-center table-item fs-6" style="width: 150px;">{{ item.author|count_books }}</td>
                     </tr>
                   {% endfor %}
 

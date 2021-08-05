@@ -42,7 +42,7 @@
         {% for field in field2 %}
         {% if "high" not in field.id_for_label %}
         <div>
-        <div class="d-inline-block">
+        <div class="d-inline-block mb-1">
         {% endif %}
             {% comment %} {{field.id_for_label}} {% endcomment %}
             {{ field.label_tag }}
@@ -51,7 +51,7 @@
                 {% comment %} <ul class="d-inline-block form-inline px-0 mb-0"> {% endcomment %}
             {% endif %}
             {% if "low" in field.id_for_label and "page" not in field.id_for_label %}
-                <ul class="d-inline-block form-inline mb-0 ">
+                <ul class="d-inline-block form-inline mb-1 ps-0">
             {% endif %}
 
 

@@ -9,7 +9,7 @@ import re, datetime
 from django_middleware_global_request.middleware import get_request
 # import django.django_middleware_global_request.middleware
 # from django.
-from .forms import BookForm, CategoryForm, AuthorForm
+from .forms import BookForm, CategoryForm, AuthorForm, PublisherForm
 from . import forms
 # from . import forms
 
@@ -214,7 +214,7 @@ class BookView(ListView):
         context['category_y'] = data_info['category_y']
         context['category_m'] = data_info['category_m']
         context['category_d'] = data_info['category_d']
-        context['myform'] = [BookForm(), CategoryForm() ,AuthorForm()]
+        context['myform'] = [BookForm(), CategoryForm() ,AuthorForm(), PublisherForm()]
         try:
             context['book_info'] = Book.objects.filter(post_day=datetime.date(int(data_info['category_y']), int(data_info['category_m']), int(data_info['category_d'])))
         except:pass
@@ -307,7 +307,7 @@ class BookView(ListView):
     def post(self, request, *args, **kwargs):
             # 一覧表示からの遷移や、確認画面から戻った時
         context = self.get_context_data(self, request, *args, **kwargs)
-        context['myform'] = [BookForm(request.POST), CategoryForm(request.POST) ,AuthorForm(request.POST)]
+        # context['myform'] = [BookForm(request.POST), CategoryForm(request.POST) ,AuthorForm(request.POST)]
         data_info = self.get_date()
 
         # con22 = self.context
@@ -321,8 +321,10 @@ class BookView(ListView):
 
         # context['myform'] = [BookForm(request.POST), CategoryForm(request.POST) ,AuthorForm(request.POST)]
         # context2 = context['myform'][1].__dict__
+        # if 'issue_low_year' in request.POST and 'issue_low_month' in request.POST and 'issue_low_day' in request.POST:
         request.session['form_data'] = request.POST
-        aaa = BookForm(request.POST)
+        
+        # aaa = BookForm(request.POST)
         # aa
 
         # sessionに値がある場合、その値でクエリ発行する。
@@ -332,53 +334,133 @@ class BookView(ListView):
         # youtube_video_episode = form_value['youtube_video_episode']
         # 検索条件
         condition_result = []
-        if request.POST['title']:
-            condition_title = Q(title__contains=request.POST['title'])
-            condition_result.append("condition_title")
-        if request.POST['pages_low'] and request.POST['pages_high']:
-            condition_pages = Q(pages__range=[request.POST['pages_low'], request.POST['pages_high']])
-            condition_result.append("condition_pages")
-        # if request.POST['issue_low_year'] and request.POST['issue_low_month'] and request.POST['issue_low_day']:
-        condition_issue = Q(issue__range=["{}-{}-{}".format(request.POST['issue_low_year'], request.POST['issue_low_month'], request.POST['issue_low_day']),
-            "{}-{}-{}".format(request.POST['issue_high_year'], request.POST['issue_high_month'], request.POST['issue_high_day'])])
-        condition_result.append("condition_issue")
-        if request.POST['author']:
-            condition_author = Q(Author_info__author__contains=request.POST['author'])
-            condition_result.append("condition_author")
-        # if request.POST['age_high_year'] and request.POST['age_high_month'] and request.POST['age_high_day']:
-        condition_age = Q(Author_info__age__range=["{}-{}-{}".format(request.POST['age_low_year'], request.POST['age_low_month'], request.POST['age_low_day']),
-            "{}-{}-{}".format(request.POST['age_high_year'], request.POST['age_high_month'], request.POST['age_high_day'])])
-        condition_result.append("condition_age")
-        if request.POST.getlist('category'):
-            ct_list=[]
-            for ct in request.POST.getlist('category'):
-                ct_list.append(ct)
-            condition_category = Q(category_info__category__in=ct_list)
-            condition_result.append("condition_category")
-        if request.POST['sex']:
-            condition_sex = Q(Author_info__sex=request.POST['sex'])
-            condition_result.append("condition_sex")
-        result_q=""
-        for q in condition_result:
-            if condition_result[0] != q:
-                q = "{} {}".format("&", q)
-            else:
-                q = "{}".format(q)
-                result_q = "{}".format(q)
-                continue
-            result_q = "{} {}".format(result_q, q)
-        rdict = {}
-        exec("result_and = {}".format(result_q), locals(), rdict)
-        result = Book.objects.select_related().filter(rdict["result_and"])
+        try:
 
+            if 'title' in request.POST:
+                if request.POST['title'] != "":
+                    condition_title = Q(title__contains=request.POST['title'])
+                    condition_result.append("condition_title")
+
+            if 'pages_low' in request.POST and 'pages_high' in request.POST:
+                if request.POST['pages_low'] != "" or request.POST['pages_high'] != "":
+                    if request.POST['pages_low'] != "" and request.POST['pages_high'] != "":
+                        condition_pages = Q(pages__range=[request.POST['pages_low'], request.POST['pages_high']])
+                    elif request.POST['pages_low'] == "":
+                        condition_pages = Q(pages__range=['0', request.POST['pages_high']])
+                    elif request.POST['pages_high'] == "":
+                        condition_pages = Q(pages__range=[request.POST['pages_low'], '9999'])
+                    condition_result.append("condition_pages")
+
+
+            if 'issue_low_year' in request.POST and 'issue_low_month' in request.POST and 'issue_low_day' in request.POST:
+                # condition_issue = Q(issue__range=["1990-1-1", datetime.date.today().strftime('%Y/%m/%d')])
+                condition_issue = Q(issue__range=["{}-{}-{}".format(request.POST['issue_low_year'], request.POST['issue_low_month'], request.POST['issue_low_day']),
+                    "{}-{}-{}".format(request.POST['issue_high_year'], request.POST['issue_high_month'], request.POST['issue_high_day'])])
+                if request.POST['issue_low_year'] > request.POST['issue_high_year']:
+                    condition_issue = Q(issue__range=["{}-{}-{}".format(request.POST['issue_high_year'], request.POST['issue_high_month'], request.POST['issue_high_day']),
+                        "{}-{}-{}".format(request.POST['issue_low_year'], request.POST['issue_low_month'], request.POST['issue_low_day'])])
+                elif request.POST['issue_low_year'] == request.POST['issue_high_year']:
+                    if request.POST['issue_low_month'] > request.POST['issue_high_month']:
+                        condition_issue = Q(issue__range=["{}-{}-{}".format(request.POST['issue_high_year'], request.POST['issue_high_month'], request.POST['issue_high_day']),
+                            "{}-{}-{}".format(request.POST['issue_low_year'], request.POST['issue_low_month'], request.POST['issue_low_day'])])
+                    elif request.POST['issue_low_month'] == request.POST['issue_high_month']:
+                        if request.POST['issue_low_day'] > request.POST['issue_high_day']:
+                            condition_issue = Q(issue__range=["{}-{}-{}".format(request.POST['issue_high_year'], request.POST['issue_high_month'], request.POST['issue_high_day']),
+                                "{}-{}-{}".format(request.POST['issue_low_year'], request.POST['issue_low_month'], request.POST['issue_low_day'])])
+                condition_result.append("condition_issue")
+
+            else:
+                a = request.POST
+                # request.POST['issue_high_year'] = datetime.date.today().strftime('%Y')
+                # request.POST['issue_high_month'] = datetime.date.today().strftime('%m')
+                # request.POST['issue_high_day'] = datetime.date.today().strftime('%d')
+
+
+            if 'age_high_year' in request.POST and 'age_high_month' in request.POST and 'age_high_day' in request.POST:
+                condition_age = Q(Author_info__age__range=["{}-{}-{}".format(request.POST['age_low_year'], request.POST['age_low_month'], request.POST['age_low_day']),
+                    "{}-{}-{}".format(request.POST['age_high_year'], request.POST['age_high_month'], request.POST['age_high_day'])])
+                if request.POST['age_low_year'] > request.POST['age_high_year']:
+                    condition_issue = Q(issue__range=["{}-{}-{}".format(request.POST['age_high_year'], request.POST['age_high_month'], request.POST['age_high_day']),
+                        "{}-{}-{}".format(request.POST['age_low_year'], request.POST['age_low_month'], request.POST['age_low_day'])])
+                elif request.POST['age_low_year'] == request.POST['age_high_year']:
+                    if request.POST['age_low_month'] > request.POST['age_high_month']:
+                        condition_issue = Q(issue__range=["{}-{}-{}".format(request.POST['age_high_year'], request.POST['age_high_month'], request.POST['age_high_day']),
+                            "{}-{}-{}".format(request.POST['age_low_year'], request.POST['age_low_month'], request.POST['age_low_day'])])
+                    elif request.POST['age_low_month'] == request.POST['age_high_month']:
+                        if request.POST['age_low_day'] > request.POST['age_high_day']:
+                            condition_issue = Q(issue__range=["{}-{}-{}".format(request.POST['age_high_year'], request.POST['age_high_month'], request.POST['age_high_day']),
+                                "{}-{}-{}".format(request.POST['age_low_year'], request.POST['age_low_month'], request.POST['age_low_day'])])
+
+                
+                condition_result.append("condition_age")
+
+            if 'category' in request.POST:
+                ct_list=[]
+                for ct in request.POST.getlist('category'):
+                    ct_list.append(ct)
+                condition_category = Q(category_info__category__in=ct_list)
+                condition_result.append("condition_category")
+
+            if 'sex' in request.POST:
+                if request.POST['sex'] != "":
+                    condition_sex = Q(Author_info__sex=request.POST['sex'])
+                    condition_result.append("condition_sex")
+
+            if 'author' in request.POST:
+                if request.POST['author'] != "":
+                    condition_author = Q(Author_info__author__contains=request.POST['author'])
+                    condition_result.append("condition_author")
+
+
+
+            result_q=""
+            for q in condition_result:
+                if condition_result[0] != q:
+                    q = "{} {}".format("&", q)
+                else:
+                    q = "{}".format(q)
+                    result_q = "{}".format(q)
+                    continue
+                result_q = "{} {}".format(result_q, q)
+            rdict = {}
+            exec("result_and = {}".format(result_q), locals(), rdict)
+            result = Book.objects.select_related().filter(rdict["result_and"])
+
+                
+
+            context["book"] = result
+            if 'sex' in request.POST:
+                context['myform'] = [BookForm(request.POST), CategoryForm(request.POST) ,AuthorForm(request.POST), PublisherForm(request.POST)]
+            else:
+                # if 'category' in request.POST or 'publisher' in request.POST:
+                context['myform'] = [BookForm(), CategoryForm(request.POST) ,AuthorForm(request.POST), PublisherForm(request.POST)]
+
+
+            return render(request, 'book/books.html', context)
+
+
+        except:
+
+            context['myform'] = [BookForm(), CategoryForm(request.POST) ,AuthorForm(), PublisherForm(request.POST)]
+
+            # context['myform'] = [BookForm(), CategoryForm(request.POST) ,AuthorForm(), PublisherForm(request.POST)]
+            
+            return render(request, 'book/books.html', context)
             
 
-        context["book"] = result
-        return render(request, 'book/books.html', context)
+
+
         # コンテキストにフォームのオブジェクトを指定してレンダリング
 
 
-
+class OthersView(ListView):
+    model = Book
+    template_name = 'book/others.html'
+    def get_context_data(self, **kwargs):
+        # context = super().my_get_context_data(self, **kwargs)
+        context = super().get_context_data()
+        context['view'] = [0,1,0,1,0] # [ブログ紹介, メインコンテンツ+サイドバー, メインコンテンツのみ, トピックス]
+        return context
 
 
 class SearchView(ListView):
