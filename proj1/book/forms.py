@@ -35,12 +35,14 @@ class BookForm(forms.ModelForm):
         widget=forms.SelectDateWidget(empty_label=None, months=MONTHS, years=[x for x in range(1900, datetime.date.today().year+1)], attrs={
             'id': 'issue_low',
             'pattern':'^[0-9]+$',
+            'class':'fs-6_5'
         }))
 
     issue_high = forms.IntegerField(label="～", label_suffix = " ", required=True, initial=datetime.date.today(),
         widget=forms.SelectDateWidget(empty_label=None , months=MONTHS, years=[x for x in range(1900, datetime.date.today().year+1)], attrs={
             'id': 'issue_high',
             'pattern':'^[0-9]+$',
+            'class':'fs-6_5'
         }))
 
     def __init__(self, *args, **kwd):
@@ -82,11 +84,13 @@ class AuthorForm(forms.ModelForm):
     age_low = forms.IntegerField(label="[著者] 生年月日",  required=True, initial="1900-1-1",
         widget=forms.SelectDateWidget(empty_label=None, months=MONTHS, years=[x for x in range(1900, datetime.date.today().year+1)], attrs={
             'id': 'age_low',
+            'class':'fs-6_5'
             }))
     
     age_high = forms.IntegerField(label="～", label_suffix = " ", required=True, initial=datetime.date.today(),
         widget=forms.SelectDateWidget(empty_label=None, months=MONTHS, years=[x for x in range(1900, datetime.date.today().year+1)], attrs={
             'id': 'age_high',
+            'class':'fs-6_5'
             }))
 
     def __init__(self, *args, **kwd):
