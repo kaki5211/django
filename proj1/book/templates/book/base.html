@@ -508,7 +508,10 @@ align-items:center" {% endcomment %}
                               <div class="col-18 col-lg-9 col-xxl-7 text-center py-1 py-md-2 py-mx-2 px-xl-3 border-gray-dark">
                                 <div class="text-start text-dark ps-1 fs-7">{{ item.post_day | date:"Y-m-d" }}</div>
                                 <div class="ratio ratio-138x200 border-gray-dark border">
-                                  {{ item.amazon_url | safe}}
+                                  <a href ="{% url 'book:book_info' item.post_day %}"  style="z-index: 5;">
+                                    {{ item.amazon_url | safe}}
+                                  </a>
+                                  {% comment %} <a class="bg-gray-dark d-flex align-items-center" href="{% url 'book:book_info' book_info.post_day %}" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"><img class="w-100" src="https://hbb.afl.rakuten.co.jp/hgb/1c8df943.b0cc10a1.1c8df944.22ca7156/?me_id=1213310&item_id=17037475&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F1783%2F9784167901783.jpg%3F_ex%3D240x240&s=240x240&t=pict" border="0" alt="" title=""></a> {% endcomment %}
                                 </div>
                                 <div>
                                   <div class="fw-bold fs-6 fs-lg-5 my-1 my-md-2 py-0 text-truncate-2 h-48 d-table w-100"><a class="text-dark align-middle d-table-cell text-decoration-none" href="{% url 'book:book_info' item.post_day %}">{{ item.title }}</a></div>

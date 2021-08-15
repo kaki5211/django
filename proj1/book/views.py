@@ -162,7 +162,7 @@ class AuthorView(MyListView):
         return template_name
 
 class PublisherView(MyListView):
-    model = Publisher
+    model = Book
     template_name = 'book/publishers.html'
     def get_context_data(self, **kwargs):
         context = super().my_get_context_data(self, **kwargs)
@@ -172,12 +172,6 @@ class PublisherView(MyListView):
         # ■■■ urlの文字列で、テンプレートの分岐 ■■■
         template_name = self.my_get_template_names(self, *args, **kwargs)
         return template_name
-
-
-
-
-
-
 
 class SeriesView(ListView):
     model = Series
@@ -198,7 +192,7 @@ class ArticlesView(MyListView):
 class BookView(ListView):
     model = Book
     template_name = 'book/books.html'
-    success_url = '/books/'    
+    success_url = '/books/'
     # form_class = BookForm
     # object_list = Book
     def get_context_data(self, *args, **kwargs):
@@ -210,7 +204,7 @@ class BookView(ListView):
         # context = super().get_context_data()
         context = {}
         data_info = self.get_date()
-        context['view'] = [0,1,0,0,1] # [ブログ紹介, メインコンテンツ+サイドバー, メインコンテンツのみ, トピックス, メインコンテンツタイトル]
+        context['view'] = [0,1,0,1,1] # [ブログ紹介, メインコンテンツ+サイドバー, メインコンテンツのみ, トピックス, メインコンテンツタイトル]
         context['category_y'] = data_info['category_y']
         context['category_m'] = data_info['category_m']
         context['category_d'] = data_info['category_d']
@@ -230,16 +224,18 @@ class BookView(ListView):
                 context['book_info'] = Book.objects.get(post_day=context['date'])
         except:
             pass
+        context['book_list'] = Book.objects.all()
+
         return context
 
-    def get_queryset(self, *args, **kwargs):
-        # ■■■ urlの文字列で、クエリセットの分岐 ■■■
-        data_info = self.get_date()
-        if data_info['category_d'] != None:
-            q = Book.objects.filter(post_day=datetime.date(int(data_info['category_y']), int(data_info['category_m']), int(data_info['category_d'])))
-        else:
-            q =  Book.objects.all()
-        return q
+    # def get_queryset(self, *args, **kwargs):
+    #     # ■■■ urlの文字列で、クエリセットの分岐 ■■■
+    #     data_info = self.get_date()
+    #     if data_info['category_d'] != None:
+    #         q = Book.objects.filter(post_day=datetime.date(int(data_info['category_y']), int(data_info['category_m']), int(data_info['category_d'])))
+    #     else:
+    #         q =  Book.objects.all()
+    #     return q
 
     def get_template_names(self, *args, **kwargs):
         # ■■■ urlの文字列で、テンプレートの分岐 ■■■
@@ -434,7 +430,6 @@ class BookView(ListView):
             else:
                 # if 'category' in request.POST or 'publisher' in request.POST:
                 context['myform'] = [BookForm(), CategoryForm(request.POST) ,AuthorForm(request.POST), PublisherForm(request.POST)]
-
 
             return render(request, 'book/books.html', context)
 
