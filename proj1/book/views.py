@@ -210,7 +210,7 @@ class BookView(ListView):
         context['category_d'] = data_info['category_d']
         context['myform'] = [BookForm(), CategoryForm() ,AuthorForm(), PublisherForm()]
         try:
-            context['book_info'] = Book.objects.filter(post_day=datetime.date(int(data_info['category_y']), int(data_info['category_m']), int(data_info['category_d'])))
+            context['book_info'] = Book.objects.get(post_day=datetime.date(int(data_info['category_y']), int(data_info['category_m']), int(data_info['category_d'])))
         except:pass
         # context['form_author'] = AuthorForm()
         # context['form_category'] = CategoryForm()
