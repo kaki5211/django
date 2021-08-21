@@ -41,7 +41,7 @@ def common(request):
                                 Author.objects.filter(word_oder='Wa').order_by("author")
                                 ]
     context['author'] = Author.objects.all()
-    context['book'] = Book.objects.all()
+    context['book'] = Book.objects.order_by('-post_day')
     # context['author'] = []
     set_count = [Book.objects.filter(Author_info=a).count for a in Author.objects.all()]
     if pf == 'Windows':

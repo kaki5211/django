@@ -4,6 +4,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db.models.aggregates import Count
 from django.db.models.enums import Choices
 from django.db.models.fields import SmallIntegerField, TimeField
+from django.db.models.fields.related import ForeignKey
 from django.db.models.fields.reverse_related import ManyToOneRel
 
 # いらないｰｰｰｰｰｰｰｰ
@@ -29,6 +30,7 @@ class Book(models.Model):
     Author_info = models.ForeignKey("Author", verbose_name=("著者情報"), on_delete=models.CASCADE, null=True, blank=True)
     category_info = models.ManyToManyField("Category", verbose_name=("カテゴリー情報"), blank=True, related_name="category_info")
     publisher_info = models.ForeignKey("Publisher", verbose_name=("出版社情報"), on_delete=models.CASCADE, null=True, blank=True)
+    publisher_label_info = models.ForeignKey("Publisher_label", verbose_name=("レーベル"), on_delete=models.CASCADE, null=True, blank=True)
 
     contents = models.TextField("コンテンツ", null=True, blank=True)
 
@@ -82,6 +84,13 @@ class Publisher(models.Model):
     post_day = models.DateField('投稿日', null=True) # [発行日, y m d]
     def __str__(self):
         return self.publisher
+
+class Publisher_label(models.Model):
+    publisher = models.ForeignKey("Publisher", verbose_name=("出版者"), on_delete=models.CASCADE, null=True, blank=True)
+    label = models.CharField("ラベル", max_length=20, default=None) # 追加していく-----------
+    label_eng = models.CharField("ラベルeng", max_length=20, default=None) # 追加していく-----------
+    def __str__(self):
+        return self.label
 
 class Series(models.Model):
     series = models.CharField("シリーズ", max_length=100)

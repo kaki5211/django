@@ -228,14 +228,14 @@ class BookView(ListView):
 
         return context
 
-    # def get_queryset(self, *args, **kwargs):
-    #     # ■■■ urlの文字列で、クエリセットの分岐 ■■■
-    #     data_info = self.get_date()
-    #     if data_info['category_d'] != None:
-    #         q = Book.objects.filter(post_day=datetime.date(int(data_info['category_y']), int(data_info['category_m']), int(data_info['category_d'])))
-    #     else:
-    #         q =  Book.objects.all()
-    #     return q
+    def get_queryset(self, *args, **kwargs):
+        # ■■■ urlの文字列で、クエリセットの分岐 ■■■
+        data_info = self.get_date()
+        if data_info['category_d'] != None:
+            q = Book.objects.filter(post_day=datetime.date(int(data_info['category_y']), int(data_info['category_m']), int(data_info['category_d'])))
+        else:
+            q =  Book.objects.all()
+        return q
 
     def get_template_names(self, *args, **kwargs):
         # ■■■ urlの文字列で、テンプレートの分岐 ■■■

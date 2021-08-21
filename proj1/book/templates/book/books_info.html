@@ -49,16 +49,76 @@
     </div>
 
 
-    {% comment %} <div class="fw-bold fs-6 fs-lg-5 my-1 my-md-2 py-0 text-truncate-2 h-48 d-table w-100"><a class="text-dark align-middle d-table-cell text-decoration-none" href="{% url 'book:book_info' book_info.post_day %}">{{ book_info.title }}</a></div> {% endcomment %}
-    <div>
-      <div class="text-start ps-1 fs-6_5">
-        <div class="w-75 mx-auto">著者：<span class="rounded">{{ book_info.Author_info }}</span></div>
-        <div class="w-75 mx-auto">カテゴリー：<span class="text-decoration-none py-0 px-01 border-gray-dark border text-white bg-{% for item2 in book_info.category_info.all %}{{item2.color}}{%endfor%} rounded">{% for item2 in book_info.category_info.all %}{{item2.get_category_display}}{%endfor%}</span><span>{{item.youth_choices}}</span></div>
-        <div class="w-75 mx-auto">出版社：<span class="bg-ararm rounded">{{ book_info.publisher_info }}</span></div>
-        <div class="py-1 py-md-2"></div>
-        <div class="border-bottom-mygreen mt-1 w-75 mx-auto"></div>
-        <div class="py-1 py-md-2"></div>
+
+
+    <div class="fs-6_5">
+      <div class="table-responsive">
+        <table class="table table-borderless">
+          
+          <tr class="d-inline">
+            <td class="text-center p-0" style="width: 70px;" >[著者]</th>
+            <td class="text-start p-0" style="width: 100px;" >著者</th>
+            <td class="text-start p-0" style="width: 20px;" >：</th>
+            <td class="text-start p-0" style="width: 150px;" >{{ book_info.Author_info }}</th>
+          </tr>
+
+          <tr class="d-inline">
+            <td class="text-center p-0" style="width: 70px;" >[本]</th>
+            <td class="text-start p-0" style="width: 100px;" >発行日</th>
+            <td class="text-start p-0" style="width: 20px;" >：</th>
+            <td class="text-start p-0" style="width: 150px;" >{{ book_info.issue }}</th>
+          </tr>
+
+
+          <tr class="d-inline">
+            <td class="text-center p-0" style="width: 70px;" >[本]</th>
+            <td class="text-start p-0" style="width: 100px;" >ページ数</th>
+            <td class="text-start p-0" style="width: 20px;" >：</th>
+            <td class="text-start p-0" style="width: 150px;" >{{ book_info.pages }}</th>
+          </tr>
+
+
+          <tr class="d-inline">
+            <td class="text-center p-0" style="width: 70px;" >[本]</th>
+            <td class="text-start p-0" style="width: 100px;" >カテゴリー</th>
+            <td class="text-start p-0" style="width: 20px;" >：</th>
+            <td class="text-start p-0" style="width: 150px;" ><span class="text-decoration-none py-0 px-01 border-gray-dark border text-white bg-{% for item2 in book_info.category_info.all %}{{item2.color}}{%endfor%} rounded">{% for item2 in book_info.category_info.all %}{{item2.get_category_display}}{%endfor%}</div></th>
+          </tr>
+
+
+          <tr class="d-inline">
+            <td class="text-center p-0" style="width: 70px;" >[出版社]</th>
+            <td class="text-start p-0" style="width: 100px;" >出版社</th>
+            <td class="text-start p-0" style="width: 20px;" >：</th>
+            <td class="text-start p-0" style="width: 150px;" >{{ book_info.publisher_info.publisher }}</th>
+          </tr>
+
+
+          <tr class="d-inline">
+            <td class="text-center p-0" style="width: 70px;" >[出版社]</th>
+            <td class="text-start p-0" style="width: 100px;" >レーベル</th>
+            <td class="text-start p-0" style="width: 20px;" >：</th>
+            <td class="text-start p-0" style="width: 150px;" >{{ book_info.publisher_label_info.label }}</th>
+          </tr>
+
+          </table>
+        </div>
       </div>
+
+
+
+
+
+
+
+
+
+    {% comment %} <div class="fw-bold fs-6 fs-lg-5 my-1 my-md-2 py-0 text-truncate-2 h-48 d-table w-100"><a class="text-dark align-middle d-table-cell text-decoration-none" href="{% url 'book:book_info' book_info.post_day %}">{{ book_info.title }}</a></div> {% endcomment %}
+
+
+      <div class="py-3 py-md-3"></div>
+      <div class="border-bottom-mygreen mt-1 w-75 mx-auto"></div>
+      <div class="py-1 py-md-2"></div>
     </div>
 
 
@@ -72,7 +132,14 @@
     <p class="pb-3 pt-3">
       　主人公、僕。僕は刑務所で働く20代男性。そこで出会う山井という少年。山井はある犯罪を犯し、刑務所に収容された。彼は控訴せず、このままだと死刑という罰を受けることになる。
       なぜ山井は控訴しないのか、又、僕はなぜ看守という仕事を選択したのか。読み進めていくと明らかになる、僕の中の感情、山井の中の感情。どこか欠けてしまった人間の、黒い葛藤と明るい希望の物語。
+   かてごりー
+
+        <h3 class="d-inline my-auto">こんな方にお勧め</h3>
+    <p class="pb-3 pt-3">
+      　主人公、僕。僕は刑務所で働く20代男性。そこで出会う山井という少年。山井はある犯罪を犯し、刑務所に収容された。彼は控訴せず、このままだと死刑という罰を受けることになる。
+      なぜ山井は控訴しないのか、又、僕はなぜ看守という仕事を選択したのか。読み進めていくと明らかになる、僕の中の感情、山井の中の感情。どこか欠けてしまった人間の、黒い葛藤と明るい希望の物語。
     </p>
+
     </div>
 
       <h2 class="decoration_simple my-3 my-md-4 mb-lg-3">登場人物と感想</h2>
@@ -299,7 +366,10 @@
 
 
         <p class="my-5">　これは、施設長が、まだ小学生頃の主人公僕に言った言葉。この言葉、まるで施設長は主人公僕にある闇をすべて理解していて、そのうえで主人公僕に言った言葉に思えた。究極の自己暗示というか、
-        自分で自分を肯定するための言葉というか、そんな感じで、主人公が自分自身を保てなくなるのを防ぐための言葉。そんなふうに俺は思った。<strong>"現在というのは、どんな過去にも勝る。"</strong>特にこの部分
+        自分で自分を肯定するための言葉というか、そんな感じで、主人公が自分自身を保てなくなるのを防ぐための言葉。そんなふうに俺は思った。<br>
+        　<strong>"いいか？全て、今のお前のためだけにあった、と考えていい"</strong>特にこの部分すごい。例えば、フットサルがうまくてすごいと褒められるとは、東大に受かってすごいと褒められるとか、自分で自分を褒められるとか、そんな次元の話じゃない。
+        この世界ができたこと、この社会が構築されたこと、今の自分を取り巻く環境、それら全てが今の自分のために必然的に作り上げられたもの、という考え方。
+        もし本当に落ち込んだ時、自分自身を見失いそうになった時、告白や何かで勇気が出ないとき、失敗を恐れているとき、そんな状況の時にはこの一言を思い出すだけですべてがうまくいくんじゃないかとさえ思う。そんな言葉。
         </p>
 
 <h2 class="decoration_simple my-4 my-lg-5">まとめ</h2>
@@ -370,7 +440,7 @@
                 </div>
               </div>
  {% endcomment %}
- 
+
 {% comment %} 引用 {% endcomment %}
 {% comment %} 
               <div>

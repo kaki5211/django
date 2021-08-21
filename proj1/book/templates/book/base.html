@@ -699,7 +699,7 @@ align-items:center" {% endcomment %}
             <a class="text-dark fw-blod fs-4 p-2 text-white text-decoration-none">新着情報</a>
           </div>
           <table class="table table-striped w-100 table-hover table-sm table-borderless table-bordered p-0">
-            {% for item in book_list|slice:":10" %}
+            {% for item in book|slice:":10" %}
             <tbody>
               <td class="text-center border-width border-right p-01" style="width: 100px;"><a>{{ item.post_day|date:"Y/m/d" }}</a></td>
               <td class="border-0 p-01">「<a class=" text-dark" href="{% url 'book:book_info' item.post_day %}">{{ item.title }}</a>」を投稿しました</td>
@@ -859,9 +859,6 @@ align-items:center" {% endcomment %}
               </a>
             </li>
             </div>
-
-
-
           </ul>
         </div>
         </div>
