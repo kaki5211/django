@@ -100,6 +100,10 @@
   font-size: 0.75rem !important;
 }
 
+.fs-7_5 {
+  font-size: 0.7rem !important;
+}
+
 .fs-8 {
   font-size: 0.625rem !important;
 }
@@ -163,12 +167,20 @@
     font-size: 0.875rem !important;
   }
 
+  .fs-md-6_5  {
+    font-size: 0.825rem !important;
+  }
+
   .fs-md-6_p * p  {
     font-size: 0.875rem !important;
   }
 
   .fs-md-7 {
     font-size: 0.75rem !important;
+  }
+
+  .fs-md-7_5 {
+    font-size: 0.7rem !important;
   }
 }
 

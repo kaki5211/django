@@ -375,10 +375,10 @@ background-color: $white;
       </div>
       <div class="row">
         <div class="col-36">
-          <div class="py-2 py-md-2 py-lg-3">
-            <p class="text-center m-auto fs-6 fs-md-2">ブログ紹介文 ・・・・・・・・・・・・・・・・・・</p>
-            <p class="text-center m-auto fs-6 fs-md-2">ブログ紹介文 ・・・・・・・・・・・・・・・・・・</p>
-            <p class="text-center m-auto fs-6 fs-md-2">ブログ紹介文 ・・・・・・・・・・・・・・・・・・</p>
+          <div class="py-2 py-md-2 py-lg-3 fs-6 fs-md-5">
+            <p class="text-center m-auto"><strong>文庫本の感想</strong>ブログ！</p>
+            <p class="text-center m-auto">Python の Django で作成し、<strong>個人で運営！</strong></p>
+            <p class="text-center m-auto">本の感想だけでなく、<strong>文庫本に関する様々な情報</strong>を投稿予定！</p>
           </div>
         </div>
       </div>
@@ -516,7 +516,7 @@ align-items:center" {% endcomment %}
                                 <div>
                                   <div class="fw-bold fs-6 fs-lg-5 my-1 my-md-2 py-0 text-truncate-2 h-48 d-table w-100"><a class="text-dark align-middle d-table-cell text-decoration-none" href="{% url 'book:book_info' item.post_day %}">{{ item.title }}</a></div>
                                 </div>
-                                <div class="text-start ps-1 fs-8">
+                                <div class="text-start ps-1 fs-8 fs-md-7_5 ">
                                   <div class="">著者：<span class="rounded">{{ item.Author_info }}</span></div>
                                   <div class="">カテゴリー：<span class="text-decoration-none py-0 px-01 border-gray-dark border text-white bg-{% for item2 in item.category_info.all %}{{item2.color}}{%endfor%} rounded">{% for item2 in item.category_info.all %}{{item2.get_category_display}}{%endfor%}</span><span>{{item.youth_choices}}</span></div>
                                   <div class="">出版社：<span class="bg-ararm rounded">{{ item.publisher_info }}</span></div>
@@ -589,14 +589,16 @@ align-items:center" {% endcomment %}
                 <div class="collapse navbar-collapse mt-2 border-top" id="DropAuther">
                     <ul class="me-auto mb-2 py-2 mb-lg-0 ps-2 text-start text-dark">                    
                         {% for item in author_Aa %}
-                          <div class="me-auto mb-2 mb-lg-0 text-start mt-2">
                           {% for item2 in item %}
                             {% if forloop.first %}
+                              <div class="me-auto mb-2 mb-lg-0 text-start mt-1">
                               <a class="text-decoration-none text-start btn-light text-dark fs-6 fs-md-5 rounded d-inline-block">{{item2.get_word_oder_display}}＞</a>
                             {% endif %}
                             <form class="d-inline-block fs-5_5" action="{% url 'book:book' %}" method="post">{% csrf_token %}<input type="hidden" name="author" value={{ item2.author }}><input type="hidden" name="age_low" value='1900-1-1'><input type="hidden" name="age_high" value={{ date_now|date:"Y-n-j" }}><input type="submit" class="text-decoration-none py-0 px-01 my-1 d-inline-block px-01 py-0 border rounded btn-dark" href="{% url "book:book" %}" value="{{ item2.author }}"></input></form>
+                            {% if forloop.last %}
+                              </div>
+                            {% endif %}
                           {% endfor %}
-                          </div>
                         {% endfor %}
                     </ul>
                   <a class="text-white" href="{% url 'book:author' %}">著者一覧ページへ移動</a>
@@ -648,7 +650,7 @@ align-items:center" {% endcomment %}
                         <a class="text-decoration-none py-0 px-01" href="#"><span class="px-01 py-0 border rounded btn-dark">{{ item}}</span></a>
                     {% endfor %}
                   </div>
-                  <a class="text-white" href="">その他一覧ページへ移動</a>
+                  <a class="text-white" href="{% url 'book:other' %}">その他一覧ページへ移動</a>
                 </div>
               </div>
             </div>
@@ -763,18 +765,20 @@ align-items:center" {% endcomment %}
                 </a>
                 <ul class="me-auto mb-2 py-2 mb-lg-0 ps-2 text-start text-dark">                    
                     {% for item in author_Aa %}
-                      <div class="me-auto mb-2 mb-lg-0 text-start text-dark mt-2">
                       {% for item2 in item %}
                         {% if forloop.first %}
+                        <div class="me-auto my-1 mb-lg-0 text-start text-dark">
                           <a class="text-decoration-none text-start btn-light text-dark fs-6 fs-md-5 rounded d-inline-block">{{item2.get_word_oder_display}}＞</a>
                         {% endif %}
                         {% comment %} <form action="{% url 'book:book' %}" method="post"> {% endcomment %}
                         {% comment %} {% csrf_token %} {% endcomment %}
                         {% comment %} <a class="text-decoration-none py-0 mx-01 my-1 fs-5_5 d-inline-block rounded btn-dark" name="" href="{% url 'book:author_info' item2.author_eng %}"><span class="px-01 py-0 border rounded btn-dark">{{ item2.author }}</span></a> {% endcomment %}
-                            <form class="d-inline-block fs-7" action="{% url 'book:book' %}" method="post">{% csrf_token %}<input type="hidden" name="author" value={{ item2.author }}><input type="hidden" name="age_low" value='1900-1-1'><input type="hidden" name="age_high" value={{ date_now|date:"Y-n-j" }}><input type="submit" class="text-decoration-none py-0 px-01 my-1 d-inline-block border rounded btn-dark" href="{% url "book:book" %}" value="{{ item2.author }}"></input></form>
+                            <form class="d-inline-block fs-6_5 fs-md-6" action="{% url 'book:book' %}" method="post">{% csrf_token %}<input type="hidden" name="author" value={{ item2.author }}><input type="hidden" name="age_low" value='1900-1-1'><input type="hidden" name="age_high" value={{ date_now|date:"Y-n-j" }}><input type="submit" class="text-decoration-none py-0 px-01 my-1 d-inline-block border rounded btn-dark" href="{% url "book:book" %}" value="{{ item2.author }}"></input></form>
                         {% comment %} </form> {% endcomment %}
-                      {% endfor %}
+                        {% if forloop.end %}
                       </div>
+                        {% endif %}
+                      {% endfor %}
                     {% endfor %}
                 </ul>              
               </div>
@@ -788,9 +792,9 @@ align-items:center" {% endcomment %}
                     出版社
                   </span>
                 </a>
-                <div class="me-auto mb-2 py-2 mb-lg-0 ps-2 text-start text-dark">
+                <div class="me-auto mb-2 py-2 mb-lg-0 ps-2 text-start text-dark ">
                   {% for item in publisher %}
-                      <form class="text-decoration-none fs-5_5 py-0 px-01 my-1 d-inline-block fs-md-5_5 fs-7" action="{% url 'book:book' %}" method="post">{% csrf_token %}<input type="hidden" name="publisher" value={{ item.publisher_eng}}><input type="submit" class="text-decoration-none py-0 px-01 my-1 d-inline-block px-01 py-0 border rounded btn-dark" href="{% url "book:book" %}" value="{{ item.publisher}}"></input></form>
+                      <form class="text-decoration-none fs-5_5 py-0 px-01 d-inline-block fs-6_5 fs-md-6" action="{% url 'book:book' %}" method="post">{% csrf_token %}<input type="hidden" name="publisher" value={{ item.publisher_eng}}><input type="submit" class="text-decoration-none py-0 px-01 mb-1 d-inline-block px-01 py-0 border rounded btn-dark" href="{% url "book:book" %}" value="{{ item.publisher}}"></input></form>
                       {% comment %} <a class="text-decoration-none py-0 px-01 my-1 d-inline-block" href="{% url 'book:publisher_info' item.publisher_eng %}"><span class="px-01 py-0 border rounded btn-dark">{{ item}}</span></a> {% endcomment %}
                   {% endfor %}
                 </div>
