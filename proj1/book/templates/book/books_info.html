@@ -121,8 +121,8 @@
       <div class="py-1 py-md-2"></div>
     
 
+{% if book_info.contents == "-" %} 
 
-    {{ book_info.contents|safe }}
 
 {% comment %} ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ブロックスタート■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ {% endcomment %}
 
@@ -401,6 +401,13 @@
 
 
 {% comment %} ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ブロックエンド■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ {% endcomment %}
+
+{% else %}
+
+    {{ book_info.contents|safe }}
+
+
+{% endif %}
 
 {% comment %} テーブル {% endcomment %}
 {% comment %} 

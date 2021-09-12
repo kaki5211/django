@@ -35,6 +35,7 @@ class PostSitemap(Sitemap):
         return obj.post_day
 
 
+
 sitemaps = {
     'posts': PostSitemap,
 }
@@ -65,6 +66,8 @@ urlpatterns = [
     path('articles/', views.ArticlesView.as_view(), name='article'), # トピックスに近いもの
 
     path('others/', views.OthersView.as_view(),  name='other'),
+    path('others/shedule', views.Schedule.as_view(),  name='schedule'),
+
 
     path('sitemap.xml/', sitemap, {'sitemaps': sitemaps},  name='sitemap'),
 

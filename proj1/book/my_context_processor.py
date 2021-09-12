@@ -75,35 +75,52 @@ def common(request):
             if flag != 0 :
                 if flag == 1:
                     item = Book.objects.get(post_day=item).title
+                    context['title_info'] = item
                 if flag == 2:
                     item = Category.objects.get(category=item).get_category_display
+                    context['title_info'] = item
                 if flag == 3:
                     item = Author.objects.get(author_eng=item).author
+                    context['title_info'] = item
                 if flag == 4:
                     item = Publisher.objects.get(publisher_eng=item).publisher
+                    context['title_info'] = item
                 # context["url_main"] = item
+                if flag == 5:
+                    item = "今後の予定（ToDo LIST）"
+                    context['title_info'] = item
                 url_dict.update({item:url_path})
                 context['breadcrumb'] = url_dict # パンくずリスト完成
                 return context
 
             if item == "book":
-                item = "HOME"
+                item = "ホーム"
+                context['title_info'] = item
             if item == "books":
                 item = '書籍一覧'
                 flag = 1
                 context['nav_active'] = flag
+                context['title_info'] = item
             if item == "categorys":
                 item = "カテゴリー一覧"
                 flag = 2
                 context['nav_active'] = flag
+                context['title_info'] = item
             if item == "authors":
                 item = "著者一覧"
                 flag = 3
                 context['nav_active'] = flag
+                context['title_info'] = item
             if item == "publishers":
                 item = "出版社一覧"
                 flag = 4
                 context['nav_active'] = flag
+                context['title_info'] = item
+            if item == "others":
+                item = "その他"
+                flag = 5
+                context['nav_active'] = flag
+                context['title_info'] = item
 
             url_dict.update({item:url_path})
             context["url_sub"] = item

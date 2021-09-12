@@ -50,19 +50,23 @@ class MyListView(ListView):
                     q = Book.objects.get(post_day=item)
                     get_data['book_info'] = q.title
                     get_data['contents'] = q.contents
+                    get_data['title_info'] = q.title
                 if flag == 2:
                     q = Category.objects.get(category=item)
                     get_data['category_info'] = q.get_category_display
                     get_data['contents'] = q.contents
+                    get_data['title_info'] = q.title
                 if flag == 3:
                     q = Author.objects.get(author_eng=item)
                     get_data['author_info'] = q.author
                     get_data['contents'] = q.contents
                     get_data['author_info_q'] = Book.objects.filter(Author_info=q.id)
+                    get_data['title_info'] = q.title
                 if flag == 4:
                     q = Publisher.objects.get(publisher_eng=item)
                     get_data['publisher_info'] = q.publisher
                     get_data['contents'] = q.contents
+                    get_data['title_info'] = q.title
                 get_data["url_main"] = item
                 return get_data
 
@@ -457,6 +461,13 @@ class OthersView(ListView):
         context['view'] = [0,1,0,1,0] # [ブログ紹介, メインコンテンツ+サイドバー, メインコンテンツのみ, トピックス]
         return context
 
+class Schedule(ListView):
+    model = Book
+    template_name = 'book/schedule.html'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        context['view'] = [0,1,0,1,0] # [ブログ紹介, メインコンテンツ+サイドバー, メインコンテンツのみ, トピックス]
+        return context
 
 class SearchView(ListView):
     model = Book

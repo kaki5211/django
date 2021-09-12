@@ -1,7 +1,10 @@
 {% load static %}<!doctype html>
 <html lang="ja">
   <head>
-    <title>本ブログ - Book Blog</title>
+    <title>{% if title_info %} {{ title_info }} | {% endif %}本感想ブログ - Book DB</title>
+
+    <!--- google adsense -->
+    <script data-ad-client="ca-pub-9827709071318972" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
   {% comment %} <link href="http://fonts.googleapis.com/earlyaccess/notosansjp.css"> {% endcomment %}
   {% comment %} <link href="https://fonts.googleapis.com/earlyaccess/notosansjapanese.css" rel="stylesheet"> {% endcomment %}
@@ -277,16 +280,19 @@ background-color: $white;
                 {% comment %} {%if nav_active == None %}<a class="nav-link active" aria-current="page" href="#">{%else%}<a class="nav-link" href="{% url 'book:top' %}">{%endif%}ホーム</a> {% endcomment %}
               {% comment %} </li> {% endcomment %}
               <li class="nav-item">
-                {%if nav_active == 1%}<a class="nav-link active" aria-current="page" href="#">{%else%}<a class="nav-link" href="{% url 'book:book' %}">{%endif%}書籍一覧</a>
+                {%if nav_active == 1%}<a class="nav-link active" aria-current="page" href="{% url 'book:book' %}">{%else%}<a class="nav-link" href="{% url 'book:book' %}">{%endif%}書籍一覧</a>
               </li>            
               <li class="nav-item">
-                {%if nav_active == 2%}<a class="nav-link active" aria-current="page" href="#">{%else%}<a class="nav-link" href="{% url 'book:category' %}">{%endif%}カテゴリー</a>
+                {%if nav_active == 2%}<a class="nav-link active" aria-current="page" href="{% url 'book:category' %}">{%else%}<a class="nav-link" href="{% url 'book:category' %}">{%endif%}カテゴリー</a>
               </li>
               <li class="nav-item">
-                {%if nav_active == 3%}<a class="nav-link active" aria-current="page" href="#">{%else%}<a class="nav-link" href="{% url 'book:author' %}">{%endif%}著者</a>
+                {%if nav_active == 3%}<a class="nav-link active" aria-current="page" href="{% url 'book:author' %}">{%else%}<a class="nav-link" href="{% url 'book:author' %}">{%endif%}著者</a>
               </li>
               <li class="nav-item">
-                {%if nav_active == 4%}<a class="nav-link active" aria-current="page" href="#">{%else%}<a class="nav-link" href="{% url 'book:publisher' %}">{%endif%}出版社</a>
+                {%if nav_active == 4%}<a class="nav-link active" aria-current="page" href="{% url 'book:publisher' %}">{%else%}<a class="nav-link" href="{% url 'book:publisher' %}">{%endif%}出版社</a>
+              </li>
+              <li class="nav-item">
+                {%if nav_active == 5%}<a class="nav-link active" aria-current="page" href="{% url 'book:other' %}">{%else%}<a class="nav-link" href="{% url 'book:other' %}">{%endif%}その他</a>
               </li>
 
 
@@ -294,20 +300,28 @@ background-color: $white;
           </div>
 
           <ul class="ms-lg-auto ms-auto me-lg-0 my-0 px-0 py-2 text-center d-block"> 
+
+            {% if 1 == 0 %}
+                <li class="nav-item d-inline-block">
+                  <a class="fs-6 pt-3 text-white" href="https://www.youtube.com/channel/UCe14cApK5chdxcWewhMZR7g">
+                    <svg class="p-1 mx-1" xmlns="http://www.w3.org/2000/svg" width="35" height="35" class="bi bi-twitter" viewBox="0 0 16 16">
+                      <path style="fill:#ff0000;" d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.122C.002 7.343.01 6.6.064 5.78l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"/>
+                    </svg>
+                  </a>
+                </li>
+            {% endif %}
+
             <li class="nav-item d-inline-block">
-              <a class="fs-6 pt-3 text-white" href="https://www.youtube.com/channel/UCe14cApK5chdxcWewhMZR7g">
-                <svg class="p-1 mx-1" xmlns="http://www.w3.org/2000/svg" width="35" height="35" class="bi bi-twitter" viewBox="0 0 16 16">
-                  <path style="fill:#ff0000;" d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.122C.002 7.343.01 6.6.064 5.78l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"/>
-                </svg>
-              </a>
-            </li>
-            <li class="nav-item d-inline-block">
-                <a class="fs-6 pt-3 text-white" href="https://twitter.com/arikui_ch">
+                {% comment %} <a class="fs-6 pt-3 text-white" href="https://twitter.com/arikui_ch"> {% endcomment %}
+                <a class="fs-6 pt-3 text-white" href="#">
               <svg class="p-1 mx-1"  xmlns="http://www.w3.org/2000/svg" width="35" height="35" class="bi bi-twitter" viewBox="0 0 16 16">
-                  <path style="fill:#1d9bf0;" d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"/>
+                  {% comment %} <path style="fill:#1d9bf0;" d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"/> {% endcomment %}
+                  <path style="fill:white;" d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"/>
               </svg>
                 </a>
             </li> 
+
+            {% if 1 == 0 %}
             <li class="nav-item d-inline-block"> 
               <a class="fs-6 pt-3 text-white" href="https://www.instagram.com/arikui_ch/">
                 <?xml version="1.0" ?>
@@ -323,6 +337,8 @@ background-color: $white;
                 </svg>
               </a>
             </li>
+            {% endif %}
+
           </ul>
 
           <form class="d-flex nav-search ms-0">
@@ -376,9 +392,10 @@ background-color: $white;
       <div class="row">
         <div class="col-36">
           <div class="py-2 py-md-2 py-lg-3 fs-6 fs-md-5">
-            <p class="text-center m-auto"><strong>文庫本の感想</strong>ブログ！</p>
-            <p class="text-center m-auto">Python の Django で作成し、<strong>個人で運営！</strong></p>
-            <p class="text-center m-auto">本の感想だけでなく、<strong>文庫本に関する様々な情報</strong>を投稿予定！</p>
+            </br>
+            <p class="text-center m-auto"><strong>文庫本の感想</strong>ブログ！</p></br>
+            <p class="text-center m-auto">Python の Django で作成し、<strong>個人で運営！</strong></p></br>
+            <p class="text-center m-auto">本の感想だけでなく、<strong>文庫本に関する様々な情報</strong>を投稿予定！</p></br>
           </div>
         </div>
       </div>
@@ -649,6 +666,10 @@ align-items:center" {% endcomment %}
                     {% for item in others %}
                         <a class="text-decoration-none py-0 px-01" href="#"><span class="px-01 py-0 border rounded btn-dark">{{ item}}</span></a>
                     {% endfor %}
+
+                      <a class="mb-1 text-start text-white fs-6 fs-md-5 rounded d-inline-block" href="{% url 'book:schedule' %}">今後の予定（ToDo LIST）</a></br>
+                      <a class="my-1 text-start text-white fs-6 fs-md-5 rounded d-inline-block" href="{% url 'book:book' %}">書籍一覧</a>
+                    
                   </div>
                   <a class="text-white" href="{% url 'book:other' %}">その他一覧ページへ移動</a>
                 </div>
@@ -807,8 +828,9 @@ align-items:center" {% endcomment %}
                   その他
               </span>
               <div class="me-auto mb-2 py-2 mb-lg-0 ps-2 text-start text-dark">
-                  <a class="text-start text-white fs-6 fs-md-5 rounded d-inline-block" href="{% url 'book:book' %}">書籍一覧</a>
-              </div>                   
+                  <a class="mb-1 text-start text-white fs-6 fs-md-5 rounded d-inline-block" href="{% url 'book:schedule' %}">今後の予定（ToDo LIST）</a></br>
+                  <a class="my-1 text-start text-white fs-6 fs-md-5 rounded d-inline-block" href="{% url 'book:book' %}">書籍一覧</a>
+              </div>
               </div>     
             </div>
           </div>
@@ -832,36 +854,44 @@ align-items:center" {% endcomment %}
             </div>
                       
             <div class="text-center mx-auto">
-
             <ul class="mx-auto my-0  p-0 text-center d-block"> 
-              <li class="nav-item d-inline-block">
-              <a class="fs-6 pt-3 text-white" href="https://www.youtube.com/channel/UCe14cApK5chdxcWewhMZR7g">
-                <svg class="p-1 mx-1" xmlns="http://www.w3.org/2000/svg" width="35" height="35" class="bi bi-twitter" viewBox="0 0 16 16">
-                  <path style="fill:#ff0000;" d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.122C.002 7.343.01 6.6.064 5.78l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"/>
-                </svg>
-              </a>
-            </li>
+
+            {% if 1 == 0 %}
+                  <li class="nav-item d-inline-block">
+                  <a class="fs-6 pt-3 text-white" href="https://www.youtube.com/channel/UCe14cApK5chdxcWewhMZR7g">
+                    <svg class="p-1 mx-1" xmlns="http://www.w3.org/2000/svg" width="35" height="35" class="bi bi-twitter" viewBox="0 0 16 16">
+                      <path style="fill:#ff0000;" d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.122C.002 7.343.01 6.6.064 5.78l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"/>
+                    </svg>
+                  </a>
+                </li>
+            {% endif %}
+
             <li class="nav-item d-inline-block">
-                <a class="fs-6 pt-3 text-white" href="https://twitter.com/arikui_ch">
+                {% comment %} <a class="fs-6 pt-3 text-white" href="https://twitter.com/arikui_ch"> {% endcomment %}
+                <a class="fs-6 pt-3 text-white" href="#">
               <svg class="p-1 mx-1"  xmlns="http://www.w3.org/2000/svg" width="35" height="35" class="bi bi-twitter" viewBox="0 0 16 16">
-                  <path style="fill:#1d9bf0;" d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"/>
+                  {% comment %} <path style="fill:#1d9bf0;" d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"/> {% endcomment %}
+                  <path style="fill:white;" d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"/>
               </svg>
                 </a>
             </li> 
-            <li class="nav-item d-inline-block"> 
-              <a class="fs-6 pt-3 text-white" href="https://www.instagram.com/arikui_ch/">
-                <?xml version="1.0" ?>
-                <svg class="p-1 mx-1" viewBox="0 0 64 64" width="35" height="35" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><style>.cls-1{fill:url(#radial-gradient);}.cls-2{fill:#fff;}</style><radialGradient cx="-578.95" cy="-837.6" gradientTransform="translate(499.5 629.5) scale(0.75)" gradientUnits="userSpaceOnUse" id="radial-gradient" r="197.06"><stop offset="0" stop-color="#f9ed32"/><stop offset="0.36" stop-color="#ee2a7b"/><stop offset="0.44" stop-color="#d22a8a"/><stop offset="0.6" stop-color="#8b2ab2"/><stop offset="0.83" stop-color="#1b2af0"/><stop offset="0.88" stop-color="#002aff"/></radialGradient></defs><title/><g data-name="3-instagram" id="_3-instagram"><rect class="cls-1" height="64" rx="11.2" ry="11.2" transform="translate(64 64) rotate(180)" width="64"/><path class="cls-2" d="M44,56H20A12,12,0,0,1,8,44V20A12,12,0,0,1,20,8H44A12,12,0,0,1,56,20V44A12,12,0,0,1,44,56ZM20,12.8A7.21,7.21,0,0,0,12.8,20V44A7.21,7.21,0,0,0,20,51.2H44A7.21,7.21,0,0,0,51.2,44V20A7.21,7.21,0,0,0,44,12.8Z"/><path class="cls-2" d="M32,45.6A13.6,13.6,0,1,1,45.6,32,13.61,13.61,0,0,1,32,45.6Zm0-22.4A8.8,8.8,0,1,0,40.8,32,8.81,8.81,0,0,0,32,23.2Z"/><circle class="cls-2" cx="45.6" cy="19.2" r="2.4"/></g>
-                </svg>
-              </a>
-            </li>
-            <li class="nav-item d-inline-block"> 
-              <a class="fs-6 pt-3 text-white" href="https://www.tiktok.com/@arikui_yoriga?">
-                <svg class="p-1 mx-1" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="35" height="35" viewBox="0 0 299.99999 300.00001" id="svg2" version="1.1" inkscape:version="0.92.3 (2405546, 2018-03-11)" sodipodi:docname="base.svg" inkscape:export-filename="/home/thewizardplusplus/projects/tiktok-icon/base_64x64.png" inkscape:export-xdpi="19.200001" inkscape:export-ydpi="19.200001"><defs id="defs4"/><sodipodi:namedview id="base" pagecolor="#ffffff" bordercolor="#666666" borderopacity="1.0" inkscape:pageopacity="0.0" inkscape:pageshadow="2" inkscape:zoom="1.4" inkscape:cx="177.34259" inkscape:cy="159.02713" inkscape:document-units="px" inkscape:current-layer="layer2" showgrid="false" inkscape:window-width="1280" inkscape:window-height="771" inkscape:window-x="0" inkscape:window-y="0" inkscape:window-maximized="1" units="px"/><metadata id="metadata7"><rdf:RDF><cc:Work rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/><dc:title/></cc:Work></rdf:RDF></metadata><g inkscape:groupmode="layer" id="layer2" inkscape:label="Layer 1" style="display:inline" transform="translate(0,-752.36214)"><g id="g95" transform="translate(-221.85742,376.21395)"><rect ry="71.308525" y="376.14819" x="221.85742" height="299.99948" width="299.99948" id="rect4146" style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.14339042;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"/>
-                  <path sodipodi:nodetypes="ccccsssccssscccc" inkscape:connector-curvature="0" d="m 462.5,465.93363 c -56.07143,-5.35714 -55,-54.64285 -55,-54.64285 h -36.15439 v 155.64505 c -0.91152,16.64579 -14.67491,29.67613 -31.34564,29.67613 -17.33765,0 -31.3926,-14.05495 -31.3926,-31.3926 0,-17.33765 14.05495,-31.3926 31.3926,-31.3926 3.65897,0 7.28978,0.63967 10.72845,1.89013 l 0.35473,-41.09386 c -3.82692,-0.64891 -7.7016,-0.97509 -11.58315,-0.97509 -38.26544,0 -69.28571,31.02027 -69.28571,69.28571 0,38.26544 31.02027,69.28572 69.28571,69.28572 36.95878,0 67.41115,-29.0092 69.20413,-65.92446 v -81.07556 c 0,0 19.8673,17.14285 53.79587,17.85714 z" style="display:inline;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" id="path4230"/></g></g>
-                </svg>
-              </a>
-            </li>
+
+            {% if 1 == 0 %}
+                <li class="nav-item d-inline-block"> 
+                  <a class="fs-6 pt-3 text-white" href="https://www.instagram.com/arikui_ch/">
+                    <?xml version="1.0" ?>
+                    <svg class="p-1 mx-1" viewBox="0 0 64 64" width="35" height="35" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><style>.cls-1{fill:url(#radial-gradient);}.cls-2{fill:#fff;}</style><radialGradient cx="-578.95" cy="-837.6" gradientTransform="translate(499.5 629.5) scale(0.75)" gradientUnits="userSpaceOnUse" id="radial-gradient" r="197.06"><stop offset="0" stop-color="#f9ed32"/><stop offset="0.36" stop-color="#ee2a7b"/><stop offset="0.44" stop-color="#d22a8a"/><stop offset="0.6" stop-color="#8b2ab2"/><stop offset="0.83" stop-color="#1b2af0"/><stop offset="0.88" stop-color="#002aff"/></radialGradient></defs><title/><g data-name="3-instagram" id="_3-instagram"><rect class="cls-1" height="64" rx="11.2" ry="11.2" transform="translate(64 64) rotate(180)" width="64"/><path class="cls-2" d="M44,56H20A12,12,0,0,1,8,44V20A12,12,0,0,1,20,8H44A12,12,0,0,1,56,20V44A12,12,0,0,1,44,56ZM20,12.8A7.21,7.21,0,0,0,12.8,20V44A7.21,7.21,0,0,0,20,51.2H44A7.21,7.21,0,0,0,51.2,44V20A7.21,7.21,0,0,0,44,12.8Z"/><path class="cls-2" d="M32,45.6A13.6,13.6,0,1,1,45.6,32,13.61,13.61,0,0,1,32,45.6Zm0-22.4A8.8,8.8,0,1,0,40.8,32,8.81,8.81,0,0,0,32,23.2Z"/><circle class="cls-2" cx="45.6" cy="19.2" r="2.4"/></g>
+                    </svg>
+                  </a>
+                </li>
+                <li class="nav-item d-inline-block"> 
+                  <a class="fs-6 pt-3 text-white" href="https://www.tiktok.com/@arikui_yoriga?">
+                    <svg class="p-1 mx-1" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="35" height="35" viewBox="0 0 299.99999 300.00001" id="svg2" version="1.1" inkscape:version="0.92.3 (2405546, 2018-03-11)" sodipodi:docname="base.svg" inkscape:export-filename="/home/thewizardplusplus/projects/tiktok-icon/base_64x64.png" inkscape:export-xdpi="19.200001" inkscape:export-ydpi="19.200001"><defs id="defs4"/><sodipodi:namedview id="base" pagecolor="#ffffff" bordercolor="#666666" borderopacity="1.0" inkscape:pageopacity="0.0" inkscape:pageshadow="2" inkscape:zoom="1.4" inkscape:cx="177.34259" inkscape:cy="159.02713" inkscape:document-units="px" inkscape:current-layer="layer2" showgrid="false" inkscape:window-width="1280" inkscape:window-height="771" inkscape:window-x="0" inkscape:window-y="0" inkscape:window-maximized="1" units="px"/><metadata id="metadata7"><rdf:RDF><cc:Work rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/><dc:title/></cc:Work></rdf:RDF></metadata><g inkscape:groupmode="layer" id="layer2" inkscape:label="Layer 1" style="display:inline" transform="translate(0,-752.36214)"><g id="g95" transform="translate(-221.85742,376.21395)"><rect ry="71.308525" y="376.14819" x="221.85742" height="299.99948" width="299.99948" id="rect4146" style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.14339042;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"/>
+                      <path sodipodi:nodetypes="ccccsssccssscccc" inkscape:connector-curvature="0" d="m 462.5,465.93363 c -56.07143,-5.35714 -55,-54.64285 -55,-54.64285 h -36.15439 v 155.64505 c -0.91152,16.64579 -14.67491,29.67613 -31.34564,29.67613 -17.33765,0 -31.3926,-14.05495 -31.3926,-31.3926 0,-17.33765 14.05495,-31.3926 31.3926,-31.3926 3.65897,0 7.28978,0.63967 10.72845,1.89013 l 0.35473,-41.09386 c -3.82692,-0.64891 -7.7016,-0.97509 -11.58315,-0.97509 -38.26544,0 -69.28571,31.02027 -69.28571,69.28571 0,38.26544 31.02027,69.28572 69.28571,69.28572 36.95878,0 67.41115,-29.0092 69.20413,-65.92446 v -81.07556 c 0,0 19.8673,17.14285 53.79587,17.85714 z" style="display:inline;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" id="path4230"/></g></g>
+                    </svg>
+                  </a>
+                </li>
+            {% endif %}
             </div>
           </ul>
         </div>
